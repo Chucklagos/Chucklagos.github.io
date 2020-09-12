@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <title></title>
+</head>
+<body>
+    <main>
+        <div class="box">
+
+        </div>
+        <p class="alert-danger">Este sitio se encuentra actualmente bajo construcción <br>y probablemente me voy a tardar :(</p>
+        <div class="border bg-primary">
+            <div class="bg-white animation1">
+                Loading...
+            </div>
+        </div>
+    
+    </main>
+
+    <style>
+        main{
+            background-image: url("bg.jpg");
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            background-size: cover;
+            height:800px;
+        }
+
+        p{
+            text-align: center;
+        }
+
+        div{
+            height: 50px;
+        }
+
+        .box{
+            height: 250px;
+        }
+        /*Animations*/
+        .animation1 {
+            animation-duration: 10s;
+            animation-name: slidein;
+            animation-iteration-count: infinite;
+            animation-direction: alternate;
+        }
+
+        @keyframes slidein {
+        from {
+            margin-left: 100%;
+            width: 300%
+        }
+
+        to {
+            margin-left: 0%;
+            width: 100%;
+        }
+        }
+    </style>
+</body>
+</html>
