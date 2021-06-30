@@ -8,20 +8,29 @@
 
 .box{
   width: auto;
-  height: 150px;
+  /*height: 150px;*/
+  height: auto;
   text-align: center;
   /*font-size: 70px;*/
   font-style: italic;
   color: white;
-  background-image: url(bg/bg.jpg);
+  background-image: url(bg/mohammad-rahmani-8OnkIkFBBtM-unsplash.jpg);
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
 }
+
+.nav-title{
+  font-size: 20px;
+}
+
 .empty-box{
   width: auto;
-  height: 800px;
+  height: 100px;
   text-align: center;
   font-size: 80px;
-
+  background-image: url(bg/mohammad-rahmani-8OnkIkFBBtM-unsplash.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
