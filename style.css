@@ -5,3 +5,23 @@
 .ci-size{
   font-size: 26px;
 }
+
+.box{
+  width: auto;
+  height: 150px;
+  text-align: center;
+  /*font-size: 70px;*/
+  font-style: italic;
+  color: white;
+  background-image: url(bg/bg.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+.empty-box{
+  width: auto;
+  height: 800px;
+  text-align: center;
+  font-size: 80px;
+
+}
