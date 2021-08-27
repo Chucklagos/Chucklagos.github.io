@@ -2,6 +2,10 @@
   font-size: 100px;
 }
 
+.i-text-size{
+  font-size: 90px;
+}
+
 .ci-size{
   font-size: 26px;
 }
@@ -33,4 +37,8 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
+}
+
+.vertical-center{
+  padding: 70px 0;
 }
