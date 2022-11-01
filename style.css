@@ -42,3 +42,20 @@
 .vertical-center{
   padding: 70px 0;
 }
+
+.floating-dock{
+  background-color: #0E196B;
+  border-radius: 2em;
+  margin: 1em;
+}
+
+.hamburger-menu{
+  background-color: #0E196B;
+  border-radius: 2em;
+}
+
+.font{
+  font-family: Arial, Helvetica, sans-serif;
+  
+  font-size: x-large;
+}
