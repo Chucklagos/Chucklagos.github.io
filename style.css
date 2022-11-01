@@ -56,6 +56,9 @@
 
 .font{
   font-family: Arial, Helvetica, sans-serif;
-  
   font-size: x-large;
+}
+
+.block-background{
+  background-color: #E1E2E6;
 }
