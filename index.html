@@ -6,146 +6,162 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Chuck Lagos</title>
   <link rel="shortcut icon" href="icons/favicon.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
   <link rel="stylesheet" href="style.css">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.13.0/devicon.min.css">
 </head>
-<body class="font">
-  <nav class="navbar navbar-expand-lg navbar-primary floating-dock nav-title fixed-top">
+<body class="">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
-      <a class="navbar-brand link-light font" href="#"> Chuck Lagos</a>
-      <button class="navbar-toggler hamburger-menu" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"><img src="icons/dev.svg" alt=""></span>
+      <a class="navbar-brand" href="#">My Portfolio</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+        <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse row text-center" id="navbarNavDropdown">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="link-light nav-link" href="#about"><img src="icons/person_white.svg" class="px-1" alt="">About</a>
-          </li>
-          <li class="nav-item">
-            <a class="link-light nav-link" href="#skills"><img src="icons/school_white.svg" class="px-1" alt="">Skills</a>
-          </li>
-          <li class="nav-item">
-            <a class="link-light nav-link" href="#projects"><img src="icons/code_white.svg" class="px-1" alt="">Projects</a>
-          </li>
-          <li class="nav-item">
-            <a class="link-light nav-link" href="#contact"><img src="icons/contact_page_white.svg" class="px-1" alt="">Contact</a>
-          </li>
-          <li class="nav-item">
-            <a class="link-light nav-link" href="resume.pdf" target="_blank"><img src="icons/post_add_white.svg" class="px-1" alt="">Check my Resume</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav><br><br><br>
-  <a href="#" name="about"></a>
-  
-  <section class="container-fluid ">
-    <div class="container text-center">
-      <div class=""><img src="img/profile.jpeg" class="rounded-circle border border-dark" alt="" width="150" height="150"></div><br>
-      I'm an intern of the Systems Engineering degree at the National Autonomous University of Honduras, already in my last year of degree.
-I have knowledge in different areas of computing such as: Programming, Web Design, Development of Mobile Applications, Operating Systems (Windows and Linux), Installation and Configuration of Software Tools.
-      I'm Self-taught in various topics of technology and someone who likes to break things (with the aim of learning of course 😂).
-    </div>
-  </section><hr>
-  <a name="skills"></a>
-
-  <!--div class="empty-box">
-
-  </div-->
-
-  <section class="container-fluid ">
-    <div class="text-center fs-3">Skills</div><br>
-    <div class="row text-center">
-      <div class="col-md-4">
-        <div class="fs-5">Coding</div><br>
-        <i class="devicon-html5-plain-wordmark colored mx-3 i-size"></i>
-        <i class="devicon-php-plain colored mx-3 i-size"></i>
-        <i class="devicon-java-plain-wordmark colored mx-3 i-size"></i>
-        <br><br><br>
-      </div>
-      <div class="col-md-4">
-        <div class="fs-5">Frameworks</div><br>
-        <i class="devicon-bootstrap-plain-wordmark colored mx-3 i-size"></i>
-        <i class="devicon-bulma-plain colored mx-3 i-size"></i>
-        <br><br><br>
-      </div>
-      <div class="col-md-4">
-        <div class="fs-5">Databases</div><br>
-        <i class="devicon-mysql-plain-wordmark colored mx-3 i-size"></i>
-        <i class="devicon-microsoftsqlserver-plain-wordmark colored mx-3 i-size"></i>
-        <br><br><br>
-      </div>
-    </div>
-  </section><hr>
-  <a name="projects"></a>
-  
-  <!--div class="empty-box">
-
-  </div-->
-
-  <section class="container-fluid ">
-    <div class="text-center fs-3">Projects</div><br>
-      <div class="row text-center">
-        <div class="col-md-4">
-          <div class="card">
-            <img src="img/worship-planning.png" class="card-img-top" alt="">
-            <div class="card-body">
-              <div class="card-title">Worship Planning</div>
-              <p>Built with web technologies, a system designed for internal church management</p>
-              <a href="https://github.com/Chucklagos/Worship-Planning" class="btn btn-outline-dark" target="_blank"><i class="devicon-github-original mx-1"></i>Source Code</a>
-            </div>
-          </div><br><br><br>
+      <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+        <div class="offcanvas-header bg-dark">
+          <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
+          <button type="button" class="btn-close text-white" data-bs-dismiss="offcanvas" aria-label="Close" style="filter: invert(1);"></button>
         </div>
-        <div class="col-md-4">
-          <div class="card">
-            <img src="img/minisales-system.png" alt="" class="card-img-top">
-            <div class="card-body">
-              <div class="card-title">IBF Mini Sales System</div>
-              <p>Built with HTML / CSS, PHP & MySQL, for a food sale made by a church in my town</p>
-              <a href="https://github.com/Chucklagos/IBF_MiniSalesSystem" class="btn btn-outline-dark" target="_blank"><i class="devicon-github-original mx-1"></i>Source Code</a>
-            </div>
-          </div><br><br><br>
-        </div>
-        <div class="col-md-4">
-          <div class="card">
-            <img src="img/golden-quest.png" alt="" class="card-img-top"><br>
-            <div class="card-body">
-              <div class="card-title fs-5">Golden Quest</div>
-              <p>A minigame made in Java, This game was a project made for the Programming II class at UNAH</p>
-              <a href="https://github.com/Chucklagos/Golden-Quest/" class="btn btn-outline-dark" target="_blank"><i class="devicon-github-original mx-1"></i>Source Code</a>
-            </div>
-          </div><br><br><br>
+        <div class="offcanvas-body bg-dark">
+          <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#skills">Skills</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#projects">Projects</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#contact">Contact</a>
+            </li>
+          </ul>
         </div>
       </div>
-      <div class="text-center">
-        <a href="https://github.com/Chucklagos" class="btn btn-outline-dark" target="_blank"><i class="devicon-github-original mx-1"></i>Check my Repositories</a>
-      </div><br><br>
-    </section><hr>
-  
-    <!--div class="empty-box">
-
-    </div-->
-
-    <!--section class="container-fluid">
-      <a href="#" name="blog"></a>
-      <div class="text-center fs-3">Blog</div><br>
-      <div class="text-center"-->
-        <!--a href="https://medium.com/@chucklagos"><img src="icons/medium.png" class="mx-2" alt="" width="26" height="26">Medium</a-->
-    <!--section><hr-->
-
-  <section class="container-fluid ">
-    <a href="#" name="contact"></a>
-    <div class="text-center fs-3">Contact</div><br>
-    <div class="text-center">
-      <a href="https://www.linkedin.com/in/chucklagos/" target="_blank"><img src="icons/linkedin.png" class="mx-2" alt="" width="26" height="26">Chuck Lagos</a>
     </div>
-  </section><br><br>
+  </nav>
 
-  <!--div class="empty-box">
+  <header class="banner text-white text-center py-5 bg-navy">
+    <div class="container">
+      <h1>Chuck Lagos</h1>
+      <p>Web Developer</p>
+    </div>
+  </header>
 
-  </div-->
+  <section class="my-5">
+    <div class="container">
+      <div class="card bg-dark text-white">
+        <div class="card-body">
+          <h5 class="card-title">About Me</h5>
+          <p class="card-text">"Hello there! I'm a developer with a diverse skill set in programming, web design, mobile app development, and OS management. I’m adept at software installation and configuration. <br>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+            A self-taught learner and tech enthusiast, I love deconstructing things to see how they work—always for the sake of learning and innovation! 😂"</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+
+  <section id="skills" class="my-5 text-white">
+    <div class="container">
+      <h2 class="mb-4">Skills</h2>
+      <div class="row">
+        <div class="col-md-2">
+          <div class="card bg-dark mb-3 skill-card">
+            <div class="card-body text-center">
+              <h5 class="card-title"><i class="fab fa-drupal"></i> Drupal</h5>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div class="card bg-dark mb-3 skill-card">
+            <div class="card-body text-center">
+              <h5 class="card-title"><i class="fab fa-wordpress"></i> WordPress</h5>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div class="card bg-dark mb-3 skill-card">
+            <div class="card-body text-center">
+              <h5 class="card-title"><i class="fab fa-html5"></i> HTML/CSS</h5>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div class="card bg-dark mb-3 skill-card">
+            <div class="card-body text-center">
+              <h5 class="card-title"><i class="fab fa-php"></i> PHP</h5>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div class="card bg-dark mb-3 skill-card">
+            <div class="card-body text-center">
+              <h5 class="card-title"><i class="fas fa-database"></i> MySQL</h5>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div class="card bg-dark mb-3 skill-card">
+            <div class="card-body text-center">
+              <h5 class="card-title"><i class="fas fa-database"></i> SQL Server</h5>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div class="card bg-dark mb-3 skill-card">
+            <div class="card-body text-center">
+              <h5 class="card-title"><i class="fab fa-bootstrap"></i> Bootstrap</h5>
+            </div>
+          </div>
+        </div>
+        <!--div class="col-md-2">
+          <div class="card bg-dark mb-3 skill-card">
+            <div class="card-body text-center">
+              <h5 class="card-title">Bulma</h5>
+            </div>
+          </div>
+        </div-->
+        <!-- ... -->
+        
+      </div>
+    </div>
+  </section>
+
+
+  <section id="projects" class="my-5">
+    <div class="container">
+      <h2 class="mb-4">Projects</h2>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="card bg-dark text-white">
+            <img src="img/worship-planning.png" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Proyecto 1</h5>
+              <p class="card-text">Breve descripción del proyecto.</p>
+              <a href="#" class="btn btn-primary">Ver Proyecto</a>
+            </div>
+          </div>
+        </div>
+        <!-- Repite la estructura de arriba para cada proyecto -->
+      </div>
+    </div>
+  </section>
+  
+  <section id="contact" class="my-5">
+    <div class="container">
+      <h2 class="mb-4">Contact</h2>
+      <iframe data-tally-src="https://tally.so/embed/3xD7pr?hideTitle=1&transparentBackground=1&dynamicHeight=1" loading="lazy" width="100%" height="100" frameborder="0" marginheight="0" marginwidth="0" title="Portfolio Contact Form"></iframe><script>var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}</script>
+    </div>
+  </section>
+  
+  <footer class="bg-dark text-white text-center text-lg-start">
+    <div class="container p-4">
+      <p class="text-center">© 2023 Mi Portafolio</p>
+    </div>
+  </footer>
+
   </body>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </html>

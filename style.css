@@ -1,64 +1,53 @@
-.i-size{
-  font-size: 100px;
-}
+.bg-navy {
+    background-color: #2c3e50;
+  }
+  
+  .offcanvas-title{
+    color: #ecf0f1;
+  }
 
-.i-text-size{
-  font-size: 90px;
-}
+  body {
+    background-color: #34495e;
+    color: #ecf0f1;
+  }
 
-.ci-size{
-  font-size: 26px;
-}
+  @keyframes gradient {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
 
-.box{
-  width: auto;
-  /*height: 150px;*/
-  height: auto;
-  text-align: center;
-  /*font-size: 70px;*/
-  font-style: italic;
-  color: white;
-  background-image: url(bg/mohammad-rahmani-8OnkIkFBBtM-unsplash.jpg);
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-}
+  body {
+    background: linear-gradient(-45deg, #1a2a3a, #2c3e50, #34495e, #1a2a3a, #2c3e50);
+    background-size: 500% 500%;
+    animation: gradient 10s ease infinite;
+    color: #ecf0f1;
+    margin: 0;
+  }
 
-.nav-title{
-  font-size: 18px;
-}
+  .skill-card {
+    color: #ecf0f1;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  }
+  
+  .skill-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
 
-.empty-box{
-  width: auto;
-  height: 100px;
-  text-align: center;
-  font-size: 80px;
-  background-image: url(bg/mohammad-rahmani-8OnkIkFBBtM-unsplash.jpg);
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-}
+  .btn-primary{
+    background-color: #34485D;
+    border-color: #ecf0f1;
+  }
 
-.vertical-center{
-  padding: 70px 0;
-}
-
-.floating-dock{
-  background-color: #0E196B;
-  border-radius: 2em;
-  margin: 1em;
-}
-
-.hamburger-menu{
-  background-color: #0E196B;
-  border-radius: 2em;
-}
-
-.font{
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: x-large;
-}
-
-.block-background{
-  background-color: #E1E2E6;
-}
+  .btn-primary:hover{
+    background-color: #ecf0f1;
+    border-color: #2C3E50; 
+    color: #2C3E50;
+  }
