@@ -48,7 +48,7 @@
     color: #2C3E50;
   }
 
-  .card{
+  .project-card{
     margin-top: 25px;
   }
 
@@ -58,3 +58,16 @@
     font-weight: 700;
   }
 
+  .icondecoration{
+    color: #ecf0f1;
+    font-size: 30px;
+    margin: auto 5px;
+  }
+
+  .social-links{
+  
+  }
+
+  .centered-items{
+    align-items: center;
+  }
