@@ -1,3 +1,4 @@
+
 .bg-navy {
     background-color: #2c3e50;
   }
@@ -20,9 +21,9 @@
   }
 
   body {
-    background: linear-gradient(-45deg, #1a2a3a, #2c3e50, #34495e, #1a2a3a, #2c3e50);
+    /*background: linear-gradient(-45deg, #1a2a3a, #2c3e50, #34495e, #1a2a3a, #2c3e50);
     background-size: 500% 500%;
-    animation: gradient 10s ease infinite;
+    animation: gradient 10s ease infinite;*/
     color: #ecf0f1;
     margin: 0;
   }
@@ -52,6 +53,13 @@
     margin-top: 25px;
   }
 
+  .service-card{
+    max-width: 350px;
+    margin: 20px auto;
+    gap: 20px;
+    
+  }
+
   .textdecoration{
     text-decoration: none;
     color: #ecf0f1;
@@ -65,9 +73,70 @@
   }
 
   .social-links{
-  
+    margin-bottom: 20px;
   }
 
   .centered-items{
     align-items: center;
   }
+
+  .banner{
+    background: linear-gradient(-45deg, #1a2a3a, #2c3e50, #34495e, #1a2a3a, #2c3e50);
+    background-size: 500% 500%;
+    animation: gradient 10s ease infinite;
+  }
+.card-body a{
+    padding: 10px;
+    background-color: #34485d;
+    color: white;
+    border-radius: 10px;
+}
+.badge{
+    margin: 5px;
+}
+
+
+
+.experience-section {
+  width: 100%;
+  padding: 20px;
+  max-width: 1280px;
+  margin: auto;
+}
+
+.experience-section h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.job {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+}
+
+.job-title, .job-description {
+  flex: 1;
+  margin: auto;
+}
+
+.job-title h3, .job-title h4, .job-description p {
+  margin: 0;
+  text-align: center;
+}
+
+.job-title .year {
+  font-style: italic;
+  text-align: center;
+}
+
+.job-description li {
+  padding: 2px 0;
+}
+
+.section-title{
+  text-align: center;
+  margin-top: 40px;
+}
