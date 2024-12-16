@@ -1,349 +1,521 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
-    <!-- Meta tags básicos -->
+    <!-- Meta -->
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Online CV of Chuck Lagos, a Software Developer focused on Drupal, WordPress, PHP, MySQL, and more. Experience in web development, maintenance, and innovative projects.">
+    <meta name="keywords" content="Chuck Lagos, Developer, Web Developer, Drupal, WordPress, PHP, MySQL, Cyberpunk">
+    <meta name="author" content="Chuck Heriberto Guifarro Lagos">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- Título y Descripción -->
     <title>Chuck Lagos - Software Developer</title>
-    <meta name="description" content="Desarrollador entusiasta en crear y explorar el mundo digital, con un toque de curiosidad para descubrir cómo funcionan las cosas y un fuerte impulso hacia la innovación.">
-  
-    <!-- Open Graph / Facebook -->
+
+    <!-- Open Graph / Social -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://chucklagos.github.io/">
-    <meta property="og:title" content="Chuck Lagos - Desarrollador de Software">
-    <meta property="og:description" content="Desarrollador entusiasta en crear y explorar el mundo digital, con un toque de curiosidad para descubrir cómo funcionan las cosas y un fuerte impulso hacia la innovación.">
-    <meta property="og:image" content="https://chucklags.github.io/img/curiosity.webp">
-  
+    <meta property="og:url" content="https://chucklagos.dev/">
+    <meta property="og:title" content="Chuck Lagos - Software Developer">
+    <meta property="og:description" content="A developer focused on innovation, CMS, and constant curiosity about technology.">
+    <meta property="og:image" content="https://chucklagos.dev/img/curiosity.webp">
+
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://chucklagos.github.io/">
-    <meta property="twitter:title" content="Chuck Lagos - Desarrollador de Software">
-    <meta property="twitter:description" content="Desarrollador entusiasta en crear y explorar el mundo digital, con un toque de curiosidad para descubrir cómo funcionan las cosas y un fuerte impulso hacia la innovación.">
-    <meta property="twitter:image" content="https://chucklags.github.io/img/curiosity.webp">
-  
+    <meta property="twitter:url" content="https://chucklagos.dev/">
+    <meta property="twitter:title" content="Chuck Lagos - Software Developer">
+    <meta property="twitter:description" content="A developer focused on innovation, CMS, and constant curiosity about technology.">
+    <meta property="twitter:image" content="https://chucklagos.dev/img/curiosity.webp">
 
-  <title>Chuck Lagos</title>
-  <link rel="shortcut icon" href="icons/favicon.png">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-  <link rel="stylesheet" href="style.css">
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="icons/favicon.png">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap & Font Awesome -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        :root {
+            --color-bg-start: #0c0f14;
+            --color-bg-end: #1a1f2b;
+            --color-text: #eee;
+            --color-accent: #0ff;
+            --color-subtext: #ccc;
+            --color-border: #333;
+            --color-mid: #444;
+            --color-card-bg: #1a1f2b;
+            --color-card-border: #333;
+            --color-hover-link: #0ff;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--color-bg-start), var(--color-bg-end) 70%);
+            color: var(--color-text);
+            font-family: 'Roboto', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Orbitron', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Navbar */
+        .navbar {
+            background: var(--color-bg-start);
+            border-bottom: 1px solid var(--color-accent);
+        }
+
+        .navbar-brand {
+            color: var(--color-accent);
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            font-size: 1.4rem;
+        }
+
+        .navbar-brand:hover {
+            color: var(--color-accent);
+            text-decoration: underline;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            font-size: 1.4rem;
+        }
+
+        .navbar-nav .nav-link {
+            color: var(--color-subtext);
+            transition: color 0.3s ease;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: var(--color-accent);
+        }
+
+        /* Header */
+        header {
+            padding: 100px 0;
+            text-align: center;
+            position: relative;
+        }
+
+        header .glow-text {
+            color: var(--color-accent);
+            text-shadow: 0 0 5px var(--color-accent), 0 0 10px var(--color-accent), 0 0 20px var(--color-accent);
+        }
+
+        .social-links a {
+            color: var(--color-accent);
+            margin: 0 10px;
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .social-links a:hover {
+            transform: scale(1.2);
+        }
+
+        /* Section Titles */
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            color: var(--color-accent);
+            text-shadow: 0 0 5px var(--color-accent);
+        }
+
+        /* Cards */
+        .card {
+            background: var(--color-card-bg);
+            border: none;
+            border-radius: 8px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid var(--color-card-border);
+        }
+
+        .card-text{
+          color: var(--color-text);
+        }
+
+        .card-title{
+          color: var(--color-text);
+        }
+
+        .card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 10px var(--color-accent);
+        }
+
+        .project-card img {
+            border-bottom: 1px solid var(--color-mid);
+        }
+
+        /* Skill Icons */
+        .skill-card .card-title i {
+            margin-right: 5px;
+            color: var(--color-accent);
+        }
+
+        .skill-card .card-title {
+            font-size: 1rem;
+            color: var(--color-text);
+        }
+
+        /* Experience */
+        .job {
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+        }
+
+        .job-title h3 {
+            color: var(--color-accent);
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+
+        .job-title h4 a {
+            color: var(--color-subtext);
+            text-decoration: none;
+        }
+
+        .job-title h4 a:hover {
+            text-decoration: underline;
+            color: var(--color-accent);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--color-bg-start);
+            border-top: 1px solid var(--color-accent);
+            padding: 20px;
+            text-align: center;
+        }
+
+        footer a {
+            color: var(--color-accent);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Glitch title effect */
+        .glitch {
+            position: relative;
+            display: inline-block;
+            font-size: 2.5rem;
+        }
+
+        .glitch::before,
+        .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            left: 0;
+        }
+
+        .glitch::before {
+            animation: glitch 1s infinite;
+            color: #f0f;
+            top: 0;
+            left: 2px;
+            overflow: hidden;
+            clip: rect(0, 900px, 0, 0);
+        }
+
+        .glitch::after {
+            animation: glitch2 1s infinite;
+            color: var(--color-accent);
+            top: 0;
+            left: -2px;
+            overflow: hidden;
+            clip: rect(0, 900px, 0, 0);
+        }
+
+        @keyframes glitch {
+            0% { clip: rect(0, 900px, 0, 0); }
+            20% { clip: rect(0, 900px, 100px, 0); }
+            40% { clip: rect(0, 900px, 0, 0); }
+            60% { clip: rect(0, 900px, 50px, 0); }
+            80% { clip: rect(0, 900px, 0, 0); }
+            100% { clip: rect(0, 900px, 0, 0); }
+        }
+
+        @keyframes glitch2 {
+            0% { clip: rect(0, 900px, 0, 0); }
+            20% { clip: rect(0, 900px, 50px, 0); }
+            40% { clip: rect(0, 900px, 0, 0); }
+            60% { clip: rect(0, 900px, 80px, 0); }
+            80% { clip: rect(0, 900px, 0, 0); }
+            100% { clip: rect(0, 900px, 0, 0); }
+        }
+
+        /* Fade-in animation for sections */
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in-active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+    </style>
 </head>
 <body>
-  
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  
-  <nav class="navbar navbar-dark navbar-expand-lg bg-dark">
-    <div class="container-fluid" style="max-width: 1280px">
-      <a class="navbar-brand" href="https://chucklagos.dev">chucklagos.dev</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
-          <!--a class="nav-link" aria-current="page" href="/home"> <i class="fa-solid fa-house"></i> Home</a>
-          <a class="nav-link" href="/projects"> <i class="fa-solid fa-code"></i> Projects</a>
-          <a class="nav-link" href="/contact"> <i class="fa-solid fa-envelope"></i> Contact</a>
-          <a class="nav-link" href="/blog"> <i class="fa-solid fa-newspaper"></i>  Blog</a-->
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg">
+      <div class="container">
+        <a class="navbar-brand" href="#home">CHUCKLAGOS.DEV</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" 
+          data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" 
+          aria-expanded="false" aria-label="Toggle navigation">
+          <span class="text-white"><i class="fa fa-bars"></i></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav ms-auto">
+            <a class="nav-link" href="#about">About</a>
+            <a class="nav-link" href="#services">Services</a>
+            <a class="nav-link" href="#skills">Skills</a>
+            <a class="nav-link" href="#experience">Experience</a>
+            <a class="nav-link" href="#projects">Projects</a>
+            <a class="nav-link" href="#contact">Contact</a>
+          </div>
         </div>
       </div>
-    </div>
-  </nav>
+    </nav>
 
-  <header class="banner text-white text-center py-5 bg-navy">
-    <section>
+
+    <!-- Header -->
+    <header id="home" class="fade-in-section">
+        <div class="container">
+            <h1 class="glow-text glitch" data-text="Chuck Lagos">Chuck Lagos</h1>
+            <p class="mt-3">Software Developer | CMS Specialist | Curious Innovator</p>
+            <div class="social-links mt-4">
+                <a href="https://www.linkedin.com/in/chucklagos/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/chucklagos" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://twitter.com/chucklagos" target="_blank"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
+    </header>
+
+    <!-- About Section -->
+    <section id="about" class="py-5 fade-in-section">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <p class="lead text-center px-3">
+                I am a passionate developer who loves the digital world. <br>
+                I enjoy creating, breaking, and analyzing systems to understand how they work. 
+                I specialize in CMS (Drupal, WordPress), PHP, MySQL, and evolving frameworks. 
+                Constantly seeking the next innovation, I collaborate on projects and continually learn new technologies.
+            </p>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-5 fade-in-section">
       <div class="container">
-        <div class="row centered-items">
-          <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
-            <img src="" alt="" srcset="">
-            <h1>Chuck Lagos</h1>
-            <p>Software Developer</p>
-            <div class="social-links">
-              <a href="https://www.linkedin.com/in/chucklagos/"><i class="fa-brands fa-linkedin icondecoration"></i></a>
-              <a href="https://github.com/chucklagos"><i class="fa-brands fa-github icondecoration"></i></a>
-              <a href="https://github.com/chucklagos"><i class="fa-brands fa-twitter icondecoration"></i></a>
+        <h2 class="section-title">Services</h2>
+        <div class="row g-4">
+          <div class="col-md-6">
+            <div class="card card-text text-center p-4">
+              <div style="font-size: 50px;" class="mb-3"><i class="fa-solid fa-laptop-code"></i></div>
+              <h4>Web Development</h4>
+              <p>Intuitive, responsive websites and applications, fully optimized for any device.</p>
             </div>
-          </div>        
-          <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12">
-            <div class="card bg-dark text-white">
-              <div class="card-body">
-                <h5 class="card-title">About Me</h5>
-                <p class="card-text">
-                  "Developer enthusiastic about creating and exploring the digital world, with a touch of curiosity to discover how things work and a strong drive towards innovation."</p>
-              </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card card-text text-center p-4">
+              <div style="font-size: 50px;" class="mb-3"><i class="fa-solid fa-screwdriver-wrench"></i></div>
+              <h4>Web Maintenance</h4>
+              <p>Continuous updates, backups, and performance tuning to keep your site secure and fresh.</p>
             </div>
-          </div>   
-      </div>
+          </div>
+        </div>
       </div>
     </section>
-  </header>
 
-
-  <section>
-    
-    <div class="row" style="max-width: 1280px; margin: auto;">
-      <h2 class="mb-4 section-title">Services</h2>
-      <div class="col-lg-6 col-md-6 col-sm-12 bg-dark text-white card text-center service-card">
-        <div class="card-header">
-          Web Development
+    <!-- Skills Section -->
+    <section id="skills" class="py-5 fade-in-section">
+        <div class="container">
+            <h2 class="section-title">Skills</h2>
+            <div class="row g-3 justify-content-center">
+              <div class="col-md-2">
+                <div class="card skill-card text-center p-3">
+                  <h5 class="card-title"><i class="fab fa-drupal"></i> Drupal</h5>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="card skill-card text-center p-3">
+                  <h5 class="card-title"><i class="fab fa-wordpress"></i> WordPress</h5>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="card skill-card text-center p-3">
+                  <h5 class="card-title"><i class="fab fa-html5"></i> HTML/CSS</h5>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="card skill-card text-center p-3">
+                  <h5 class="card-title"><i class="fab fa-php"></i> PHP</h5>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="card skill-card text-center p-3">
+                  <h5 class="card-title"><i class="fas fa-database"></i> MySQL</h5>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="card skill-card text-center p-3">
+                  <h5 class="card-title"><i class="fab fa-bootstrap"></i> Bootstrap</h5>
+                </div>
+              </div>
+            </div>
         </div>
-        <div class="card-body">
-          <div style="font-size: 70px;"><i class="fa-solid fa-laptop-code"></i></div>
-          <h5 class="card-title">Web Development</h5>
-          <p class="card-text">"Create your digital footprint with bespoke web solutions. Specializing in intuitive, responsive websites and applications, I deliver a compelling online presence that's optimized across all devices."</p>
-          
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="py-5 fade-in-section">
+        <div class="container">
+            <h2 class="section-title">Experience</h2>
+
+            <div class="job mb-4">
+                <div class="job-title">
+                    <h3>Developer | <a href="https://punto.hn" target="_blank">Punto HN</a></h3>
+                    <p class="year">02/2023 - Present</p>
+                </div>
+                <ul>
+                    <li>Development and improvement of institutional web portals (Drupal, WordPress).</li>
+                    <li>Server administration, security, performance, and scalability.</li>
+                    <li>Leading the development team, fostering collaboration and quality deliveries.</li>
+                </ul>
+            </div>
+
+            <div class="job mb-4">
+                <div class="job-title">
+                    <h3>Support Technician | <a href="https://punto.hn" target="_blank">Punto HN</a></h3>
+                    <p class="year">10/2022 - 02/2023</p>
+                </div>
+                <ul>
+                    <li>Technical support to maintain operational continuity.</li>
+                    <li>Server administration, ensuring security and uptime.</li>
+                    <li>Development of accessible and responsive websites.</li>
+                </ul>
+            </div>
+
+            <div class="job mb-4">
+                <div class="job-title">
+                    <h3>Computer Science Teacher | <a href="https://fuentedivina.education/" target="_blank">Divine Stream Christian School</a></h3>
+                    <p class="year">03/2022 - 10/2022</p>
+                </div>
+                <ul>
+                    <li>Taught virtual and semi-presential computing classes.</li>
+                    <li>Managed educational platforms (Office 365, MS Teams).</li>
+                    <li>Installation and configuration of technological equipment.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-5 fade-in-section">
+      <div class="container">
+        <h2 class="section-title">Projects</h2>
+        <p class="text-center mb-5">Some highlighted projects I have worked on.</p>
+        <div class="row g-4">
+          <div class="col-md-4">
+            <div class="card project-card">
+              <img src="img/projects/empleoshn.webp" class="card-img-top" alt="Empleos HN">
+              <div class="card-body">
+                <h5 class="card-title">RDS - Empleos.hn</h5>
+                <p class="card-text">Job portal developed with Drupal for the Sustainable Development Network.</p>
+                <a href="https://empleos.hn" target="_blank" class="btn btn-primary">View Project</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card project-card">
+              <img src="img/projects/becashn.webp" class="card-img-top" alt="Becas HN">
+              <div class="card-body">
+                <h5 class="card-title">RDS - Becas.hn</h5>
+                <p class="card-text">Scholarships portal developed with Drupal for the Sustainable Development Network.</p>
+                <a href="https://becas.hn" target="_blank" class="btn btn-primary">View Project</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card project-card">
+              <img src="img/projects/sanradio.webp" class="card-img-top" alt="San Radio RDS">
+              <div class="card-body">
+                <h5 class="card-title">San Radio RDS</h5>
+                <p class="card-text">WordPress-based portal for the San Radio project of the RDS.</p>
+                <a href="https://sanradio.rds.hn" target="_blank" class="btn btn-primary">View Project</a>
+              </div>
+            </div>
+          </div>
+          <!-- Additional projects can be added similarly -->
         </div>
       </div>
+    </section>
 
-    <div class="col-lg-6 col-md-6 col-sm-12 bg-dark text-white card text-center service-card">
-      <div class="card-header">
-        Web Maintenance
+    <!-- Contact Section -->
+    <section id="contact" class="py-5 fade-in-section">
+      <div class="container">
+        <h2 class="section-title">Contact</h2>
+        <p class="text-center mb-4">Need any services or want to collaborate on a project? Let's talk!</p>
+        <div class="text-center">
+          <a href="mailto:chucklagos17@outlook.com" class="btn btn-outline-light btn-lg">Send Email</a>
+          <div class="social-links mt-4">
+              <a href="https://www.linkedin.com/in/chucklagos/" target="_blank"><i class="fab fa-linkedin"></i></a>
+              <a href="https://github.com/chucklagos" target="_blank"><i class="fab fa-github"></i></a>
+              <a href="https://twitter.com/chucklagos" target="_blank"><i class="fab fa-twitter"></i></a>
+          </div>
+        </div>
       </div>
-      <div class="card-body">
-        <div style="font-size: 70px;"><i class="fa-solid fa-screwdriver-wrench"></i></div>
-        <h5 class="card-title">Web Maintenance</h5>
-        <p class="card-text">"Keep your site fresh and flawless with comprehensive maintenance services. I provide updates, backups, and performance tuning to ensure your website remains current and secure."</p>
-        
-      </div>
-    </div>
+    </section>
 
-    
-  </div>
+    <!-- Footer -->
+    <footer>
+      <p>© 2024 <a href="https://chucklagos.dev" target="_blank">chucklagos.dev</a> | Keep innovating!</p>
+    </footer>
 
-  <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 text-center my-4 mx-auto">
-    <div class="card bg-dark text-white">
-      <div class="card-body">
-        <h5 class="card-title">Do you need any service? let's get in touch: <br><br> </h5>
-        <div class="social-links">
-          <a class="bg-dark" href="https://www.linkedin.com/in/chucklagos/"><i class="fa-brands fa-linkedin icondecoration"></i></a>
-          <a class="bg-dark" href="https://github.com/chucklagos"><i class="fa-brands fa-github icondecoration"></i></a>
-          <a class="bg-dark" href="https://github.com/chucklagos"><i class="fa-brands fa-twitter icondecoration"></i></a>
-        </div>
-          
-      </div>
-    </div>
-  </div>  
-  </section>
+    <!-- JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script>
+      // Simple fade-in on scroll
+      const fadeSections = document.querySelectorAll('.fade-in-section');
+      function checkFadeIn() {
+        fadeSections.forEach(sec => {
+          const rect = sec.getBoundingClientRect();
+          if (rect.top < window.innerHeight - 100) {
+            sec.classList.add('fade-in-active');
+          }
+        });
+      }
 
-  <section id="skills" class="my-5 text-white">
-    <div class="container">
-      <h2 class="mb-4 section-title">Skills</h2>
-      <div class="row">
-        <div class="col-md-2">
-          <div class="card bg-dark mb-3 skill-card">
-            <div class="card-body text-center">
-              <h5 class="card-title"><i class="fab fa-drupal"></i> Drupal</h5>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-2">
-          <div class="card bg-dark mb-3 skill-card">
-            <div class="card-body text-center">
-              <h5 class="card-title"><i class="fab fa-wordpress"></i> WordPress</h5>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-2">
-          <div class="card bg-dark mb-3 skill-card">
-            <div class="card-body text-center">
-              <h5 class="card-title"><i class="fab fa-html5"></i> HTML/CSS</h5>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-2">
-          <div class="card bg-dark mb-3 skill-card">
-            <div class="card-body text-center">
-              <h5 class="card-title"><i class="fab fa-php"></i> PHP</h5>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-2">
-          <div class="card bg-dark mb-3 skill-card">
-            <div class="card-body text-center">
-              <h5 class="card-title"><i class="fas fa-database"></i> MySQL</h5>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-2">
-          <div class="card bg-dark mb-3 skill-card">
-            <div class="card-body text-center">
-              <h5 class="card-title"><i class="fas fa-database"></i> SQL Server</h5>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-2">
-          <div class="card bg-dark mb-3 skill-card">
-            <div class="card-body text-center">
-              <h5 class="card-title"><i class="fab fa-bootstrap"></i> Bootstrap</h5>
-            </div>
-          </div>
-        </div>
-        <!--div class="col-md-2">
-          <div class="card bg-dark mb-3 skill-card">
-            <div class="card-body text-center">
-              <h5 class="card-title">Bulma</h5>
-            </div>
-          </div>
-        </div-->
-        <!-- ... -->
-        
-      </div>
-    </div>
-  </section>
+      window.addEventListener('scroll', checkFadeIn);
+      window.addEventListener('load', checkFadeIn);
 
+            // Array of possible accent colors
+            const accentColors = [
+              '#00ffff', // Cyan
+              '#00bfff', // DeepSkyBlue
+              '#4e88ff', // Bright Azure
+              '#7c4dff', // Deep Purple
+              '#8a2be2', // BlueViolet
+              '#9370db', // Medium Purple
+              '#9b59b6'  // Soft Purple
+            ];
+      // Pick a random accent color
+      const randomColor = accentColors[Math.floor(Math.random() * accentColors.length)];
+      // Set the CSS variable for accent color
+      document.documentElement.style.setProperty('--color-accent', randomColor);
 
-  <section id="experience" class="my-5">
-    
-    <div class="experience-section">
-      <h2 class="section-title">Work Experience</h2>
+      // If you also want hover-link etc. to match accent:
+      document.documentElement.style.setProperty('--color-hover-link', randomColor);
 
-      <div class="job bg-dark skill-card">
-        <div class="job-title">
-            <h3>Developer</h3>
-            <h4><a class="textdecoration" href="https://punto.hn">Punto HN</a></h4>
-            <p class="year">02/2023 - Present</p>
-        </div>
-        <div class="job-description">
-            <p><strong>Achievements/Functions:</strong></p>
-            <ul>
-                <li>Development and ongoing enhancement of institutional web portals, ensuring high performance and user-friendly design.</li>
-                <li>Proactive maintenance and continuous improvement of existing systems, focusing on efficiency and scalability.</li>
-                <li>Administration and configuration of servers, overseeing security measures and optimal operation.</li>
-                <li>Leadership of the development team, fostering a collaborative environment and guiding projects to successful completion.</li>
-            </ul>
-        </div>
-    </div>
-    
-
-      <div class="job bg-dark skill-card">
-          <div class="job-title">
-              <h3>Support Technician</h3>
-              <h4><a class="textdecoration" href="https://punto.hn">Punto HN</a></h4>
-              <p class="year">10/2022 - 02/2023</p>
-          </div>
-          <div class="job-description">
-              <p><strong>Achievements/Functions:</strong></p>
-              <ul>
-                <li>Delivered user-level technical support, addressing various IT issues to maintain operational continuity.</li>
-                <li>Administered servers and services, guaranteeing uptime, security, and network performance.</li>
-                <li>Developed accessible and responsive websites, employing modern web technologies for better engagement.</li>
-                
-              </ul>
-          </div>
-      </div>
-
-      <div class="job bg-dark skill-card">
-          <div class="job-title">
-              <h3>Computer Science Teacher</h3>
-              <h4> <a class="textdecoration" href="https://fuentedivina.education/">Divine Stream Christian School</a></h4>
-              <p class="year">03/2022 - 10/2022</p>
-          </div>
-          <div class="job-description">
-              <p><strong>Achievements/Functions:</strong></p>
-              <ul>
-                <li>Taught virtual and semi-presential computer science courses across all school levels with a focus on interactive learning.</li>
-                <li>Managed the educational platforms, optimizing Office 365 and Microsoft Teams for improved educational delivery.</li>
-                <li>Installed and configured tech equipment in line with institutional standards, supporting educational needs.</li>
-                <li>Offered technical support to educators and students, ensuring reliable use of educational technology.</li>
-                
-              </ul>
-          </div>
-      </div>
-      <!-- Repite el div de job por cada experiencia laboral que tengas -->
-  </div>
-  
-  
-  </section>
-
-
-  <section id="projects" class="my-5">
-    <div class="container">
-      <h2 class="mb-4 section-title">Proyectos</h2>
-      <h5 class="mb-4 section-title">Proyectos que he desarrollado y en los que he colaborado</h5>
-      <div class="row">
-
-        <div class="col-md-4">
-          <div class="card bg-dark text-white project-card">
-            <img src="img/projects/empleoshn.webp" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">RDS - Empleos.hn</h5>
-              <p class="card-text">Desarrollado con Drupal, Portal web de Empleos de la <a class="textdecoration" href="https://portal.rds.hn"> Red de Desarrollo Sostenible de Honduras</a></p>
-             <a href="https://empleos.hn" class="btn btn-primary">Ver Proyecto</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-4">
-          <div class="card bg-dark text-white project-card">
-            <img src="img/projects/becashn.webp" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">RDS - Becas.hn</h5>
-              <p class="card-text">Desarrollado con Drupal, Portal web de Becas de la <a class="textdecoration" href="https://portal.rds.hn"> Red de Desarrollo Sostenible de Honduras</a></p>
-              <a href="https://becas.hn" class="btn btn-primary">Ver Proyecto</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-4">
-          <div class="card bg-dark text-white project-card">
-            <img src="img/projects/sanradio.webp" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">San Radio RDS</h5>
-              <p class="card-text">Desarrollado con Wordpress, Portal Web del proyecto San Radio de la <a class="textdecoration" href="https://portal.rds.hn"> Red de Desarrollo Sostenible de Honduras</a>.</p>
-              <a href="https://sanradio.rds.hn" class="btn btn-primary">Ver Proyecto</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-4">
-          <div class="card bg-dark text-white project-card">
-            <img src="img/projects/worship-planning.webp" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Worship Planning</h5>
-              <p class="card-text">Desarrollado con HTML/CSS, PHP, Bootstrap y MySQL, proyecto para la clase de Ingeniería de Software de la UNAH.</p>
-              <a href="https://github.com/chucklagos/worship-planning" class="btn btn-primary">Ver Proyecto</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-4">
-          <div class="card bg-dark text-white project-card">
-            <img src="img/projects/minisales-system.webp" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">IBF Minisales System</h5>
-              <p class="card-text">Desarrollado con HTML/CSS, PHP, Bootstrap y MySQL, proyecto personal para registrar pequeñas ventas de comida de una iglesia.</p>
-              <a href="https://github.com/Chucklagos/IBF_MiniSalesSystem" class="btn btn-primary">Ver Proyecto</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-4">
-          <div class="card bg-dark text-white project-card">
-            <img src="img/projects/golden-quest.webp" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Golden Quest</h5>
-              <p class="card-text">Videojuego desarrollado con Java y JavaFX, proyecto para la clase de Programación II de la UNAH.</p>
-              <a href="https://github.com/Chucklagos/Golden-Quest" class="btn btn-primary">Ver Proyecto</a>
-            </div>
-          </div>
-        </div>
-
-        
-
-        <!-- Repite la estructura de arriba para cada proyecto -->
-      </div>
-    </div>
-  </section>
-  
-  <footer class="bg-dark text-white text-center text-lg-start">
-    <div class="container p-4">
-      <p class="text-center">© 2023  <a class="textdecoration" href="https://chucklagos.dev"> chucklagos.dev </a> </p>
-    </div>
-  </footer>
-
-  </body>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    </script>
+</body>
 </html>
