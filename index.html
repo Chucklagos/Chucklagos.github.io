@@ -423,46 +423,148 @@
         </div>
     </section>
 
-    <!-- Projects Section -->
-    <section id="projects" class="py-5 fade-in-section">
-      <div class="container">
-        <h2 class="section-title">Projects</h2>
-        <p class="text-center mb-5">Some highlighted projects I have worked on.</p>
-        <div class="row g-4">
-          <div class="col-md-4">
-            <div class="card project-card">
-              <img src="img/projects/empleoshn.webp" class="card-img-top" alt="Empleos HN">
-              <div class="card-body">
-                <h5 class="card-title">RDS - Empleos.hn</h5>
-                <p class="card-text">Job portal developed with Drupal for the Sustainable Development Network.</p>
-                <a href="https://empleos.hn" target="_blank" class="btn btn-primary">View Project</a>
+<!-- Portfolio Section -->
+<section id="portfolio" class="py-5 fade-in-section">
+  <div class="container">
+      <h2 class="section-title">Portfolio</h2>
+      <p class="text-center mb-5">Here is a selection of the projects I have worked on.</p>
+      
+      <div class="row g-4 portfolio-grid">
+          <!-- Project 1 -->
+          <div class="col-md-4 portfolio-item">
+              <div class="card project-card">
+                  <img src="img/projects/empleoshn.webp" class="card-img-top" alt="Empleos HN">
+                  <div class="card-body">
+                      <h5 class="card-title">RDS - Empleos.hn</h5>
+                      <p class="card-text">A job portal developed with Drupal for the Sustainable Development Network.</p>
+                      <button class="btn btn-custom view-details-btn" data-bs-toggle="modal" data-bs-target="#projectModal1">View Details</button>
+                  </div>
               </div>
-            </div>
           </div>
-          <div class="col-md-4">
-            <div class="card project-card">
-              <img src="img/projects/becashn.webp" class="card-img-top" alt="Becas HN">
-              <div class="card-body">
-                <h5 class="card-title">RDS - Becas.hn</h5>
-                <p class="card-text">Scholarships portal developed with Drupal for the Sustainable Development Network.</p>
-                <a href="https://becas.hn" target="_blank" class="btn btn-primary">View Project</a>
+
+          <!-- Project 2 -->
+          <div class="col-md-4 portfolio-item">
+              <div class="card project-card">
+                  <img src="img/projects/becashn.webp" class="card-img-top" alt="Becas HN">
+                  <div class="card-body">
+                      <h5 class="card-title">RDS - Becas.hn</h5>
+                      <p class="card-text">A centralized portal for scholarships to make information easily accessible.</p>
+                      <button class="btn btn-custom view-details-btn" data-bs-toggle="modal" data-bs-target="#projectModal2">View Details</button>
+                  </div>
               </div>
-            </div>
           </div>
-          <div class="col-md-4">
-            <div class="card project-card">
-              <img src="img/projects/sanradio.webp" class="card-img-top" alt="San Radio RDS">
-              <div class="card-body">
-                <h5 class="card-title">San Radio RDS</h5>
-                <p class="card-text">WordPress-based portal for the San Radio project of the RDS.</p>
-                <a href="https://sanradio.rds.hn" target="_blank" class="btn btn-primary">View Project</a>
+
+          <!-- Project 3 -->
+          <div class="col-md-4 portfolio-item">
+              <div class="card project-card">
+                  <img src="img/projects/sanradio.webp" class="card-img-top" alt="San Radio RDS">
+                  <div class="card-body">
+                      <h5 class="card-title">San Radio RDS</h5>
+                      <p class="card-text">A WordPress-based portal for the San Radio project of the Sustainable Development Network.</p>
+                      <button class="btn btn-custom view-details-btn" data-bs-toggle="modal" data-bs-target="#projectModal3">View Details</button>
+                  </div>
               </div>
-            </div>
           </div>
-          <!-- Additional projects can be added similarly -->
-        </div>
+
+          <!-- Project 4 -->
+          <div class="col-md-4 portfolio-item">
+              <div class="card project-card">
+                  <img src="img/projects/worship-planning.webp" class="card-img-top" alt="Worship Planning">
+                  <div class="card-body">
+                      <h5 class="card-title">Worship Planning System</h5>
+                      <p class="card-text">A university project for managing internal operations in churches.</p>
+                      <button class="btn btn-custom view-details-btn" data-bs-toggle="modal" data-bs-target="#projectModal4">View Details</button>
+                  </div>
+              </div>
+          </div>
+
+          <!-- Project 5 -->
+          <div class="col-md-4 portfolio-item">
+              <div class="card project-card">
+                  <img src="img/projects/minisales-system.webp" class="card-img-top" alt="Mini Sales System">
+                  <div class="card-body">
+                      <h5 class="card-title">Mini Sales System</h5>
+                      <p class="card-text">A simple tool for recording food sales, built with PHP, MySQL, Bootstrap, HTML, and CSS.</p>
+                      <button class="btn btn-custom view-details-btn" data-bs-toggle="modal" data-bs-target="#projectModal5">View Details</button>
+                  </div>
+              </div>
+          </div>
+
+          <!-- Project 6 -->
+          <div class="col-md-4 portfolio-item">
+              <div class="card project-card">
+                  <img src="img/projects/golden-quest.webp" class="card-img-top" alt="Golden Quest">
+                  <div class="card-body">
+                      <h5 class="card-title">Golden Quest</h5>
+                      <p class="card-text">A university project: a video game developed using Java and JavaFX.</p>
+                      <button class="btn btn-custom view-details-btn" data-bs-toggle="modal" data-bs-target="#projectModal6">View Details</button>
+                  </div>
+              </div>
+          </div>
       </div>
-    </section>
+  </div>
+</section>
+
+<!-- Modals -->
+<div class="modal fade" id="projectModal1" tabindex="-1" aria-labelledby="projectModalLabel1" aria-hidden="true">
+<div class="modal-dialog">
+  <div class="modal-content bg-dark text-light">
+    <div class="modal-header">
+      <h5 class="modal-title" id="projectModalLabel1">RDS - Empleos.hn</h5>
+      <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+      <img src="img/projects/empleoshn.webp" class="img-fluid mb-3" alt="Empleos HN">
+      <p>A job portal developed with Drupal for the Sustainable Development Network. This project helps users search for jobs through innovative functionalities and a user-friendly interface.</p>
+      <ul>
+        <li><strong>Technologies:</strong> Drupal, PHP, MySQL</li>
+        <li><strong>Role:</strong> Development, maintenance, optimization</li>
+        <li><strong>URL:</strong> <a href="https://empleos.hn" target="_blank">empleos.hn</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- Add modals for all projects following the same structure -->
+<div class="modal fade" id="projectModal2" tabindex="-1" aria-labelledby="projectModalLabel2" aria-hidden="true">
+<div class="modal-dialog">
+  <div class="modal-content bg-dark text-light">
+    <div class="modal-header">
+      <h5 class="modal-title" id="projectModalLabel2">RDS - Becas.hn</h5>
+      <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+      <img src="img/projects/becashn.webp" class="img-fluid mb-3" alt="Becas HN">
+      <p>A centralized portal for scholarships developed with Drupal, making it easier for users to find information about scholarships and related events.</p>
+      <ul>
+        <li><strong>Technologies:</strong> Drupal, PHP, MySQL</li>
+        <li><strong>Role:</strong> Development, maintenance, optimization</li>
+        <li><strong>URL:</strong> <a href="https://becas.hn" target="_blank">becas.hn</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- Add more modals for remaining projects -->
+
+
+<!-- Custom CSS for Buttons -->
+<style>
+  .btn-custom {
+      background-color: var(--color-accent);
+      color: var(--color-bg-start);
+      border: 1px solid var(--color-accent);
+      transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  .btn-custom:hover {
+      background-color: var(--color-bg-start);
+      color: var(--color-accent);
+  }
+</style>
+
 
     <!-- Contact Section -->
     <section id="contact" class="py-5 fade-in-section">
