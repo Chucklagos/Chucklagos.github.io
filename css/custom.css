@@ -1,0 +1,716 @@
+/* --------------------------------------------------
+   Variables de color base
+   -------------------------------------------------- */
+:root {
+    --color-bg-start: #0b0e13;      /* Un negro muy oscuro, casi carbón */
+    --color-bg-end: #1d212b;        /* Azul marino grisáceo */
+    --color-text: #e6e6e6;          /* Blanco suave */
+    --color-subtext: #bfbfbf;       /* Gris claro para textos secundarios */
+    --color-accent: #00ffff;        /* Cian neón base */
+    --color-accent-dark: #0abdcf;   /* Versión ligeramente oscurecida de cian */
+    --color-border: #2c2f35;        /* Gris oscuro para bordes */
+    --color-mid: #434755;           /* Gris intermedio para separadores */
+    --color-card-bg: #1d212b;       /* Fondo de cartas igual que el fondo final */
+    --color-card-border: #2c2f35;   /* Borde de cartas */
+    --color-hover-link: #00e5e5;    /* Cian brillante para hover en enlaces */
+    --font-heading: 'Orbitron', sans-serif;
+    --font-body: 'Roboto', sans-serif;
+}
+
+/* --------------------------------------------------
+   Reset básico y body
+   -------------------------------------------------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: linear-gradient(135deg, var(--color-bg-start), var(--color-bg-end) 80%);
+    color: var(--color-text);
+    font-family: var(--font-body);
+    line-height: 1.6;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+/* --------------------------------------------------
+   Enlaces globales
+   -------------------------------------------------- */
+a {
+    color: var(--color-accent);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--color-hover-link);
+    text-decoration: underline;
+}
+
+/* --------------------------------------------------
+   Scrollbar personalizado (solo Webkit)
+   -------------------------------------------------- */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--color-bg-start);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--color-accent-dark);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--color-hover-link);
+}
+
+/* --------------------------------------------------
+   Tipografía de encabezados
+   -------------------------------------------------- */
+h1, h2, h3, h4, h5 {
+    font-family: var(--font-heading);
+    color: var(--color-accent);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+h2 {
+    font-size: 2.25rem;
+    margin-bottom: 1rem;
+}
+
+h3 {
+    font-size: 1.75rem;
+    margin-bottom: 0.8rem;
+}
+
+h4 {
+    font-size: 1.3rem;
+    margin-bottom: 0.6rem;
+}
+
+/* --------------------------------------------------
+   Navbar personalizado
+   -------------------------------------------------- */
+.navbar {
+    background: var(--color-bg-start);
+    border-bottom: 2px solid var(--color-accent-dark);
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+.navbar-brand {
+    color: var(--color-accent) !important;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1.6rem;
+    letter-spacing: 2px;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.navbar-brand:hover {
+    color: var(--color-hover-link) !important;
+    transform: scale(1.05);
+}
+
+.navbar-nav .nav-link {
+    color: var(--color-subtext) !important;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    transition: color 0.3s ease, transform 0.2s ease;
+    margin: 0 0.5rem;
+}
+
+.navbar-nav .nav-link:hover {
+    color: var(--color-hover-link) !important;
+    transform: translateY(-2px);
+}
+
+/* Toggler */
+.navbar-toggler {
+    border: none;
+}
+
+.navbar-toggler-icon {
+    font-size: 1.4rem;
+    color: var(--color-text);
+}
+
+/* --------------------------------------------------
+   Header / Hero
+   -------------------------------------------------- */
+header {
+    position: relative;
+    text-align: center;
+    padding: 120px 0;
+}
+
+header .glow-text {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--color-accent);
+    text-shadow: 0 0 8px var(--color-accent), 0 0 16px var(--color-accent);
+    display: inline-block;
+    margin-bottom: 1rem;
+}
+
+header p {
+    font-size: 1.1rem;
+    font-weight: 300;
+    color: var(--color-subtext);
+}
+
+header .social-links a {
+    color: var(--color-accent);
+    margin: 0 12px;
+    font-size: 1.6rem;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+header .social-links a:hover {
+    transform: scale(1.2);
+    color: var(--color-hover-link);
+}
+
+/* --------------------------------------------------
+   Secciones generales
+   -------------------------------------------------- */
+section {
+    padding: 80px 0;
+    position: relative;
+}
+
+.section-title {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+/* Línea neón bajo títulos de sección */
+.section-title::after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: var(--color-accent);
+    box-shadow: 0 0 6px var(--color-accent);
+}
+
+/* --------------------------------------------------
+   Fade-in animation para secciones
+   -------------------------------------------------- */
+.fade-in-section {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+}
+
+.fade-in-active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --------------------------------------------------
+   Cards Base (Services, Skills, Portfolio)
+   -------------------------------------------------- */
+.card {
+    background: var(--color-card-bg);
+    border: 1px solid var(--color-card-border);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 255, 255, 0.15);
+}
+
+.card .card-body {
+    padding: 1.5rem;
+}
+
+.card-title {
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    margin-bottom: 0.75rem;
+    color: var(--color-text);
+}
+
+.card-text {
+    color: var(--color-subtext);
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+/* Íconos de servicios y habilidades */
+.card .fa-solid,
+.card .fa-brands,
+.card .fa-database {
+    color: var(--color-accent);
+    margin-bottom: 0.75rem;
+}
+
+/* --------------------------------------------------
+   Servicios
+   -------------------------------------------------- */
+#services .card {
+    text-align: center;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+}
+
+/* --------------------------------------------------
+   Sección de Skills (tarjetas más pequeñas)
+   -------------------------------------------------- */
+.skill-card {
+    background: var(--color-bg-start);
+    border: 1px solid var(--color-card-border);
+    border-radius: 8px;
+    padding: 1rem 0.5rem;
+    text-align: center;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.skill-card:hover {
+    background: var(--color-card-bg);
+    transform: translateY(-3px);
+}
+
+.skill-card .card-title {
+    font-size: 0.95rem;
+    font-family: var(--font-heading);
+    color: var(--color-text);
+}
+
+.skill-card .card-title i {
+    margin-right: 6px;
+    color: var(--color-accent);
+}
+
+/* --------------------------------------------------
+   Sección Experience (trabajos)
+   -------------------------------------------------- */
+#experience .job {
+    background: var(--color-card-bg);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    padding: 1.25rem;
+    margin-bottom: 2rem;
+    transition: box-shadow 0.3s ease;
+}
+
+#experience .job:hover {
+    box-shadow: 0 8px 20px rgba(0, 255, 255, 0.12);
+}
+
+.job-title h3 {
+    font-family: var(--font-heading);
+    color: var(--color-accent);
+    font-size: 1.3rem;
+    margin-bottom: 0.4rem;
+}
+
+.job-title p.year {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    color: var(--color-subtext);
+    margin-bottom: 0.8rem;
+}
+
+.job-title h4 a {
+    font-size: 1rem;
+    color: var(--color-text);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.job-title h4 a:hover {
+    color: var(--color-hover-link);
+    text-decoration: underline;
+}
+
+#experience ul {
+    margin-left: 1.2rem;
+    list-style-type: disc;
+}
+
+#experience ul li {
+    font-size: 0.95rem;
+    color: var(--color-subtext);
+    margin-bottom: 0.5rem;
+}
+
+/* --------------------------------------------------
+   Sección Portfolio
+   -------------------------------------------------- */
+#portfolio .portfolio-item .project-card {
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid var(--color-card-border);
+}
+
+#portfolio .portfolio-item .project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 255, 255, 0.15);
+}
+
+#portfolio .portfolio-item .card-img-top {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-bottom: 1px solid var(--color-mid);
+}
+
+#portfolio .card-body {
+    padding: 1rem;
+}
+
+#portfolio .card-title {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+}
+
+#portfolio .card-text {
+    font-size: 0.9rem;
+    color: var(--color-subtext);
+    margin-bottom: 0.8rem;
+}
+
+#portfolio .view-details-btn {
+    background: var(--color-accent);
+    color: var(--color-bg-start);
+    font-weight: 500;
+    border: none;
+    border-radius: 4px;
+    padding: 0.5rem 1rem;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+#portfolio .view-details-btn:hover {
+    background: var(--color-hover-link);
+    color: var(--color-bg-start);
+}
+
+/* --------------------------------------------------
+   Modales (Portfolio Details)
+   -------------------------------------------------- */
+.modal-content {
+    background: var(--color-bg-start);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    color: var(--color-text);
+}
+
+.modal-header {
+    border-bottom: 1px solid var(--color-border);
+}
+
+.modal-title {
+    font-family: var(--font-heading);
+    color: var(--color-accent);
+}
+
+.btn-close-white {
+    filter: invert(1);
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+.btn-close-white:hover {
+    opacity: 1;
+}
+
+.modal-body img {
+    border-radius: 6px;
+    margin-bottom: 1rem;
+}
+
+.modal-body p,
+.modal-body ul li {
+    color: var(--color-subtext);
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+/* --------------------------------------------------
+   Botones personalizados
+   -------------------------------------------------- */
+.btn-custom {
+    background-color: var(--color-accent);
+    color: var(--color-bg-start);
+    border: 1px solid var(--color-accent);
+    border-radius: 6px;
+    padding: 0.6rem 1.2rem;
+    font-weight: 500;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-custom:hover,
+.btn-custom:focus {
+    background-color: var(--color-hover-link);
+    color: var(--color-bg-start);
+    transform: translateY(-2px);
+}
+
+/* --------------------------------------------------
+   Contact Section
+   -------------------------------------------------- */
+#contact p {
+    font-size: 1rem;
+    color: var(--color-subtext);
+    margin-bottom: 1.5rem;
+}
+
+#contact .btn-outline-light {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+    font-weight: 500;
+    padding: 0.6rem 1.2rem;
+    border-radius: 6px;
+    transition: background 0.3s ease, color 0.3s ease, transform 0.2s ease;
+}
+
+#contact .btn-outline-light:hover {
+    background: var(--color-accent);
+    color: var(--color-bg-start);
+    transform: translateY(-2px);
+}
+
+/* --------------------------------------------------
+   Footer
+   -------------------------------------------------- */
+footer {
+    background: var(--color-bg-start);
+    border-top: 2px solid var(--color-accent-dark);
+    padding: 1rem 0;
+    text-align: center;
+}
+
+footer p {
+    font-size: 0.9rem;
+    color: var(--color-subtext);
+}
+
+footer a {
+    color: var(--color-accent);
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+footer a:hover {
+    color: var(--color-hover-link);
+}
+
+/* --------------------------------------------------
+   Efecto “glitch” en títulos (mantén tal cual lo tenías)
+   -------------------------------------------------- */
+.glitch {
+    position: relative;
+    display: inline-block;
+    font-size: 3rem;
+    color: var(--color-accent);
+    line-height: 1;
+}
+
+.glitch::before,
+.glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    color: var(--color-accent);
+    clip: rect(0, 900px, 0, 0);
+}
+
+.glitch::before {
+    animation: glitch 1s infinite linear alternate-reverse;
+    left: 2px;
+    text-shadow: -2px 0 var(--color-hover-link);
+}
+
+.glitch::after {
+    animation: glitch2 1.2s infinite linear alternate-reverse;
+    left: -2px;
+    text-shadow: 2px 0 var(--color-hover-link);
+}
+
+@keyframes glitch {
+    0% {
+        clip: rect(24px, 9999px, 47px, 0);
+    }
+    5% {
+        clip: rect(0px, 9999px, 27px, 0);
+    }
+    10% {
+        clip: rect(44px, 9999px, 66px, 0);
+    }
+    15% {
+        clip: rect(12px, 9999px, 42px, 0);
+    }
+    20% {
+        clip: rect(60px, 9999px, 88px, 0);
+    }
+    25% {
+        clip: rect(30px, 9999px, 55px, 0);
+    }
+    30% {
+        clip: rect(0px, 9999px, 20px, 0);
+    }
+    35% {
+        clip: rect(50px, 9999px, 80px, 0);
+    }
+    40% {
+        clip: rect(10px, 9999px, 35px, 0);
+    }
+    45% {
+        clip: rect(25px, 9999px, 60px, 0);
+    }
+    50% {
+        clip: rect(0px, 9999px, 15px, 0);
+    }
+    55% {
+        clip: rect(35px, 9999px, 75px, 0);
+    }
+    60% {
+        clip: rect(15px, 9999px, 45px, 0);
+    }
+    65% {
+        clip: rect(45px, 9999px, 70px, 0);
+    }
+    70% {
+        clip: rect(5px, 9999px, 25px, 0);
+    }
+    75% {
+        clip: rect(20px, 9999px, 50px, 0);
+    }
+    80% {
+        clip: rect(40px, 9999px, 65px, 0);
+    }
+    85% {
+        clip: rect(0px, 9999px, 30px, 0);
+    }
+    90% {
+        clip: rect(30px, 9999px, 55px, 0);
+    }
+    95% {
+        clip: rect(10px, 9999px, 40px, 0);
+    }
+    100% {
+        clip: rect(25px, 9999px, 60px, 0);
+    }
+}
+
+@keyframes glitch2 {
+    0% {
+        clip: rect(10px, 9999px, 30px, 0);
+    }
+    5% {
+        clip: rect(45px, 9999px, 70px, 0);
+    }
+    10% {
+        clip: rect(0px, 9999px, 20px, 0);
+    }
+    15% {
+        clip: rect(25px, 9999px, 60px, 0);
+    }
+    20% {
+        clip: rect(15px, 9999px, 55px, 0);
+    }
+    25% {
+        clip: rect(35px, 9999px, 65px, 0);
+    }
+    30% {
+        clip: rect(5px, 9999px, 25px, 0);
+    }
+    35% {
+        clip: rect(30px, 9999px, 60px, 0);
+    }
+    40% {
+        clip: rect(0px, 9999px, 15px, 0);
+    }
+    45% {
+        clip: rect(20px, 9999px, 50px, 0);
+    }
+    50% {
+        clip: rect(10px, 9999px, 40px, 0);
+    }
+    55% {
+        clip: rect(25px, 9999px, 55px, 0);
+    }
+    60% {
+        clip: rect(0px, 9999px, 20px, 0);
+    }
+    65% {
+        clip: rect(30px, 9999px, 60px, 0);
+    }
+    70% {
+        clip: rect(5px, 9999px, 35px, 0);
+    }
+    75% {
+        clip: rect(20px, 9999px, 45px, 0);
+    }
+    80% {
+        clip: rect(0px, 9999px, 25px, 0);
+    }
+    85% {
+        clip: rect(15px, 9999px, 50px, 0);
+    }
+    90% {
+        clip: rect(5px, 9999px, 30px, 0);
+    }
+    95% {
+        clip: rect(25px, 9999px, 55px, 0);
+    }
+    100% {
+        clip: rect(0px, 9999px, 20px, 0);
+    }
+}
+
+/* --------------------------------------------------
+   Responsividad y ajustes particulares
+   -------------------------------------------------- */
+/* Reducir fuente de títulos en móviles */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2.2rem;
+    }
+    h2 {
+        font-size: 1.8rem;
+    }
+    h3 {
+        font-size: 1.5rem;
+    }
+}
+
+/* Ajustar secciones para que no queden muy compactas en pantallas pequeñas */
+@media (max-width: 576px) {
+    section {
+        padding: 60px 0;
+    }
+}
+
+/* Ajustar cards de skills para que se vean mejor en móviles */
+@media (max-width: 576px) {
+    .skill-card {
+        margin-bottom: 1rem;
+    }
+}

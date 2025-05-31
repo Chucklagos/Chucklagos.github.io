@@ -1,628 +1,792 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Meta -->
-    <meta charset="UTF-8">
-    <meta name="description" content="Online CV of Chuck Lagos, a Software Developer focused on Drupal, WordPress, PHP, MySQL, and more. Experience in web development, maintenance, and innovative projects.">
-    <meta name="keywords" content="Chuck Lagos, Developer, Web Developer, Drupal, WordPress, PHP, MySQL, Cyberpunk">
-    <meta name="author" content="Chuck Heriberto Guifarro Lagos">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chuck Lagos - Software Developer</title>
+    <!-- Meta Tags -->
+    <meta charset="UTF-8" />
+    <meta name="description" content="Online CV of Chuck Lagos, a Software Developer focused on Drupal, WordPress, PHP, MySQL, and more. Experience in web development, maintenance, and innovative projects." />
+    <meta name="keywords" content="Chuck Lagos, Developer, Web Developer, Drupal, WordPress, PHP, MySQL, Cyberpunk" />
+    <meta name="author" content="Chuck Heriberto Guifarro Lagos" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Chuck Lagos – Software Developer</title>
 
     <!-- Open Graph / Social -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://chucklagos.dev/">
-    <meta property="og:title" content="Chuck Lagos - Software Developer">
-    <meta property="og:description" content="A developer focused on innovation, CMS, and constant curiosity about technology.">
-    <meta property="og:image" content="https://chucklagos.dev/img/curiosity.webp">
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://chucklagos.dev/" />
+    <meta property="og:title" content="Chuck Lagos – Software Developer" />
+    <meta property="og:description" content="A developer focused on innovation, CMS, and constant curiosity about technology." />
+    <meta property="og:image" content="https://chucklagos.dev/img/curiosity.webp" />
 
     <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://chucklagos.dev/">
-    <meta property="twitter:title" content="Chuck Lagos - Software Developer">
-    <meta property="twitter:description" content="A developer focused on innovation, CMS, and constant curiosity about technology.">
-    <meta property="twitter:image" content="https://chucklagos.dev/img/curiosity.webp">
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://chucklagos.dev/" />
+    <meta property="twitter:title" content="Chuck Lagos – Software Developer" />
+    <meta property="twitter:description" content="A developer focused on innovation, CMS, and constant curiosity about technology." />
+    <meta property="twitter:image" content="https://chucklagos.dev/img/curiosity.webp" />
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="icons/favicon.png">
+    <link rel="shortcut icon" href="icons/favicon.png" />
 
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
 
-    <!-- Bootstrap & Font Awesome -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Bootstrap 5.3.2 CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
 
-    <style>
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
 
-
-    /* Fin de transición de colores */
-
-        :root {
-            --color-bg-start: #0c0f14;
-            --color-bg-end: #1a1f2b;
-            --color-text: #eee;
-            --color-accent: #0ff;
-            --color-subtext: #ccc;
-            --color-border: #333;
-            --color-mid: #444;
-            --color-card-bg: #1a1f2b;
-            --color-card-border: #333;
-            --color-hover-link: #0ff;
-        }
-
-        body {
-            background: linear-gradient(135deg, var(--color-bg-start), var(--color-bg-end) 70%);
-            color: var(--color-text);
-            font-family: 'Roboto', sans-serif;
-            scroll-behavior: smooth;
-        }
-
-        h1, h2, h3, h4 {
-            font-family: 'Orbitron', sans-serif;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        /* Navbar */
-        .navbar {
-            background: var(--color-bg-start);
-            border-bottom: 1px solid var(--color-accent);
-        }
-
-        .navbar-brand {
-            color: var(--color-accent);
-            font-family: 'Orbitron', sans-serif;
-            font-weight: 700;
-            font-size: 1.4rem;
-        }
-
-        .navbar-brand:hover {
-            color: var(--color-accent);
-            text-decoration: underline;
-            font-family: 'Orbitron', sans-serif;
-            font-weight: 700;
-            font-size: 1.4rem;
-        }
-
-        .navbar-nav .nav-link {
-            color: var(--color-subtext);
-            transition: color 0.3s ease;
-        }
-
-        .navbar-nav .nav-link:hover {
-            color: var(--color-accent);
-        }
-
-        /* Header */
-        header {
-            padding: 100px 0;
-            text-align: center;
-            position: relative;
-        }
-
-        header .glow-text {
-            color: var(--color-accent);
-            text-shadow: 0 0 5px var(--color-accent), 0 0 10px var(--color-accent), 0 0 20px var(--color-accent);
-        }
-
-        .social-links a {
-            color: var(--color-accent);
-            margin: 0 10px;
-            font-size: 1.5rem;
-            transition: transform 0.3s ease;
-        }
-
-        .social-links a:hover {
-            transform: scale(1.2);
-        }
-
-        /* Section Titles */
-        .section-title {
-            text-align: center;
-            margin-bottom: 50px;
-            color: var(--color-accent);
-            text-shadow: 0 0 5px var(--color-accent);
-        }
-
-        /* Cards */
-        .card {
-            background: var(--color-card-bg);
-            border: none;
-            border-radius: 8px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 1px solid var(--color-card-border);
-        }
-
-        .card-text{
-          color: var(--color-text);
-        }
-
-        .card-title{
-          color: var(--color-text);
-        }
-
-        .card:hover {
-            transform: scale(1.02);
-            box-shadow: 0 0 10px var(--color-accent);
-        }
-
-        .project-card img {
-            border-bottom: 1px solid var(--color-mid);
-        }
-
-        /* Skill Icons */
-        .skill-card .card-title i {
-            margin-right: 5px;
-            color: var(--color-accent);
-        }
-
-        .skill-card .card-title {
-            font-size: 1rem;
-            color: var(--color-text);
-        }
-
-        /* Experience */
-        .job {
-            margin-bottom: 30px;
-            padding: 20px;
-            border: 1px solid var(--color-border);
-            border-radius: 8px;
-        }
-
-        .job-title h3 {
-            color: var(--color-accent);
-            font-size: 1.2rem;
-            margin-bottom: 5px;
-        }
-
-        .job-title h4 a {
-            color: var(--color-subtext);
-            text-decoration: none;
-        }
-
-        .job-title h4 a:hover {
-            text-decoration: underline;
-            color: var(--color-accent);
-        }
-
-        /* Footer */
-        footer {
-            background: var(--color-bg-start);
-            border-top: 1px solid var(--color-accent);
-            padding: 20px;
-            text-align: center;
-        }
-
-        footer a {
-            color: var(--color-accent);
-            text-decoration: none;
-        }
-
-        footer a:hover {
-            text-decoration: underline;
-        }
-
-        /* Glitch title effect */
-        .glitch {
-            position: relative;
-            display: inline-block;
-            font-size: 2.5rem;
-        }
-
-        .glitch::before,
-        .glitch::after {
-            content: attr(data-text);
-            position: absolute;
-            left: 0;
-        }
-
-        .glitch::before {
-            animation: glitch 1s infinite;
-            color: #f0f;
-            top: 0;
-            left: 2px;
-            overflow: hidden;
-            clip: rect(0, 900px, 0, 0);
-        }
-
-        .glitch::after {
-            animation: glitch2 1s infinite;
-            color: var(--color-accent);
-            top: 0;
-            left: -2px;
-            overflow: hidden;
-            clip: rect(0, 900px, 0, 0);
-        }
-
-        @keyframes glitch {
-            0% { clip: rect(0, 900px, 0, 0); }
-            20% { clip: rect(0, 900px, 100px, 0); }
-            40% { clip: rect(0, 900px, 0, 0); }
-            60% { clip: rect(0, 900px, 50px, 0); }
-            80% { clip: rect(0, 900px, 0, 0); }
-            100% { clip: rect(0, 900px, 0, 0); }
-        }
-
-        @keyframes glitch2 {
-            0% { clip: rect(0, 900px, 0, 0); }
-            20% { clip: rect(0, 900px, 50px, 0); }
-            40% { clip: rect(0, 900px, 0, 0); }
-            60% { clip: rect(0, 900px, 80px, 0); }
-            80% { clip: rect(0, 900px, 0, 0); }
-            100% { clip: rect(0, 900px, 0, 0); }
-        }
-
-        /* Fade-in animation for sections */
-        .fade-in-section {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-
-        .fade-in-active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-    </style>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/custom.css" />
 </head>
 <body>
-
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg">
-      <div class="container">
-        <a class="navbar-brand" href="#home">CHUCKLAGOS.DEV</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" 
-          data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" 
-          aria-expanded="false" aria-label="Toggle navigation">
-          <span class="text-white"><i class="fa fa-bars"></i></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-          <div class="navbar-nav ms-auto">
-            <a class="nav-link" href="#about">About</a>
-            <a class="nav-link" href="#services">Services</a>
-            <a class="nav-link" href="#skills">Skills</a>
-            <a class="nav-link" href="#experience">Experience</a>
-            <a class="nav-link" href="#projects">Projects</a>
-            <a class="nav-link" href="#contact">Contact</a>
-          </div>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg sticky-top">
+    <div class="container">
+      <a class="navbar-brand" href="#home">CHUCKLAGOS.DEV</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNavAltMarkup"
+        aria-controls="navbarNavAltMarkup"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="text-white"><i class="fa fa-bars"></i></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav ms-auto">
+          <a class="nav-link" href="#about">About Me</a>
+          <a class="nav-link" href="#services">Services</a>
+          <a class="nav-link" href="#skills">Skills</a>
+          <a class="nav-link" href="#experience">Experience</a>
+          <a class="nav-link" href="#education">Education</a>
+          <a class="nav-link" href="#certifications">Certifications</a>
+          <a class="nav-link" href="#portfolio">Portfolio</a>
+          <a class="nav-link" href="#contact">Contact</a>
         </div>
       </div>
-    </nav>
+    </div>
+  </nav>
 
-
-    <!-- Header -->
-    <header id="home" class="fade-in-section">
-        <div class="container">
-            <h1 class="glow-text glitch" data-text="Chuck Lagos">Chuck Lagos</h1>
-            <p class="mt-3">Software Developer | CMS Specialist | Curious Innovator</p>
-            <div class="social-links mt-4">
-                <a href="https://www.linkedin.com/in/chucklagos/" target="_blank"><i class="fab fa-linkedin"></i></a>
-                <a href="https://github.com/chucklagos" target="_blank"><i class="fab fa-github"></i></a>
-                <a href="https://twitter.com/chucklagos" target="_blank"><i class="fab fa-twitter"></i></a>
-            </div>
-        </div>
-    </header>
-
-    <!-- About Section -->
-    <section id="about" class="py-5 fade-in-section">
-        <div class="container">
-            <h2 class="section-title">About Me</h2>
-            <p class="lead text-center px-3">
-                I am a passionate developer who loves the digital world. <br>
-                I enjoy creating, breaking, and analyzing systems to understand how they work. 
-                I specialize in CMS (Drupal, WordPress), PHP, MySQL, and evolving frameworks. 
-                Constantly seeking the next innovation, I collaborate on projects and continually learn new technologies.
-            </p>
-        </div>
-    </section>
-
-    <!-- Services Section -->
-    <section id="services" class="py-5 fade-in-section">
-      <div class="container">
-        <h2 class="section-title">Services</h2>
-        <div class="row g-4">
-          <div class="col-md-6">
-            <div class="card card-text text-center p-4">
-              <div style="font-size: 50px;" class="mb-3"><i class="fa-solid fa-laptop-code"></i></div>
-              <h4>Web Development</h4>
-              <p>Intuitive, responsive websites and applications, fully optimized for any device.</p>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="card card-text text-center p-4">
-              <div style="font-size: 50px;" class="mb-3"><i class="fa-solid fa-screwdriver-wrench"></i></div>
-              <h4>Web Maintenance</h4>
-              <p>Continuous updates, backups, and performance tuning to keep your site secure and fresh.</p>
-            </div>
-          </div>
-        </div>
+  <!-- Header (Hero) -->
+  <header id="home" class="fade-in-section">
+    <div class="container text-center">
+      <h1 class="glow-text glitch" data-text="Chuck Lagos">Chuck Lagos</h1>
+      <p class="mt-3">Software Developer | CMS Specialist | Curious Innovator</p>
+      <div class="social-links mt-4">
+        <a href="https://www.linkedin.com/in/chucklagos/" target="_blank">
+          <i class="fab fa-linkedin"></i>
+        </a>
+        <a href="https://github.com/chucklagos" target="_blank">
+          <i class="fab fa-github"></i>
+        </a>
+        <a href="https://twitter.com/chucklagos" target="_blank">
+          <i class="fab fa-twitter"></i>
+        </a>
       </div>
-    </section>
+    </div>
+  </header>
 
-    <!-- Skills Section -->
-    <section id="skills" class="py-5 fade-in-section">
-        <div class="container">
-            <h2 class="section-title">Skills</h2>
-            <div class="row g-3 justify-content-center">
-              <div class="col-md-2">
-                <div class="card skill-card text-center p-3">
-                  <h5 class="card-title"><i class="fab fa-drupal"></i> Drupal</h5>
-                </div>
-              </div>
-              <div class="col-md-2">
-                <div class="card skill-card text-center p-3">
-                  <h5 class="card-title"><i class="fab fa-wordpress"></i> WordPress</h5>
-                </div>
-              </div>
-              <div class="col-md-2">
-                <div class="card skill-card text-center p-3">
-                  <h5 class="card-title"><i class="fab fa-html5"></i> HTML/CSS</h5>
-                </div>
-              </div>
-              <div class="col-md-2">
-                <div class="card skill-card text-center p-3">
-                  <h5 class="card-title"><i class="fab fa-php"></i> PHP</h5>
-                </div>
-              </div>
-              <div class="col-md-2">
-                <div class="card skill-card text-center p-3">
-                  <h5 class="card-title"><i class="fas fa-database"></i> MySQL</h5>
-                </div>
-              </div>
-              <div class="col-md-2">
-                <div class="card skill-card text-center p-3">
-                  <h5 class="card-title"><i class="fab fa-bootstrap"></i> Bootstrap</h5>
-                </div>
-              </div>
-            </div>
-        </div>
-    </section>
+  <!-- About Section -->
+  <section id="about" class="py-5 fade-in-section">
+    <div class="container">
+      <h2 class="section-title text-center">About Me</h2>
+      <p class="lead text-center px-3">
+        Systems Engineer with over 3 years of experience in web development and server administration. Specialized in Drupal, WordPress, and digital infrastructure optimization. I have led the development of key institutional platforms in Honduras, improving their performance and security. As a teacher, I have trained students in computing and educational platforms. Passionate about digital innovation, I contribute to system optimization through automation and scalable strategies.
+      </p>
+    </div>
+  </section>
 
-    <!-- Experience Section -->
-    <section id="experience" class="py-5 fade-in-section">
-        <div class="container">
-            <h2 class="section-title">Experience</h2>
-
-            <div class="job mb-4">
-                <div class="job-title">
-                    <h3>Developer | <a href="https://punto.hn" target="_blank">Punto HN</a></h3>
-                    <p class="year">02/2023 - Present</p>
-                </div>
-                <ul>
-                    <li>Development and improvement of institutional web portals (Drupal, WordPress).</li>
-                    <li>Server administration, security, performance, and scalability.</li>
-                    <li>Leading the development team, fostering collaboration and quality deliveries.</li>
-                </ul>
-            </div>
-
-            <div class="job mb-4">
-                <div class="job-title">
-                    <h3>Support Technician | <a href="https://punto.hn" target="_blank">Punto HN</a></h3>
-                    <p class="year">10/2022 - 02/2023</p>
-                </div>
-                <ul>
-                    <li>Technical support to maintain operational continuity.</li>
-                    <li>Server administration, ensuring security and uptime.</li>
-                    <li>Development of accessible and responsive websites.</li>
-                </ul>
-            </div>
-
-            <div class="job mb-4">
-                <div class="job-title">
-                    <h3>Computer Science Teacher | <a href="https://fuentedivina.education/" target="_blank">Divine Stream Christian School</a></h3>
-                    <p class="year">03/2022 - 10/2022</p>
-                </div>
-                <ul>
-                    <li>Taught virtual and semi-presential computing classes.</li>
-                    <li>Managed educational platforms (Office 365, MS Teams).</li>
-                    <li>Installation and configuration of technological equipment.</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-<!-- Portfolio Section -->
-<section id="portfolio" class="py-5 fade-in-section">
+ <!-- Services Section (updated) -->
+<section id="services" class="py-5 fade-in-section">
   <div class="container">
-      <h2 class="section-title">Portfolio</h2>
-      <p class="text-center mb-5">Here is a selection of the projects I have worked on.</p>
-      
-      <div class="row g-4 portfolio-grid">
-          <!-- Project 1 -->
-          <div class="col-md-4 portfolio-item">
-              <div class="card project-card">
-                  <img src="img/projects/empleoshn.webp" class="card-img-top" alt="Empleos HN">
-                  <div class="card-body">
-                      <h5 class="card-title">RDS - Empleos.hn</h5>
-                      <p class="card-text">A job portal developed with Drupal for the Sustainable Development Network.</p>
-                      <button class="btn btn-custom view-details-btn" data-bs-toggle="modal" data-bs-target="#projectModal1">View Details</button>
-                  </div>
-              </div>
+    <h2 class="section-title text-center">Services</h2>
+    <div class="row g-4">
+      <!-- Web Development -->
+      <div class="col-md-6">
+        <div class="card text-center">
+          <div class="card-body">
+            <i class="fa-solid fa-laptop-code fa-3x mb-3"></i>
+            <h4 class="card-title">Web Development</h4>
+            <p class="card-text">
+              Intuitive, responsive websites and applications, fully optimized for any device.
+            </p>
           </div>
-
-          <!-- Project 2 -->
-          <div class="col-md-4 portfolio-item">
-              <div class="card project-card">
-                  <img src="img/projects/becashn.webp" class="card-img-top" alt="Becas HN">
-                  <div class="card-body">
-                      <h5 class="card-title">RDS - Becas.hn</h5>
-                      <p class="card-text">A centralized portal for scholarships to make information easily accessible.</p>
-                      <button class="btn btn-custom view-details-btn" data-bs-toggle="modal" data-bs-target="#projectModal2">View Details</button>
-                  </div>
-              </div>
-          </div>
-
-          <!-- Project 3 -->
-          <div class="col-md-4 portfolio-item">
-              <div class="card project-card">
-                  <img src="img/projects/sanradio.webp" class="card-img-top" alt="San Radio RDS">
-                  <div class="card-body">
-                      <h5 class="card-title">San Radio RDS</h5>
-                      <p class="card-text">A WordPress-based portal for the San Radio project of the Sustainable Development Network.</p>
-                      <button class="btn btn-custom view-details-btn" data-bs-toggle="modal" data-bs-target="#projectModal3">View Details</button>
-                  </div>
-              </div>
-          </div>
-
-          <!-- Project 4 -->
-          <div class="col-md-4 portfolio-item">
-              <div class="card project-card">
-                  <img src="img/projects/worship-planning.webp" class="card-img-top" alt="Worship Planning">
-                  <div class="card-body">
-                      <h5 class="card-title">Worship Planning System</h5>
-                      <p class="card-text">A university project for managing internal operations in churches.</p>
-                      <button class="btn btn-custom view-details-btn" data-bs-toggle="modal" data-bs-target="#projectModal4">View Details</button>
-                  </div>
-              </div>
-          </div>
-
-          <!-- Project 5 -->
-          <div class="col-md-4 portfolio-item">
-              <div class="card project-card">
-                  <img src="img/projects/minisales-system.webp" class="card-img-top" alt="Mini Sales System">
-                  <div class="card-body">
-                      <h5 class="card-title">Mini Sales System</h5>
-                      <p class="card-text">A simple tool for recording food sales, built with PHP, MySQL, Bootstrap, HTML, and CSS.</p>
-                      <button class="btn btn-custom view-details-btn" data-bs-toggle="modal" data-bs-target="#projectModal5">View Details</button>
-                  </div>
-              </div>
-          </div>
-
-          <!-- Project 6 -->
-          <div class="col-md-4 portfolio-item">
-              <div class="card project-card">
-                  <img src="img/projects/golden-quest.webp" class="card-img-top" alt="Golden Quest">
-                  <div class="card-body">
-                      <h5 class="card-title">Golden Quest</h5>
-                      <p class="card-text">A university project: a video game developed using Java and JavaFX.</p>
-                      <button class="btn btn-custom view-details-btn" data-bs-toggle="modal" data-bs-target="#projectModal6">View Details</button>
-                  </div>
-              </div>
-          </div>
+        </div>
       </div>
+      <!-- Technical Support -->
+      <div class="col-md-6">
+        <div class="card text-center">
+          <div class="card-body">
+            <i class="fa-solid fa-headset fa-3x mb-3"></i>
+            <h4 class="card-title">Technical Support</h4>
+            <p class="card-text">
+              Comprehensive troubleshooting, server administration, and user training to keep your systems running smoothly.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- Modals -->
-<div class="modal fade" id="projectModal1" tabindex="-1" aria-labelledby="projectModalLabel1" aria-hidden="true">
-<div class="modal-dialog">
-  <div class="modal-content bg-dark text-light">
-    <div class="modal-header">
-      <h5 class="modal-title" id="projectModalLabel1">RDS - Empleos.hn</h5>
-      <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+<!-- Skills Section (updated) -->
+<section id="skills" class="py-5 fade-in-section">
+  <div class="container">
+    <h2 class="section-title text-center">Skills</h2>
+
+    <!-- Technical Skills -->
+    <div class="row g-3 justify-content-center mb-5">
+      <div class="col-6 col-sm-4 col-md-2">
+        <div class="skill-card">
+          <h5 class="card-title">
+            <i class="fab fa-drupal"></i> Drupal
+          </h5>
+        </div>
+      </div>
+      <div class="col-6 col-sm-4 col-md-2">
+        <div class="skill-card">
+          <h5 class="card-title">
+            <i class="fab fa-wordpress"></i> WordPress
+          </h5>
+        </div>
+      </div>
+      <div class="col-6 col-sm-4 col-md-2">
+        <div class="skill-card">
+          <h5 class="card-title">
+            <i class="fab fa-html5"></i> HTML/CSS
+          </h5>
+        </div>
+      </div>
+      <div class="col-6 col-sm-4 col-md-2">
+        <div class="skill-card">
+          <h5 class="card-title">
+            <i class="fab fa-php"></i> PHP
+          </h5>
+        </div>
+      </div>
+      <div class="col-6 col-sm-4 col-md-2">
+        <div class="skill-card">
+          <h5 class="card-title">
+            <i class="fas fa-database"></i> MySQL
+          </h5>
+        </div>
+      </div>
+      <div class="col-6 col-sm-4 col-md-2">
+        <div class="skill-card">
+          <h5 class="card-title">
+            <i class="fab fa-bootstrap"></i> Bootstrap
+          </h5>
+        </div>
+      </div>
+      <!-- New Technical Skills -->
+      <div class="col-6 col-sm-4 col-md-2">
+        <div class="skill-card">
+          <h5 class="card-title">
+            <i class="fa-solid fa-star"></i> Astro
+          </h5>
+        </div>
+      </div>
+      <div class="col-6 col-sm-4 col-md-2">
+        <div class="skill-card">
+          <h5 class="card-title">
+            <i class="fas fa-server"></i> cPanel &amp; WHM
+          </h5>
+        </div>
+      </div>
+      <div class="col-6 col-sm-4 col-md-2">
+        <div class="skill-card">
+          <h5 class="card-title">
+            <i class="fab fa-js"></i> JavaScript
+          </h5>
+        </div>
+      </div>
+      <div class="col-6 col-sm-4 col-md-2">
+        <div class="skill-card">
+          <h5 class="card-title">
+            <i class="fab fa-linux"></i> Linux
+          </h5>
+        </div>
+      </div>
+      <div class="col-6 col-sm-4 col-md-2">
+        <div class="skill-card">
+          <h5 class="card-title">
+            <i class="fab fa-github"></i> Git/GitHub
+          </h5>
+        </div>
+      </div>
+      <div class="col-6 col-sm-4 col-md-2">
+        <div class="skill-card">
+          <h5 class="card-title">
+            <i class="fas fa-database"></i> PostgreSQL
+          </h5>
+        </div>
+      </div>
+      <div class="col-6 col-sm-4 col-md-2">
+        <div class="skill-card">
+          <h5 class="card-title">
+            <i class="fab fa-node-js"></i> Node.js
+          </h5>
+        </div>
+      </div>
     </div>
-    <div class="modal-body">
-      <img src="img/projects/empleoshn.webp" class="img-fluid mb-3" alt="Empleos HN">
-      <p>A job portal developed with Drupal for the Sustainable Development Network. This project helps users search for jobs through innovative functionalities and a user-friendly interface.</p>
-      <ul>
-        <li><strong>Technologies:</strong> Drupal, PHP, MySQL</li>
-        <li><strong>Role:</strong> Development, maintenance, optimization</li>
-        <li><strong>URL:</strong> <a href="https://empleos.hn" target="_blank">empleos.hn</a></li>
-      </ul>
+
+    <!-- Additional & Soft Skills -->
+    <h3 class="mt-4 mb-3 text-center" style="color: var(--color-text); font-family: var(--font-heading); font-size: 1.5rem;">
+      Additional Skills
+    </h3>
+    <div class="row g-3 justify-content-center mb-5">
+      <div class="col-6 col-sm-4 col-md-3">
+        <div class="skill-card">
+          <h5 class="card-title">
+            <i class="fas fa-search"></i> Research &amp; Analysis
+          </h5>
+        </div>
+      </div>
+      <div class="col-6 col-sm-4 col-md-3">
+        <div class="skill-card">
+          <h5 class="card-title">
+            <i class="fas fa-server"></i> Server Administration
+          </h5>
+        </div>
+      </div>
+      <div class="col-6 col-sm-4 col-md-3">
+        <div class="skill-card">
+          <h5 class="card-title">
+            <i class="fas fa-shield-alt"></i> Security &amp; Performance
+          </h5>
+        </div>
+      </div>
+      <div class="col-6 col-sm-4 col-md-3">
+        <div class="skill-card">
+          <h5 class="card-title">
+            <i class="fas fa-chalkboard-teacher"></i> Teaching &amp; Training
+          </h5>
+        </div>
+      </div>
+      <div class="col-6 col-sm-4 col-md-3">
+        <div class="skill-card">
+          <h5 class="card-title">
+            <i class="fas fa-cogs"></i> Process Automation
+          </h5>
+        </div>
+      </div>
+      <div class="col-6 col-sm-4 col-md-3">
+        <div class="skill-card">
+          <h5 class="card-title">
+            <i class="fas fa-microsoft"></i> Office 365 &amp; MS Teams
+          </h5>
+        </div>
+      </div>
+      <div class="col-6 col-sm-4 col-md-3">
+        <div class="skill-card">
+          <h5 class="card-title">
+            <i class="fas fa-language"></i> Spanish (Native)
+          </h5>
+        </div>
+      </div>
+      <div class="col-6 col-sm-4 col-md-3">
+        <div class="skill-card">
+          <h5 class="card-title">
+            <i class="fas fa-language"></i> English (Intermediate)
+          </h5>
+        </div>
+      </div>
     </div>
   </div>
-</div>
-</div>
+</section>
 
-<!-- Add modals for all projects following the same structure -->
-<div class="modal fade" id="projectModal2" tabindex="-1" aria-labelledby="projectModalLabel2" aria-hidden="true">
-<div class="modal-dialog">
-  <div class="modal-content bg-dark text-light">
-    <div class="modal-header">
-      <h5 class="modal-title" id="projectModalLabel2">RDS - Becas.hn</h5>
-      <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+  <!-- Experience Section -->
+  <section id="experience" class="py-5 fade-in-section">
+    <div class="container">
+      <h2 class="section-title text-center">Experience</h2>
+
+      <div class="job mb-4">
+        <div class="job-title">
+          <h3>Developer | <a href="https://punto.hn" target="_blank">Punto HN</a></h3>
+          <p class="year">02/2023 - Present</p>
+        </div>
+        <ul>
+          <li>Development and improvement of institutional web portals (Drupal, WordPress).</li>
+          <li>Server administration, security, performance, and scalability.</li>
+          <li>Leading the development team, fostering collaboration and quality deliveries.</li>
+        </ul>
+      </div>
+
+      <div class="job mb-4">
+        <div class="job-title">
+          <h3>Support Technician | <a href="https://punto.hn" target="_blank">Punto HN</a></h3>
+          <p class="year">10/2022 - 02/2023</p>
+        </div>
+        <ul>
+          <li>Technical support to maintain operational continuity.</li>
+          <li>Server administration, ensuring security and uptime.</li>
+          <li>Development of accessible and responsive websites.</li>
+        </ul>
+      </div>
+
+      <div class="job mb-4">
+        <div class="job-title">
+          <h3>Computer Science Teacher | <a href="https://fuentedivina.education/" target="_blank">Divine Stream Christian School</a></h3>
+          <p class="year">03/2022 - 10/2022</p>
+        </div>
+        <ul>
+          <li>Taught virtual and semi-presential computing classes.</li>
+          <li>Managed educational platforms (Office 365, MS Teams).</li>
+          <li>Installation and configuration of technological equipment.</li>
+        </ul>
+      </div>
     </div>
-    <div class="modal-body">
-      <img src="img/projects/becashn.webp" class="img-fluid mb-3" alt="Becas HN">
-      <p>A centralized portal for scholarships developed with Drupal, making it easier for users to find information about scholarships and related events.</p>
-      <ul>
-        <li><strong>Technologies:</strong> Drupal, PHP, MySQL</li>
-        <li><strong>Role:</strong> Development, maintenance, optimization</li>
-        <li><strong>URL:</strong> <a href="https://becas.hn" target="_blank">becas.hn</a></li>
-      </ul>
-    </div>
-  </div>
-</div>
-</div>
+  </section>
 
-<!-- Add more modals for remaining projects -->
-
-
-<!-- Custom CSS for Buttons -->
-<style>
-  .btn-custom {
-      background-color: var(--color-accent);
-      color: var(--color-bg-start);
-      border: 1px solid var(--color-accent);
-      transition: background-color 0.3s ease, color 0.3s ease;
-  }
-
-  .btn-custom:hover {
-      background-color: var(--color-bg-start);
-      color: var(--color-accent);
-  }
-</style>
-
-
-    <!-- Contact Section -->
-    <section id="contact" class="py-5 fade-in-section">
-      <div class="container">
-        <h2 class="section-title">Contact</h2>
-        <p class="text-center mb-4">Need any services or want to collaborate on a project? Let's talk!</p>
-        <div class="text-center">
-          <a href="mailto:chucklagos17@outlook.com" class="btn btn-outline-light btn-lg">Send Email</a>
-          <div class="social-links mt-4">
-              <a href="https://www.linkedin.com/in/chucklagos/" target="_blank"><i class="fab fa-linkedin"></i></a>
-              <a href="https://github.com/chucklagos" target="_blank"><i class="fab fa-github"></i></a>
-              <a href="https://twitter.com/chucklagos" target="_blank"><i class="fab fa-twitter"></i></a>
+  <!-- Education Section -->
+  <section id="education" class="py-5 fade-in-section">
+    <div class="container">
+      <h2 class="section-title text-center">Education</h2>
+      <div class="row justify-content-center">
+        <div class="col-md-8">
+          <div class="card p-4 mb-4">
+            <div class="card-body">
+              <h3 class="card-title">Bachelor’s Degree in Systems Engineering — UNAH</h3>
+              <p class="text-muted mb-1">National Autonomous University of Honduras</p>
+              <p class="text-subtext"><em>November 2023 · Honor Mention “Cum Laude” (Academic Excellence)</em></p>
+              <p class="card-text mt-2">
+                Focus on software development, server management, and systems optimization.
+              </p>
+            </div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Footer -->
-    <footer>
+  <!-- Certifications Section -->
+  <section id="certifications" class="py-5 fade-in-section">
+    <div class="container">
+      <h2 class="section-title text-center">Certifications</h2>
+      <div class="row row-cols-1 row-cols-md-2 g-4 justify-content-center">
+        <div class="col col-md-5">
+          <div class="card h-100 p-3">
+            <div class="card-body">
+              <h5 class="card-title"><i class="fas fa-certificate"></i> Oracle — Database Foundations</h5>
+              <p class="text-subtext mb-0"><em>Oracle, 2021</em></p>
+            </div>
+          </div>
+        </div>
+        <div class="col col-md-5">
+          <div class="card h-100 p-3">
+            <div class="card-body">
+              <h5 class="card-title"><i class="fas fa-certificate"></i> Oracle — Java Fundamentals</h5>
+              <p class="text-subtext mb-0"><em>Oracle, 2020</em></p>
+            </div>
+          </div>
+        </div>
+        <div class="col col-md-5">
+          <div class="card h-100 p-3">
+            <div class="card-body">
+              <h5 class="card-title"><i class="fas fa-cloud"></i> Huawei — Cloud Basics: Development and Basic Concepts</h5>
+              <p class="text-subtext mb-0"><em>Huawei, 2024</em></p>
+            </div>
+          </div>
+        </div>
+        <div class="col col-md-5">
+          <div class="card h-100 p-3">
+            <div class="card-body">
+              <h5 class="card-title"><i class="fas fa-cloud"></i> Huawei — Cloud Advanced: Architecture and Technologies</h5>
+              <p class="text-subtext mb-0"><em>Huawei, 2024</em></p>
+            </div>
+          </div>
+        </div>
+        <div class="col col-md-5">
+          <div class="card h-100 p-3">
+            <div class="card-body">
+              <h5 class="card-title"><i class="fas fa-server"></i> Cloud Tech Fundamentals (C230316)</h5>
+              <p class="text-subtext mb-0"><em>2025</em></p>
+            </div>
+          </div>
+        </div>
+        <div class="col col-md-5">
+          <div class="card h-100 p-3">
+            <div class="card-body">
+              <h5 class="card-title"><i class="fab fa-python"></i> Python Programming (INFOP, 40 hours)</h5>
+              <p class="text-subtext mb-0"><em>2021</em></p>
+            </div>
+          </div>
+        </div>
+        <div class="col col-md-5">
+          <div class="card h-100 p-3">
+            <div class="card-body">
+              <h5 class="card-title"><i class="fas fa-database"></i> MySQL Database (INFOP, 20 hours)</h5>
+              <p class="text-subtext mb-0"><em>2020</em></p>
+            </div>
+          </div>
+        </div>
+        <div class="col col-md-5">
+          <div class="card h-100 p-3">
+            <div class="card-body">
+              <h5 class="card-title"><i class="fab fa-google"></i> Google — Mobile App Development</h5>
+              <p class="text-subtext mb-0"><em>Google Digital Garage, 2017</em></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- Portfolio Section -->
+<section id="portfolio" class="py-5 fade-in-section">
+  <div class="container">
+    <h2 class="section-title text-center">Portfolio</h2>
+    <p class="text-center mb-5 text-muted">
+      A list of projects I’ve contributed to—separated by freelance work and those I collaborated on while at my current company.
+    </p>
+
+    <!-- Company & Collaborative Projects -->
+    <h3 class="mt-4 mb-3 text-center" style="color: var(--color-accent); font-family: var(--font-heading); font-size: 1.75rem;">
+      Company &amp; Collaborative Projects
+    </h3>
+    <div class="row g-4 mb-5">
+      <!-- empleos.hn -->
+      <div class="col-sm-6 col-md-4 portfolio-item">
+        <div class="project-card card p-3 h-100">
+          <div class="d-flex align-items-center mb-2">
+            <i class="fab fa-drupal fa-2x me-2" style="color: var(--color-accent);"></i>
+            <h5 class="card-title mb-0">empleos.hn</h5>
+          </div>
+          <p class="card-text" style="font-size: 0.9rem; color: var(--color-subtext);">
+            Job portal in Honduras for RDS-HN.
+          </p>
+          <p class="card-text" style="font-size: 0.85rem; color: var(--color-subtext);">
+            <strong>Technologies:</strong> Drupal, PHP, MySQL
+          </p>
+          <a href="https://empleos.hn" target="_blank" class="btn btn-custom btn-sm mt-auto">Visit Site</a>
+        </div>
+      </div>
+
+      <!-- becas.hn -->
+      <div class="col-sm-6 col-md-4 portfolio-item">
+        <div class="project-card card p-3 h-100">
+          <div class="d-flex align-items-center mb-2">
+            <i class="fab fa-drupal fa-2x me-2" style="color: var(--color-accent);"></i>
+            <h5 class="card-title mb-0">becas.hn</h5>
+          </div>
+          <p class="card-text" style="font-size: 0.9rem; color: var(--color-subtext);">
+            Scholarship portal in Honduras for RDS-HN.
+          </p>
+          <p class="card-text" style="font-size: 0.85rem; color: var(--color-subtext);">
+            <strong>Technologies:</strong> Drupal, PHP, MySQL
+          </p>
+          <a href="https://becas.hn" target="_blank" class="btn btn-custom btn-sm mt-auto">Visit Site</a>
+        </div>
+      </div>
+
+      <!-- eventos.hn -->
+      <div class="col-sm-6 col-md-4 portfolio-item">
+        <div class="project-card card p-3 h-100">
+          <div class="d-flex align-items-center mb-2">
+            <i class="fab fa-drupal fa-2x me-2" style="color: var(--color-accent);"></i>
+            <h5 class="card-title mb-0">eventos.hn</h5>
+          </div>
+          <p class="card-text" style="font-size: 0.9rem; color: var(--color-subtext);">
+            Events portal in Honduras for RDS-HN.
+          </p>
+          <p class="card-text" style="font-size: 0.85rem; color: var(--color-subtext);">
+            <strong>Technologies:</strong> Drupal, PHP, MySQL
+          </p>
+          <a href="https://eventos.hn" target="_blank" class="btn btn-custom btn-sm mt-auto">Visit Site</a>
+        </div>
+      </div>
+
+      <!-- recultura.hn -->
+      <div class="col-sm-6 col-md-4 portfolio-item">
+        <div class="project-card card p-3 h-100">
+          <div class="d-flex align-items-center mb-2">
+            <i class="fab fa-drupal fa-2x me-2" style="color: var(--color-accent);"></i>
+            <h5 class="card-title mb-0">recultura.hn</h5>
+          </div>
+          <p class="card-text" style="font-size: 0.9rem; color: var(--color-subtext);">
+            Artist portal in Honduras.
+          </p>
+          <p class="card-text" style="font-size: 0.85rem; color: var(--color-subtext);">
+            <strong>Technologies:</strong> Drupal, PHP, MySQL
+          </p>
+          <a href="https://recultura.hn" target="_blank" class="btn btn-custom btn-sm mt-auto">Visit Site</a>
+        </div>
+      </div>
+
+      <!-- biblioteca.rds.hn -->
+      <div class="col-sm-6 col-md-4 portfolio-item">
+        <div class="project-card card p-3 h-100">
+          <div class="d-flex align-items-center mb-2">
+            <i class="fab fa-drupal fa-2x me-2" style="color: var(--color-accent);"></i>
+            <h5 class="card-title mb-0">biblioteca.rds.hn</h5>
+          </div>
+          <p class="card-text" style="font-size: 0.9rem; color: var(--color-subtext);">
+            Resource center/library portal for RDS-HN.
+          </p>
+          <p class="card-text" style="font-size: 0.85rem; color: var(--color-subtext);">
+            <strong>Technologies:</strong> Drupal, PHP, MySQL
+          </p>
+          <a href="https://biblioteca.rds.hn" target="_blank" class="btn btn-custom btn-sm mt-auto">Visit Site</a>
+        </div>
+      </div>
+
+      <!-- sedena.gob.hn -->
+      <div class="col-sm-6 col-md-4 portfolio-item">
+        <div class="project-card card p-3 h-100">
+          <div class="d-flex align-items-center mb-2">
+            <i class="fab fa-drupal fa-2x me-2" style="color: var(--color-accent);"></i>
+            <h5 class="card-title mb-0">sedena.gob.hn</h5>
+          </div>
+          <p class="card-text" style="font-size: 0.9rem; color: var(--color-subtext);">
+            Official website of the Honduran Secretary of Defense.
+          </p>
+          <p class="card-text" style="font-size: 0.85rem; color: var(--color-subtext);">
+            <strong>Technologies:</strong> Drupal, PHP, MySQL
+          </p>
+          <a href="https://sedena.gob.hn" target="_blank" class="btn btn-custom btn-sm mt-auto">Visit Site</a>
+        </div>
+      </div>
+
+      <!-- rendircuentas.rds.hn -->
+      <div class="col-sm-6 col-md-4 portfolio-item">
+        <div class="project-card card p-3 h-100">
+          <div class="d-flex align-items-center mb-2">
+            <i class="fab fa-wordpress fa-2x me-2" style="color: var(--color-accent);"></i>
+            <h5 class="card-title mb-0">rendircuentas.rds.hn</h5>
+          </div>
+          <p class="card-text" style="font-size: 0.9rem; color: var(--color-subtext);">
+            Transparency portal for RDS-HN.
+          </p>
+          <p class="card-text" style="font-size: 0.85rem; color: var(--color-subtext);">
+            <strong>Technologies:</strong> WordPress, PHP, MySQL
+          </p>
+          <a href="https://rendircuentas.rds.hn" target="_blank" class="btn btn-custom btn-sm mt-auto">Visit Site</a>
+        </div>
+      </div>
+
+      <!-- portal.rds.hn -->
+      <div class="col-sm-6 col-md-4 portfolio-item">
+        <div class="project-card card p-3 h-100">
+          <div class="d-flex align-items-center mb-2">
+            <i class="fab fa-wordpress fa-2x me-2" style="color: var(--color-accent);"></i>
+            <h5 class="card-title mb-0">portal.rds.hn</h5>
+          </div>
+          <p class="card-text" style="font-size: 0.9rem; color: var(--color-subtext);">
+            Web portal for the Sustainable Development Network of Honduras.
+          </p>
+          <p class="card-text" style="font-size: 0.85rem; color: var(--color-subtext);">
+            <strong>Technologies:</strong> WordPress, PHP, MySQL
+          </p>
+          <a href="https://portal.rds.hn" target="_blank" class="btn btn-custom btn-sm mt-auto">Visit Site</a>
+        </div>
+      </div>
+
+      <!-- aporto.rds.hn -->
+      <div class="col-sm-6 col-md-4 portfolio-item">
+        <div class="project-card card p-3 h-100">
+          <div class="d-flex align-items-center mb-2">
+            <i class="fab fa-wordpress fa-2x me-2" style="color: var(--color-accent);"></i>
+            <h5 class="card-title mb-0">aporto.rds.hn</h5>
+          </div>
+          <p class="card-text" style="font-size: 0.9rem; color: var(--color-subtext);">
+            APORTO – Civic space &amp; climate justice project portal.
+          </p>
+          <p class="card-text" style="font-size: 0.85rem; color: var(--color-subtext);">
+            <strong>Technologies:</strong> WordPress, PHP, MySQL
+          </p>
+          <a href="https://aporto.rds.hn" target="_blank" class="btn btn-custom btn-sm mt-auto">Visit Site</a>
+        </div>
+      </div>
+
+      <!-- agma.rds.hn -->
+      <div class="col-sm-6 col-md-4 portfolio-item">
+        <div class="project-card card p-3 h-100">
+          <div class="d-flex align-items-center mb-2">
+            <i class="fab fa-wordpress fa-2x me-2" style="color: var(--color-accent);"></i>
+            <h5 class="card-title mb-0">agma.rds.hn</h5>
+          </div>
+          <p class="card-text" style="font-size: 0.9rem; color: var(--color-subtext);">
+            Community radio coverage site.
+          </p>
+          <p class="card-text" style="font-size: 0.85rem; color: var(--color-subtext);">
+            <strong>Technologies:</strong> WordPress, PHP, MySQL
+          </p>
+          <a href="https://agma.rds.hn" target="_blank" class="btn btn-custom btn-sm mt-auto">Visit Site</a>
+        </div>
+      </div>
+
+      <!-- campus.redcultura.hn -->
+      <div class="col-sm-6 col-md-4 portfolio-item">
+        <div class="project-card card p-3 h-100">
+          <div class="d-flex align-items-center mb-2">
+            <i class="fas fa-chalkboard-teacher fa-2x me-2" style="color: var(--color-accent);"></i>
+            <h5 class="card-title mb-0">campus.redcultura.hn</h5>
+          </div>
+          <p class="card-text" style="font-size: 0.9rem; color: var(--color-subtext);">
+            Educational platform for the Honduran artists portal.
+          </p>
+          <p class="card-text" style="font-size: 0.85rem; color: var(--color-subtext);">
+            <strong>Technologies:</strong> Chamilo LMS, PHP, MySQL
+          </p>
+          <a href="https://campus.redcultura.hn" target="_blank" class="btn btn-custom btn-sm mt-auto">Visit Site</a>
+        </div>
+      </div>
+
+      <!-- campus.inec.hn -->
+      <div class="col-sm-6 col-md-4 portfolio-item">
+        <div class="project-card card p-3 h-100">
+          <div class="d-flex align-items-center mb-2">
+            <i class="fas fa-graduation-cap fa-2x me-2" style="color: var(--color-accent);"></i>
+            <h5 class="card-title mb-0">campus.inec.hn</h5>
+          </div>
+          <p class="card-text" style="font-size: 0.9rem; color: var(--color-subtext);">
+            Moodle-based e-learning platform.
+          </p>
+          <p class="card-text" style="font-size: 0.85rem; color: var(--color-subtext);">
+            <strong>Technologies:</strong> Moodle, PHP, MySQL
+          </p>
+          <a href="https://campus.inec.hn" target="_blank" class="btn btn-custom btn-sm mt-auto">Visit Site</a>
+        </div>
+      </div>
+    </div>
+
+    <hr style="border-top: 1px solid var(--color-mid);" />
+
+    <!-- Freelance Projects -->
+    <h3 class="mt-5 mb-3 text-center" style="color: var(--color-accent); font-family: var(--font-heading); font-size: 1.75rem;">
+      Freelance Projects
+    </h3>
+    <div class="row g-4">
+      <!-- colegiodenutricionistas.hn -->
+      <div class="col-sm-6 col-md-4 portfolio-item">
+        <div class="project-card card p-3 h-100">
+          <div class="d-flex align-items-center mb-2">
+            <i class="fab fa-wordpress fa-2x me-2" style="color: var(--color-accent);"></i>
+            <h5 class="card-title mb-0">colegiodenutricionistas.hn</h5>
+          </div>
+          <p class="card-text" style="font-size: 0.9rem; color: var(--color-subtext);">
+            Website for the Honduran College of Nutritionists.
+          </p>
+          <p class="card-text" style="font-size: 0.85rem; color: var(--color-subtext);">
+            <strong>Technologies:</strong> WordPress, PHP, MySQL
+          </p>
+          <a href="https://colegiodenutricionistas.hn/" target="_blank" class="btn btn-custom btn-sm mt-auto">Visit Site</a>
+        </div>
+      </div>
+
+      <!-- inec.hn -->
+      <div class="col-sm-6 col-md-4 portfolio-item">
+        <div class="project-card card p-3 h-100">
+          <div class="d-flex align-items-center mb-2">
+            <i class="fab fa-wordpress fa-2x me-2" style="color: var(--color-accent);"></i>
+            <h5 class="card-title mb-0">inec.hn</h5>
+          </div>
+          <p class="card-text" style="font-size: 0.9rem; color: var(--color-subtext);">
+            Website for the National Institute of Continuing Education.
+          </p>
+          <p class="card-text" style="font-size: 0.85rem; color: var(--color-subtext);">
+            <strong>Technologies:</strong> WordPress, PHP, MySQL
+          </p>
+          <a href="https://inec.hn/" target="_blank" class="btn btn-custom btn-sm mt-auto">Visit Site</a>
+        </div>
+      </div>
+
+      <!-- digraphicshn.com -->
+      <div class="col-sm-6 col-md-4 portfolio-item">
+        <div class="project-card card p-3 h-100">
+          <div class="d-flex align-items-center mb-2">
+            <i class="fab fa-wordpress fa-2x me-2" style="color: var(--color-accent);"></i>
+            <h5 class="card-title mb-0">digraphicshn.com</h5>
+          </div>
+          <p class="card-text" style="font-size: 0.9rem; color: var(--color-subtext);">
+            Website for DigiGraphics Honduras.
+          </p>
+          <p class="card-text" style="font-size: 0.85rem; color: var(--color-subtext);">
+            <strong>Technologies:</strong> WordPress, PHP, MySQL
+          </p>
+          <a href="https://digraphicshn.com" target="_blank" class="btn btn-custom btn-sm mt-auto">Visit Site</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+  <!-- Contact Section -->
+  <section id="contact" class="py-5 fade-in-section">
+    <div class="container text-center">
+      <h2 class="section-title">Contact</h2>
+      <p class="mb-4">Need any services or want to collaborate on a project? Let’s talk!</p>
+      <a href="mailto:chucklagos17@outlook.com" class="btn btn-outline-light btn-lg mb-3">Send Email</a>
+      <div class="social-links mt-3">
+        <a href="https://www.linkedin.com/in/chucklagos/" target="_blank"><i class="fab fa-linkedin fa-2x"></i></a>
+        <a href="https://github.com/chucklagos" target="_blank"><i class="fab fa-github fa-2x"></i></a>
+        <a href="https://twitter.com/chucklagos" target="_blank"><i class="fab fa-twitter fa-2x"></i></a>
+      </div>
+    </div>
+  </section>
+
+  
+  <!-- Footer -->
+  <footer>
+    <div class="container text-center">
       <p>© 2024 <a href="https://chucklagos.dev" target="_blank">chucklagos.dev</a> | Keep innovating!</p>
-    </footer>
+    </div>
+  </footer>
 
-    <!-- JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-    <script>
-      // Simple fade-in on scroll
-      const fadeSections = document.querySelectorAll('.fade-in-section');
-      function checkFadeIn() {
-        fadeSections.forEach(sec => {
-          const rect = sec.getBoundingClientRect();
-          if (rect.top < window.innerHeight - 100) {
-            sec.classList.add('fade-in-active');
-          }
-        });
-      }
+  <!-- Bootstrap JS -->
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"
+  ></script>
 
-      window.addEventListener('scroll', checkFadeIn);
-      window.addEventListener('load', checkFadeIn);
+  <!-- Custom Scripts -->
+  <script>
+    // Fade‐in on scroll
+    const fadeSections = document.querySelectorAll('.fade-in-section');
+    function checkFadeIn() {
+      fadeSections.forEach((sec) => {
+        const rect = sec.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 100) {
+          sec.classList.add('fade-in-active');
+        }
+      });
+    }
+    window.addEventListener('scroll', checkFadeIn);
+    window.addEventListener('load', checkFadeIn);
 
-            // Array of possible accent colors
-            const accentColors = [
-  '#00ffff', // Cyan (sigue funcionando bien)
-  '#f39c12', // Orange
-  '#e74c3c', // Bright Red
-  '#2ecc71', // Green
-  '#3498db', // Strong Blue
-  '#e67e22', // Pumpkin Orange
-  '#16a085'  // Teal
-];
-
-      // Pick a random accent color
-      const randomColor = accentColors[Math.floor(Math.random() * accentColors.length)];
-      // Set the CSS variable for accent color
-      document.documentElement.style.setProperty('--color-accent', randomColor);
-
-      // If you also want hover-link etc. to match accent:
-      document.documentElement.style.setProperty('--color-hover-link', randomColor);
-
-    </script>
+    // Random accent color (optional)
+    const accentColors = [
+      '#00ffff', '#f39c12', '#e74c3c', '#2ecc71', '#3498db', '#e67e22', '#16a085'
+    ];
+    const randomColor = accentColors[Math.floor(Math.random() * accentColors.length)];
+    document.documentElement.style.setProperty('--color-accent', randomColor);
+    document.documentElement.style.setProperty('--color-hover-link', randomColor);
+  </script>
 </body>
 </html>
+
+
