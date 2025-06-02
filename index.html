@@ -1,31 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Meta Tags -->
-    <meta charset="UTF-8" />
-    <meta name="description" content="Online CV of Chuck Lagos, a Software Developer focused on Drupal, WordPress, PHP, MySQL, and more. Experience in web development, maintenance, and innovative projects." />
-    <meta name="keywords" content="Chuck Lagos, Developer, Web Developer, Drupal, WordPress, PHP, MySQL, Cyberpunk" />
-    <meta name="author" content="Chuck Heriberto Guifarro Lagos" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Basic Meta Tags -->
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="author" content="Chuck Heriberto Guifarro Lagos" />
+<meta name="robots" content="index, follow" />
+<meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
 
-    <title>Chuck Lagos – Software Developer</title>
+<!-- Primary SEO Meta Tags -->
+<title>Chuck Lagos – Software Developer | CMS Specialist | Innovator</title>
+<meta name="description" content="Systems Engineer with over 3 years of experience in web development and server administration. Specialized in Drupal, WordPress, and digital infrastructure optimization. Based in Honduras." />
+<meta name="keywords" content="Chuck Lagos, Software Developer, Drupal, WordPress, PHP, MySQL, CMS, Web Development, Technical Support, Linux, JavaScript, Node.js, Astro, PostgreSQL" />
+<link rel="canonical" href="https://chucklagos.dev/" />
 
-    <!-- Open Graph / Social -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://chucklagos.dev/" />
-    <meta property="og:title" content="Chuck Lagos – Software Developer" />
-    <meta property="og:description" content="A developer focused on innovation, CMS, and constant curiosity about technology." />
-    <meta property="og:image" content="https://chucklagos.dev/img/curiosity.webp" />
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="ChuckLagos.dev" />
+<meta property="og:url" content="https://chucklagos.dev/" />
+<meta property="og:title" content="Chuck Lagos – Software Developer | CMS Specialist | Innovator" />
+<meta property="og:description" content="Systems Engineer with over 3 years of experience in web development and server administration. Specialized in Drupal, WordPress, and digital infrastructure optimization." />
+<meta property="og:image" content="https://chucklagos.dev/img/curiosity.webp" />
+<meta property="og:image:alt" content="Chuck Lagos – Software Developer" />
+<meta property="og:locale" content="en_US" />
 
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://chucklagos.dev/" />
-    <meta property="twitter:title" content="Chuck Lagos – Software Developer" />
-    <meta property="twitter:description" content="A developer focused on innovation, CMS, and constant curiosity about technology." />
-    <meta property="twitter:image" content="https://chucklagos.dev/img/curiosity.webp" />
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@chucklagos" />
+<meta name="twitter:creator" content="@chucklagos" />
+<meta name="twitter:url" content="https://chucklagos.dev/" />
+<meta name="twitter:title" content="Chuck Lagos – Software Developer | CMS Specialist | Innovator" />
+<meta name="twitter:description" content="Systems Engineer with over 3 years of experience in web development and server administration. Specialized in Drupal, WordPress, and digital infrastructure optimization." />
+<meta name="twitter:image" content="https://chucklagos.dev/img/curiosity.webp" />
+<meta name="twitter:image:alt" content="Chuck Lagos – Software Developer" />
 
-    <!-- Favicon -->
-    <link rel="shortcut icon" href="icons/favicon.png" />
+<!-- Additional SEO / Misc Meta Tags -->
+<meta name="theme-color" content="#0c0f14" />
+<meta name="msapplication-TileColor" content="#0c0f14" />
+<meta name="application-name" content="Chuck Lagos Portfolio" />
+<meta name="format-detection" content="telephone=no" />
+
+<!-- Hreflang (if you add a Spanish version later) -->
+<!--
+<link rel="alternate" href="https://chucklagos.dev/" hreflang="en" />
+<link rel="alternate" href="https://chucklagos.dev/es/" hreflang="es" />
+-->
+
+<!-- JSON-LD Structured Data (Organization + Person) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://chucklagos.dev/#organization",
+      "name": "ChuckLagos.dev",
+      "url": "https://chucklagos.dev/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://chucklagos.dev/icons/favicon.png"
+      },
+      "sameAs": [
+        "https://www.linkedin.com/in/chucklagos/",
+        "https://github.com/chucklagos",
+        "https://twitter.com/chucklagos"
+      ]
+    },
+    {
+      "@type": "Person",
+      "@id": "https://chucklagos.dev/#person",
+      "name": "Chuck Heriberto Guifarro Lagos",
+      "url": "https://chucklagos.dev/",
+      "image": {
+        "@type": "ImageObject",
+        "url": "https://chucklagos.dev/img/curiosity.webp"
+      },
+      "sameAs": [
+        "https://www.linkedin.com/in/chucklagos/",
+        "https://github.com/chucklagos",
+        "https://twitter.com/chucklagos"
+      ],
+      "jobTitle": "Software Developer",
+      "worksFor": {
+        "@type": "Organization",
+        "name": "Punto HN"
+      },
+      "description": "Systems Engineer with over 3 years of experience in web development and server administration, specialized in Drupal, WordPress, and infrastructure optimization."
+    }
+  ]
+}
+</script>
 
     <!-- Google Fonts -->
     <link
@@ -779,12 +844,12 @@
     window.addEventListener('load', checkFadeIn);
 
     // Random accent color (optional)
-    const accentColors = [
+   /* const accentColors = [
       '#00ffff', '#f39c12', '#e74c3c', '#2ecc71', '#3498db', '#e67e22', '#16a085'
     ];
     const randomColor = accentColors[Math.floor(Math.random() * accentColors.length)];
     document.documentElement.style.setProperty('--color-accent', randomColor);
-    document.documentElement.style.setProperty('--color-hover-link', randomColor);
+    document.documentElement.style.setProperty('--color-hover-link', randomColor);*/
   </script>
 </body>
 </html>
