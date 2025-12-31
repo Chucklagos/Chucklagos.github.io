@@ -1,857 +1,380 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <!-- Basic Meta Tags -->
-<meta charset="UTF-8" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="author" content="Chuck Heriberto Guifarro Lagos" />
-<meta name="robots" content="index, follow" />
-<meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light dark" />
 
-<!-- Primary SEO Meta Tags -->
-<title>Chuck Lagos – Software Developer | CMS Specialist | Innovator</title>
-<meta name="description" content="Systems Engineer with over 3 years of experience in web development and server administration. Specialized in Drupal, WordPress, and digital infrastructure optimization. Based in Honduras." />
-<meta name="keywords" content="Chuck Lagos, Software Developer, Drupal, WordPress, PHP, MySQL, CMS, Web Development, Technical Support, Linux, JavaScript, Node.js, Astro, PostgreSQL" />
-<link rel="canonical" href="https://chucklagos.dev/" />
+  <title>Chuck Guifarro Lagos — IT Support & Systems | Infrastructure & Linux</title>
+  <meta name="description" content="U.S. Citizen — IT Support & Systems Engineer with infrastructure & Linux background. Bilingual (EN/ES). Relocating to Houston (June–July 2025, flexible)." />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://chucklagos.dev/" />
 
-<!-- Open Graph / Facebook -->
-<meta property="og:type" content="website" />
-<meta property="og:site_name" content="ChuckLagos.dev" />
-<meta property="og:url" content="https://chucklagos.dev/" />
-<meta property="og:title" content="Chuck Lagos – Software Developer | CMS Specialist | Innovator" />
-<meta property="og:description" content="Systems Engineer with over 3 years of experience in web development and server administration. Specialized in Drupal, WordPress, and digital infrastructure optimization." />
-<meta property="og:image" content="https://chucklagos.dev/img/curiosity.webp" />
-<meta property="og:image:alt" content="Chuck Lagos – Software Developer" />
-<meta property="og:locale" content="en_US" />
+  <!-- Open Graph -->
+  <meta property="og:title" content="Chuck Guifarro Lagos — IT Support & Systems" />
+  <meta property="og:description" content="Infrastructure & Linux | Bilingual (EN/ES) | U.S. Citizen | Relocating to Houston (June–July 2025)" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://chucklagos.dev/" />
+  <meta property="og:image" content="https://chucklagos.dev/og-image.jpg" />
 
-<!-- Twitter Card -->
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:site" content="@chucklagos" />
-<meta name="twitter:creator" content="@chucklagos" />
-<meta name="twitter:url" content="https://chucklagos.dev/" />
-<meta name="twitter:title" content="Chuck Lagos – Software Developer | CMS Specialist | Innovator" />
-<meta name="twitter:description" content="Systems Engineer with over 3 years of experience in web development and server administration. Specialized in Drupal, WordPress, and digital infrastructure optimization." />
-<meta name="twitter:image" content="https://chucklagos.dev/img/curiosity.webp" />
-<meta name="twitter:image:alt" content="Chuck Lagos – Software Developer" />
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Chuck Guifarro Lagos — IT Support & Systems" />
+  <meta name="twitter:description" content="Infrastructure & Linux | Bilingual (EN/ES) | U.S. Citizen" />
+  <meta name="twitter:image" content="https://chucklagos.dev/og-image.jpg" />
 
-<!-- Additional SEO / Misc Meta Tags -->
-<meta name="theme-color" content="#0c0f14" />
-<meta name="msapplication-TileColor" content="#0c0f14" />
-<meta name="application-name" content="Chuck Lagos Portfolio" />
-<meta name="format-detection" content="telephone=no" />
+  <!-- Minimal CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
 
-<!-- Hreflang (if you add a Spanish version later) -->
-<!--
-<link rel="alternate" href="https://chucklagos.dev/" hreflang="en" />
-<link rel="alternate" href="https://chucklagos.dev/es/" hreflang="es" />
--->
-
-<!-- JSON-LD Structured Data (Organization + Person) -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "Organization",
-      "@id": "https://chucklagos.dev/#organization",
-      "name": "ChuckLagos.dev",
-      "url": "https://chucklagos.dev/",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://chucklagos.dev/icons/favicon.png"
-      },
-      "sameAs": [
-        "https://www.linkedin.com/in/chucklagos/",
-        "https://github.com/chucklagos",
-        "https://twitter.com/chucklagos"
-      ]
-    },
-    {
-      "@type": "Person",
-      "@id": "https://chucklagos.dev/#person",
-      "name": "Chuck Heriberto Guifarro Lagos",
-      "url": "https://chucklagos.dev/",
-      "image": {
-        "@type": "ImageObject",
-        "url": "https://chucklagos.dev/img/curiosity.webp"
-      },
-      "sameAs": [
-        "https://www.linkedin.com/in/chucklagos/",
-        "https://github.com/chucklagos",
-        "https://twitter.com/chucklagos"
-      ],
-      "jobTitle": "Software Developer",
-      "worksFor": {
-        "@type": "Organization",
-        "name": "Punto HN"
-      },
-      "description": "Systems Engineer with over 3 years of experience in web development and server administration, specialized in Drupal, WordPress, and infrastructure optimization."
-    }
-  ]
-}
-</script>
-
-    <!-- Google Fonts -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400;500;700&display=swap"
-      rel="stylesheet"
-    />
-
-    <!-- Bootstrap 5.3.2 CSS -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
-      crossorigin="anonymous"
-    />
-
-    <!-- Font Awesome -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/custom.css" />
+  <!-- Structured data (SEO) -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Person",
+    "name":"Chuck Heriberto Guifarro Lagos",
+    "url":"https://chucklagos.dev/",
+    "email":"mailto:chucklagos17@gmail.com",
+    "jobTitle":"IT Support & Systems Engineer",
+    "knowsLanguage":["English","Spanish"],
+    "sameAs":[
+      "https://www.linkedin.com/in/chucklagos/",
+      "https://github.com/chucklagos"
+    ],
+    "description":"U.S. Citizen — IT Support & Systems Engineer with infrastructure & Linux background. Bilingual (EN/ES). Relocating to Houston (June–July 2025, flexible)."
+  }
+  </script>
 </head>
+
 <body>
-  <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg sticky-top">
-    <div class="container">
-      <a class="navbar-brand" href="#home">CHUCKLAGOS.DEV</a>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#navbarNavAltMarkup"
-        aria-controls="navbarNavAltMarkup"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span class="text-white"><i class="fa fa-bars"></i></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav ms-auto">
-          <a class="nav-link" href="#about">About Me</a>
-          <a class="nav-link" href="#services">Services</a>
-          <a class="nav-link" href="#skills">Skills</a>
-          <a class="nav-link" href="#experience">Experience</a>
-          <a class="nav-link" href="#education">Education</a>
-          <a class="nav-link" href="#certifications">Certifications</a>
-          <a class="nav-link" href="#portfolio">Portfolio</a>
-          <a class="nav-link" href="#contact">Contact</a>
-        </div>
-      </div>
-    </div>
-  </nav>
+  <!--a href="#main">Skip to content</a--> 
 
-  <!-- Header (Hero) -->
-  <header id="home" class="fade-in-section">
-    <div class="container text-center">
-      <h1 class="glow-text glitch" data-text="Chuck Lagos">Chuck Lagos</h1>
-      <p class="mt-3">Software Developer | CMS Specialist | Curious Innovator</p>
-      <div class="social-links mt-4">
-        <a href="https://www.linkedin.com/in/chucklagos/" target="_blank">
-          <i class="fab fa-linkedin"></i>
-        </a>
-        <a href="https://github.com/chucklagos" target="_blank">
-          <i class="fab fa-github"></i>
-        </a>
-        <a href="https://twitter.com/chucklagos" target="_blank">
-          <i class="fab fa-twitter"></i>
-        </a>
-      </div>
-    </div>
-  </header>
-
-  <!-- About Section -->
-  <section id="about" class="py-5 fade-in-section">
-    <div class="container">
-      <h2 class="section-title text-center">About Me</h2>
-      <p class="lead text-center px-3">
-        Systems Engineer with over 3 years of experience in web development and server administration. Specialized in Drupal, WordPress, and digital infrastructure optimization. I have led the development of key institutional platforms in Honduras, improving their performance and security. As a teacher, I have trained students in computing and educational platforms. Passionate about digital innovation, I contribute to system optimization through automation and scalable strategies.
-      </p>
-    </div>
-  </section>
-
- <!-- Services Section (updated) -->
-<section id="services" class="py-5 fade-in-section">
-  <div class="container">
-    <h2 class="section-title text-center">Services</h2>
-    <div class="row g-4">
-      <!-- Web Development -->
-      <div class="col-md-6">
-        <div class="card text-center">
-          <div class="card-body">
-            <i class="fa-solid fa-laptop-code fa-3x mb-3"></i>
-            <h4 class="card-title">Web Development</h4>
-            <p class="card-text">
-              Intuitive, responsive websites and applications, fully optimized for any device.
-            </p>
-          </div>
-        </div>
-      </div>
-      <!-- Technical Support -->
-      <div class="col-md-6">
-        <div class="card text-center">
-          <div class="card-body">
-            <i class="fa-solid fa-headset fa-3x mb-3"></i>
-            <h4 class="card-title">Technical Support</h4>
-            <p class="card-text">
-              Comprehensive troubleshooting, server administration, and user training to keep your systems running smoothly.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Skills Section (updated) -->
-<section id="skills" class="py-5 fade-in-section">
-  <div class="container">
-    <h2 class="section-title text-center">Skills</h2>
-
-    <!-- Technical Skills -->
-    <div class="row g-3 justify-content-center mb-5">
-      <div class="col-6 col-sm-4 col-md-2">
-        <div class="skill-card">
-          <h5 class="card-title">
-            <i class="fab fa-drupal"></i> Drupal
-          </h5>
-        </div>
-      </div>
-      <div class="col-6 col-sm-4 col-md-2">
-        <div class="skill-card">
-          <h5 class="card-title">
-            <i class="fab fa-wordpress"></i> WordPress
-          </h5>
-        </div>
-      </div>
-      <div class="col-6 col-sm-4 col-md-2">
-        <div class="skill-card">
-          <h5 class="card-title">
-            <i class="fab fa-html5"></i> HTML/CSS
-          </h5>
-        </div>
-      </div>
-      <div class="col-6 col-sm-4 col-md-2">
-        <div class="skill-card">
-          <h5 class="card-title">
-            <i class="fab fa-php"></i> PHP
-          </h5>
-        </div>
-      </div>
-      <div class="col-6 col-sm-4 col-md-2">
-        <div class="skill-card">
-          <h5 class="card-title">
-            <i class="fas fa-database"></i> MySQL
-          </h5>
-        </div>
-      </div>
-      <div class="col-6 col-sm-4 col-md-2">
-        <div class="skill-card">
-          <h5 class="card-title">
-            <i class="fab fa-bootstrap"></i> Bootstrap
-          </h5>
-        </div>
-      </div>
-      <!-- New Technical Skills -->
-      <div class="col-6 col-sm-4 col-md-2">
-        <div class="skill-card">
-          <h5 class="card-title">
-            <i class="fa-solid fa-star"></i> Astro
-          </h5>
-        </div>
-      </div>
-      <div class="col-6 col-sm-4 col-md-2">
-        <div class="skill-card">
-          <h5 class="card-title">
-            <i class="fas fa-server"></i> cPanel &amp; WHM
-          </h5>
-        </div>
-      </div>
-      <div class="col-6 col-sm-4 col-md-2">
-        <div class="skill-card">
-          <h5 class="card-title">
-            <i class="fab fa-js"></i> JavaScript
-          </h5>
-        </div>
-      </div>
-      <div class="col-6 col-sm-4 col-md-2">
-        <div class="skill-card">
-          <h5 class="card-title">
-            <i class="fab fa-linux"></i> Linux
-          </h5>
-        </div>
-      </div>
-      <div class="col-6 col-sm-4 col-md-2">
-        <div class="skill-card">
-          <h5 class="card-title">
-            <i class="fab fa-github"></i> Git/GitHub
-          </h5>
-        </div>
-      </div>
-      <div class="col-6 col-sm-4 col-md-2">
-        <div class="skill-card">
-          <h5 class="card-title">
-            <i class="fas fa-database"></i> PostgreSQL
-          </h5>
-        </div>
-      </div>
-      <div class="col-6 col-sm-4 col-md-2">
-        <div class="skill-card">
-          <h5 class="card-title">
-            <i class="fab fa-node-js"></i> Node.js
-          </h5>
-        </div>
-      </div>
-    </div>
-
-    <!-- Additional & Soft Skills -->
-    <h3 class="mt-4 mb-3 text-center" style="color: var(--color-text); font-family: var(--font-heading); font-size: 1.5rem;">
-      Additional Skills
-    </h3>
-    <div class="row g-3 justify-content-center mb-5">
-      <div class="col-6 col-sm-4 col-md-3">
-        <div class="skill-card">
-          <h5 class="card-title">
-            <i class="fas fa-search"></i> Research &amp; Analysis
-          </h5>
-        </div>
-      </div>
-      <div class="col-6 col-sm-4 col-md-3">
-        <div class="skill-card">
-          <h5 class="card-title">
-            <i class="fas fa-server"></i> Server Administration
-          </h5>
-        </div>
-      </div>
-      <div class="col-6 col-sm-4 col-md-3">
-        <div class="skill-card">
-          <h5 class="card-title">
-            <i class="fas fa-shield-alt"></i> Security &amp; Performance
-          </h5>
-        </div>
-      </div>
-      <div class="col-6 col-sm-4 col-md-3">
-        <div class="skill-card">
-          <h5 class="card-title">
-            <i class="fas fa-chalkboard-teacher"></i> Teaching &amp; Training
-          </h5>
-        </div>
-      </div>
-      <div class="col-6 col-sm-4 col-md-3">
-        <div class="skill-card">
-          <h5 class="card-title">
-            <i class="fas fa-cogs"></i> Process Automation
-          </h5>
-        </div>
-      </div>
-      <div class="col-6 col-sm-4 col-md-3">
-        <div class="skill-card">
-          <h5 class="card-title">
-            <i class="fas fa-microsoft"></i> Office 365 &amp; MS Teams
-          </h5>
-        </div>
-      </div>
-      <div class="col-6 col-sm-4 col-md-3">
-        <div class="skill-card">
-          <h5 class="card-title">
-            <i class="fas fa-language"></i> Spanish (Native)
-          </h5>
-        </div>
-      </div>
-      <div class="col-6 col-sm-4 col-md-3">
-        <div class="skill-card">
-          <h5 class="card-title">
-            <i class="fas fa-language"></i> English (Intermediate)
-          </h5>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-  <!-- Experience Section -->
-  <section id="experience" class="py-5 fade-in-section">
-    <div class="container">
-      <h2 class="section-title text-center">Experience</h2>
-
-      <div class="job mb-4">
-        <div class="job-title">
-          <h3>Developer | <a href="https://punto.hn" target="_blank">Punto HN</a></h3>
-          <p class="year">02/2023 - Present</p>
-        </div>
-        <ul>
-          <li>Development and improvement of institutional web portals (Drupal, WordPress).</li>
-          <li>Server administration, security, performance, and scalability.</li>
-          <li>Leading the development team, fostering collaboration and quality deliveries.</li>
-        </ul>
-      </div>
-
-      <div class="job mb-4">
-        <div class="job-title">
-          <h3>Support Technician | <a href="https://punto.hn" target="_blank">Punto HN</a></h3>
-          <p class="year">10/2022 - 02/2023</p>
-        </div>
-        <ul>
-          <li>Technical support to maintain operational continuity.</li>
-          <li>Server administration, ensuring security and uptime.</li>
-          <li>Development of accessible and responsive websites.</li>
-        </ul>
-      </div>
-
-      <div class="job mb-4">
-        <div class="job-title">
-          <h3>Computer Science Teacher | <a href="https://fuentedivina.education/" target="_blank">Divine Stream Christian School</a></h3>
-          <p class="year">03/2022 - 10/2022</p>
-        </div>
-        <ul>
-          <li>Taught virtual and semi-presential computing classes.</li>
-          <li>Managed educational platforms (Office 365, MS Teams).</li>
-          <li>Installation and configuration of technological equipment.</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- Education Section -->
-  <section id="education" class="py-5 fade-in-section">
-    <div class="container">
-      <h2 class="section-title text-center">Education</h2>
-      <div class="row justify-content-center">
-        <div class="col-md-8">
-          <div class="card p-4 mb-4">
-            <div class="card-body">
-              <h3 class="card-title">Bachelor’s Degree in Systems Engineering — UNAH</h3>
-              <p class="card-text mb-1">National Autonomous University of Honduras</p>
-              <p class="text-subtext card-text"><em>November 2023 · Honor Mention “Cum Laude” (Academic Excellence)</em></p>
-              <p class="card-text mt-2">
-                Focus on software development, server management, and systems optimization.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Certifications Section -->
-  <section id="certifications" class="py-5 fade-in-section">
-    <div class="container">
-      <h2 class="section-title text-center">Certifications</h2>
-      <div class="row row-cols-1 row-cols-md-2 g-4 justify-content-center">
-        <div class="col col-md-5">
-          <div class="card h-100 p-3">
-            <div class="card-body">
-              <h5 class="card-title"><i class="fas fa-certificate"></i> Oracle — Database Foundations</h5>
-              <p class="text-subtext card-text mb-0"><em>Oracle, 2021</em></p>
-            </div>
-          </div>
-        </div>
-        <div class="col col-md-5">
-          <div class="card h-100 p-3">
-            <div class="card-body">
-              <h5 class="card-title"><i class="fas fa-certificate"></i> Oracle — Java Fundamentals</h5>
-              <p class="text-subtext card-text mb-0"><em>Oracle, 2020</em></p>
-            </div>
-          </div>
-        </div>
-        <div class="col col-md-5">
-          <div class="card h-100 p-3">
-            <div class="card-body">
-              <h5 class="card-title"><i class="fas fa-cloud"></i> Huawei — Cloud Basics: Development and Basic Concepts</h5>
-              <p class="text-subtext card-text mb-0"><em>Huawei, 2024</em></p>
-            </div>
-          </div>
-        </div>
-        <div class="col col-md-5">
-          <div class="card h-100 p-3">
-            <div class="card-body">
-              <h5 class="card-title"><i class="fas fa-cloud"></i> Huawei — Cloud Advanced: Architecture and Technologies</h5>
-              <p class="text-subtext card-text mb-0"><em>Huawei, 2024</em></p>
-            </div>
-          </div>
-        </div>
-        <div class="col col-md-5">
-          <div class="card h-100 p-3">
-            <div class="card-body">
-              <h5 class="card-title"><i class="fas fa-server"></i> Cloud Tech Fundamentals (C230316)</h5>
-              <p class="text-subtext card-text mb-0"><em>2025</em></p>
-            </div>
-          </div>
-        </div>
-        <div class="col col-md-5">
-          <div class="card h-100 p-3">
-            <div class="card-body">
-              <h5 class="card-title"><i class="fab fa-python"></i> Python Programming (INFOP, 40 hours)</h5>
-              <p class="text-subtext card-text mb-0"><em>2021</em></p>
-            </div>
-          </div>
-        </div>
-        <div class="col col-md-5">
-          <div class="card h-100 p-3">
-            <div class="card-body">
-              <h5 class="card-title"><i class="fas fa-database"></i> MySQL Database (INFOP, 20 hours)</h5>
-              <p class="text-subtext card-text mb-0"><em>2020</em></p>
-            </div>
-          </div>
-        </div>
-        <div class="col col-md-5">
-          <div class="card h-100 p-3">
-            <div class="card-body">
-              <h5 class="card-title"><i class="fab fa-google"></i> Google — Mobile App Development</h5>
-              <p class="text-subtext card-text mb-0"><em>Google Digital Garage, 2017</em></p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-
-
-  <!-- Portfolio Section -->
-<section id="portfolio" class="py-5 fade-in-section">
-  <div class="container">
-    <h2 class="section-title text-center">Portfolio</h2>
-    <p class="text-center mb-5 card-text">
-      A list of projects I’ve contributed to—separated by freelance work and those I collaborated on while at my current company.
+  <header>
+    <h1>Chuck Guifarro Lagos</h1>
+    <p>
+      <strong>IT Support &amp; Systems</strong> — Infrastructure &amp; Linux • Bilingual (EN/ES) • <strong>U.S. Citizen</strong><br>
+      Relocating to <strong>Houston, TX</strong> (<time datetime="2026-06">June 2026</time>–<time datetime="2026-07">July 2026</time>, flexible)
     </p>
 
-    <!-- Company & Collaborative Projects -->
-    <h3 class="mt-4 mb-3 text-center" style="color: var(--color-accent); font-family: var(--font-heading); font-size: 1.75rem;">
-      Company &amp; Collaborative Projects
-    </h3>
-    <div class="row g-4 mb-5">
-      <!-- empleos.hn -->
-      <div class="col-sm-6 col-md-4 portfolio-item">
-        <div class="project-card card p-3 h-100">
-          <div class="d-flex align-items-center mb-2">
-            <i class="fab fa-drupal fa-2x me-2" style="color: var(--color-accent);"></i>
-            <h5 class="card-title mb-0">empleos.hn</h5>
-          </div>
-          <p class="card-text" style="font-size: 0.9rem; color: var(--color-subtext);">
-            Job portal in Honduras for RDS-HN.
-          </p>
-          <p class="card-text" style="font-size: 0.85rem; color: var(--color-subtext);">
-            <strong>Technologies:</strong> Drupal, PHP, MySQL
-          </p>
-          <a href="https://empleos.hn" target="_blank" class="btn btn-custom btn-sm mt-auto">Visit Site</a>
-        </div>
-      </div>
+    <nav aria-label="Primary navigation">
+      <a href="#focus">Focus</a> |
+      <a href="#what">What I do</a> |
+      <a href="#highlights">Highlights</a> |
+      <a href="#experience">Experience</a> |
+      <a href="#skills">Skills</a> |
+      <a href="#projects">Projects</a> |
+      <a href="#certs">Certifications</a> |
+      <a href="#contact">Contact</a>
+    </nav>
 
-      <!-- becas.hn -->
-      <div class="col-sm-6 col-md-4 portfolio-item">
-        <div class="project-card card p-3 h-100">
-          <div class="d-flex align-items-center mb-2">
-            <i class="fab fa-drupal fa-2x me-2" style="color: var(--color-accent);"></i>
-            <h5 class="card-title mb-0">becas.hn</h5>
-          </div>
-          <p class="card-text" style="font-size: 0.9rem; color: var(--color-subtext);">
-            Scholarship portal in Honduras for RDS-HN.
-          </p>
-          <p class="card-text" style="font-size: 0.85rem; color: var(--color-subtext);">
-            <strong>Technologies:</strong> Drupal, PHP, MySQL
-          </p>
-          <a href="https://becas.hn" target="_blank" class="btn btn-custom btn-sm mt-auto">Visit Site</a>
-        </div>
-      </div>
+    <p>
+      <a href="/resume.pdf" target="_blank" rel="noopener">Resume (PDF)</a> |
+      <a href="https://www.linkedin.com/in/chucklagos/" target="_blank" rel="noopener">LinkedIn</a> |
+      <a href="https://github.com/chucklagos" target="_blank" rel="noopener">GitHub</a> |
+      <a href="mailto:chucklagos17@gmail.com">Email</a>
+    </p>
 
-      <!-- eventos.hn -->
-      <div class="col-sm-6 col-md-4 portfolio-item">
-        <div class="project-card card p-3 h-100">
-          <div class="d-flex align-items-center mb-2">
-            <i class="fab fa-drupal fa-2x me-2" style="color: var(--color-accent);"></i>
-            <h5 class="card-title mb-0">eventos.hn</h5>
-          </div>
-          <p class="card-text" style="font-size: 0.9rem; color: var(--color-subtext);">
-            Events portal in Honduras for RDS-HN.
-          </p>
-          <p class="card-text" style="font-size: 0.85rem; color: var(--color-subtext);">
-            <strong>Technologies:</strong> Drupal, PHP, MySQL
-          </p>
-          <a href="https://eventos.hn" target="_blank" class="btn btn-custom btn-sm mt-auto">Visit Site</a>
-        </div>
-      </div>
+    <hr>
+  </header>
 
-      <!-- recultura.hn -->
-      <div class="col-sm-6 col-md-4 portfolio-item">
-        <div class="project-card card p-3 h-100">
-          <div class="d-flex align-items-center mb-2">
-            <i class="fab fa-drupal fa-2x me-2" style="color: var(--color-accent);"></i>
-            <h5 class="card-title mb-0">recultura.hn</h5>
-          </div>
-          <p class="card-text" style="font-size: 0.9rem; color: var(--color-subtext);">
-            Artist portal in Honduras.
-          </p>
-          <p class="card-text" style="font-size: 0.85rem; color: var(--color-subtext);">
-            <strong>Technologies:</strong> Drupal, PHP, MySQL
-          </p>
-          <a href="https://recultura.hn" target="_blank" class="btn btn-custom btn-sm mt-auto">Visit Site</a>
-        </div>
-      </div>
+  <main id="main">
+    <section id="focus" aria-label="Quick facts">
+      <h2>Quick facts</h2>
 
-      <!-- biblioteca.rds.hn -->
-      <div class="col-sm-6 col-md-4 portfolio-item">
-        <div class="project-card card p-3 h-100">
-          <div class="d-flex align-items-center mb-2">
-            <i class="fab fa-drupal fa-2x me-2" style="color: var(--color-accent);"></i>
-            <h5 class="card-title mb-0">biblioteca.rds.hn</h5>
-          </div>
-          <p class="card-text" style="font-size: 0.9rem; color: var(--color-subtext);">
-            Resource center/library portal for RDS-HN.
-          </p>
-          <p class="card-text" style="font-size: 0.85rem; color: var(--color-subtext);">
-            <strong>Technologies:</strong> Drupal, PHP, MySQL
-          </p>
-          <a href="https://biblioteca.rds.hn" target="_blank" class="btn btn-custom btn-sm mt-auto">Visit Site</a>
-        </div>
-      </div>
+      <aside aria-label="Summary card">
+        <dl>
+          <dt>Target roles</dt>
+          <dd>IT Support • Help Desk • Systems Support • Infrastructure Support</dd>
 
-      <!-- sedena.gob.hn -->
-      <div class="col-sm-6 col-md-4 portfolio-item">
-        <div class="project-card card p-3 h-100">
-          <div class="d-flex align-items-center mb-2">
-            <i class="fab fa-drupal fa-2x me-2" style="color: var(--color-accent);"></i>
-            <h5 class="card-title mb-0">sedena.gob.hn</h5>
-          </div>
-          <p class="card-text" style="font-size: 0.9rem; color: var(--color-subtext);">
-            Official website of the Honduran Secretary of Defense.
-          </p>
-          <p class="card-text" style="font-size: 0.85rem; color: var(--color-subtext);">
-            <strong>Technologies:</strong> Drupal, PHP, MySQL
-          </p>
-          <a href="https://sedena.gob.hn" target="_blank" class="btn btn-custom btn-sm mt-auto">Visit Site</a>
-        </div>
-      </div>
+          <dt>Work authorization</dt>
+          <dd>U.S. Citizen (authorized to work in the U.S.)</dd>
 
-      <!-- rendircuentas.rds.hn -->
-      <div class="col-sm-6 col-md-4 portfolio-item">
-        <div class="project-card card p-3 h-100">
-          <div class="d-flex align-items-center mb-2">
-            <i class="fab fa-wordpress fa-2x me-2" style="color: var(--color-accent);"></i>
-            <h5 class="card-title mb-0">rendircuentas.rds.hn</h5>
-          </div>
-          <p class="card-text" style="font-size: 0.9rem; color: var(--color-subtext);">
-            Transparency portal for RDS-HN.
-          </p>
-          <p class="card-text" style="font-size: 0.85rem; color: var(--color-subtext);">
-            <strong>Technologies:</strong> WordPress, PHP, MySQL
-          </p>
-          <a href="https://rendircuentas.rds.hn" target="_blank" class="btn btn-custom btn-sm mt-auto">Visit Site</a>
-        </div>
-      </div>
+          <dt>Location</dt>
+          <dd>Relocating to Houston, TX (June–July 2026, flexible)</dd>
 
-      <!-- portal.rds.hn -->
-      <div class="col-sm-6 col-md-4 portfolio-item">
-        <div class="project-card card p-3 h-100">
-          <div class="d-flex align-items-center mb-2">
-            <i class="fab fa-wordpress fa-2x me-2" style="color: var(--color-accent);"></i>
-            <h5 class="card-title mb-0">portal.rds.hn</h5>
-          </div>
-          <p class="card-text" style="font-size: 0.9rem; color: var(--color-subtext);">
-            Web portal for the Sustainable Development Network of Honduras.
-          </p>
-          <p class="card-text" style="font-size: 0.85rem; color: var(--color-subtext);">
-            <strong>Technologies:</strong> WordPress, PHP, MySQL
-          </p>
-          <a href="https://portal.rds.hn" target="_blank" class="btn btn-custom btn-sm mt-auto">Visit Site</a>
-        </div>
-      </div>
+          <dt>Languages</dt>
+          <dd>English / Spanish</dd>
 
-      <!-- aporto.rds.hn -->
-      <div class="col-sm-6 col-md-4 portfolio-item">
-        <div class="project-card card p-3 h-100">
-          <div class="d-flex align-items-center mb-2">
-            <i class="fab fa-wordpress fa-2x me-2" style="color: var(--color-accent);"></i>
-            <h5 class="card-title mb-0">aporto.rds.hn</h5>
-          </div>
-          <p class="card-text" style="font-size: 0.9rem; color: var(--color-subtext);">
-            APORTO – Civic space &amp; climate justice project portal.
-          </p>
-          <p class="card-text" style="font-size: 0.85rem; color: var(--color-subtext);">
-            <strong>Technologies:</strong> WordPress, PHP, MySQL
-          </p>
-          <a href="https://aporto.rds.hn" target="_blank" class="btn btn-custom btn-sm mt-auto">Visit Site</a>
-        </div>
-      </div>
+          <dt>Education</dt>
+          <dd>B.S. Systems Engineering (Cum Laude) • M.S. Artificial Intelligence (Online, In Progress)</dd>
+        </dl>
+      </aside>
 
-      <!-- agma.rds.hn -->
-      <div class="col-sm-6 col-md-4 portfolio-item">
-        <div class="project-card card p-3 h-100">
-          <div class="d-flex align-items-center mb-2">
-            <i class="fab fa-wordpress fa-2x me-2" style="color: var(--color-accent);"></i>
-            <h5 class="card-title mb-0">agma.rds.hn</h5>
-          </div>
-          <p class="card-text" style="font-size: 0.9rem; color: var(--color-subtext);">
-            Community radio coverage site.
-          </p>
-          <p class="card-text" style="font-size: 0.85rem; color: var(--color-subtext);">
-            <strong>Technologies:</strong> WordPress, PHP, MySQL
-          </p>
-          <a href="https://agma.rds.hn" target="_blank" class="btn btn-custom btn-sm mt-auto">Visit Site</a>
-        </div>
-      </div>
+      <figure aria-label="Personal image (optional)">
+        <!-- Optional: keep or remove. If you keep it, ensure the file exists where you deploy. -->
+        <!-- <img src="img/curiosity.webp" alt="Abstract image representing curiosity and learning" loading="lazy"> -->
+        <!-- <figcaption>Curiosity-driven, reliability-focused: support, systems, and continuous improvement.</figcaption> -->
+      </figure>
 
-      <!-- campus.redcultura.hn -->
-      <div class="col-sm-6 col-md-4 portfolio-item">
-        <div class="project-card card p-3 h-100">
-          <div class="d-flex align-items-center mb-2">
-            <i class="fas fa-chalkboard-teacher fa-2x me-2" style="color: var(--color-accent);"></i>
-            <h5 class="card-title mb-0">campus.redcultura.hn</h5>
-          </div>
-          <p class="card-text" style="font-size: 0.9rem; color: var(--color-subtext);">
-            Educational platform for the Honduran artists portal.
+      <hr>
+    </section>
+
+    <section id="what" aria-label="What I do (60/30/10)">
+      <h2>What I do (60/30/10)</h2>
+      <p>
+        I’m primarily focused on <strong>IT Support</strong> and <strong>Systems/Infrastructure Support</strong> (60%),
+        with strong experience supporting <strong>web platforms (Drupal/WordPress)</strong> (30%),
+        and ongoing study in <strong>AI</strong> (10%).
+      </p>
+
+      <article aria-label="IT Support">
+        <h3>IT Support (Primary — 60%)</h3>
+        <ul>
+          <li>End-user troubleshooting, incident resolution, and clear communication.</li>
+          <li>Documentation and user guidance to reduce repeated issues.</li>
+          <li>Support for productivity/collaboration tools (as required by the role).</li>
+        </ul>
+      </article>
+
+      <article aria-label="Systems and Infrastructure">
+        <h3>Systems &amp; Infrastructure (Primary — 60%)</h3>
+        <ul>
+          <li>Linux server administration and production support (services, logs, maintenance).</li>
+          <li>Security basics: SSL/TLS, access controls, basic firewall configuration.</li>
+          <li>Monitoring, performance checks, and basic automation for repeatable operations.</li>
+        </ul>
+      </article>
+
+      <article aria-label="Web Platforms">
+        <h3>Web Platforms &amp; CMS Support (Secondary — 30%)</h3>
+        <ul>
+          <li>Drupal/WordPress maintenance, updates, uptime, and platform troubleshooting.</li>
+          <li>Support mindset applied to platforms: stability, security, and continuity.</li>
+          <li>Database fundamentals (MySQL / Oracle foundations).</li>
+        </ul>
+      </article>
+
+      <article aria-label="AI Learning">
+        <h3>Learning (10%)</h3>
+        <p>
+          Currently pursuing an online <strong>Master’s in Artificial Intelligence</strong>.
+          My near-term focus is strong performance in IT Support / Systems roles while expanding into automation over time.
+        </p>
+      </article>
+
+      <hr>
+    </section>
+
+    <section id="highlights" aria-label="Highlights">
+      <h2>Highlights</h2>
+      <ul>
+        <li>Improved reliability through proactive monitoring and consistent maintenance practices.</li>
+        <li>Strengthened security baseline via SSL/TLS management and basic firewall/access controls.</li>
+        <li>Reduced repeat support needs by training users and documenting solutions clearly.</li>
+      </ul>
+
+      <details>
+        <summary>How I approach troubleshooting</summary>
+        <ol>
+          <li>Confirm the issue and scope (who/when/impact).</li>
+          <li>Check recent changes, logs, and obvious misconfigurations.</li>
+          <li>Isolate: network vs system vs application vs user workflow.</li>
+          <li>Apply a safe fix, validate, and document the resolution.</li>
+        </ol>
+      </details>
+
+      <hr>
+    </section>
+
+    <section id="experience" aria-label="Experience">
+      <h2>Experience</h2>
+
+      <article>
+        <h3>Web Development Coordinator / IT Support &amp; Systems</h3>
+          <p>
+            <strong>RDS-HN</strong> — Tegucigalpa, Honduras<br>
+              <small>
+              <time datetime="2025-01">Jan 2025</time> – <time datetime="present">Present</time>
+              </small>
           </p>
-          <p class="card-text" style="font-size: 0.85rem; color: var(--color-subtext);">
-            <strong>Technologies:</strong> Chamilo LMS, PHP, MySQL
+        <ul>
+          <li>Supported users and platforms, resolving technical issues and improving system reliability.</li>
+          <li>Maintained Linux-based systems and production environments (SSL/TLS, monitoring, basic security configs).</li>
+          <li>Coordinated web platform support with focus on uptime, maintenance, and operational continuity.</li>
+        </ul>
+      </article>
+
+      <article>
+        <h3>Web Developer / IT Support</h3>
+          <p>
+            <strong>Punto HN</strong> — Tegucigalpa, Honduras<br>
+              <small>
+                <time datetime="2023-02">Feb 2023</time> – <time datetime="2025-01">Jan 2025</time>
+              </small>
           </p>
-          <a href="https://campus.redcultura.hn" target="_blank" class="btn btn-custom btn-sm mt-auto">Visit Site</a>
-        </div>
-      </div>
 
-      <!-- campus.inec.hn -->
-      <div class="col-sm-6 col-md-4 portfolio-item">
-        <div class="project-card card p-3 h-100">
-          <div class="d-flex align-items-center mb-2">
-            <i class="fas fa-graduation-cap fa-2x me-2" style="color: var(--color-accent);"></i>
-            <h5 class="card-title mb-0">campus.inec.hn</h5>
-          </div>
-          <p class="card-text" style="font-size: 0.9rem; color: var(--color-subtext);">
-            Moodle-based e-learning platform.
+        <ul>
+          <li>Provided IT support for platforms and internal users; troubleshot issues to reduce downtime.</li>
+          <li>Performed maintenance and updates to improve stability and security.</li>
+          <li>Supported CMS environments (Drupal/WordPress) in production contexts.</li>
+        </ul>
+      </article>
+
+      <article>
+        <h3>IT Support Technician (Junior)</h3>
+          <p>
+            <strong>Punto HN</strong> — Tegucigalpa, Honduras<br>
+              <small>
+                <time datetime="2022-10">Oct 2022</time> – <time datetime="2023-02">Feb 2023</time>
+              </small>
           </p>
-          <p class="card-text" style="font-size: 0.85rem; color: var(--color-subtext);">
-            <strong>Technologies:</strong> Moodle, PHP, MySQL
-          </p>
-          <a href="https://campus.inec.hn" target="_blank" class="btn btn-custom btn-sm mt-auto">Visit Site</a>
-        </div>
-      </div>
-    </div>
 
-    <hr style="border-top: 1px solid var(--color-mid);" />
+        <ul>
+          <li>Assisted with end-user troubleshooting, access requests, and basic system tasks.</li>
+          <li>Helped maintain continuity through timely support and documentation.</li>
+        </ul>
+      </article>
 
-    <!-- Freelance Projects -->
-    <h3 class="mt-5 mb-3 text-center" style="color: var(--color-accent); font-family: var(--font-heading); font-size: 1.75rem;">
-      Freelance Projects
-    </h3>
-    <div class="row g-4">
-      <!-- colegiodenutricionistas.hn -->
-      <div class="col-sm-6 col-md-4 portfolio-item">
-        <div class="project-card card p-3 h-100">
-          <div class="d-flex align-items-center mb-2">
-            <i class="fab fa-wordpress fa-2x me-2" style="color: var(--color-accent);"></i>
-            <h5 class="card-title mb-0">colegiodenutricionistas.hn</h5>
-          </div>
-          <p class="card-text" style="font-size: 0.9rem; color: var(--color-subtext);">
-            Website for the Honduran College of Nutritionists.
-          </p>
-          <p class="card-text" style="font-size: 0.85rem; color: var(--color-subtext);">
-            <strong>Technologies:</strong> WordPress, PHP, MySQL
-          </p>
-          <a href="https://colegiodenutricionistas.hn/" target="_blank" class="btn btn-custom btn-sm mt-auto">Visit Site</a>
-        </div>
-      </div>
+      <article>
+        <h3>IT Support &amp; Computer Science Instructor</h3>
+        <p>
+          <strong>Instituto Fuente Divina</strong> — Tegucigalpa, Honduras<br>
+            <small>
+              <time datetime="2022-03">Mar 2022</time> – <time datetime="2022-10">Oct 2022</time>
+            </small>
+        </p>
+        <ul>
+          <li>Provided technical support for classroom hardware/software and digital learning platforms.</li>
+          <li>Supported Microsoft 365 / Teams environments and trained teachers/students.</li>
+        </ul>
+      </article>
 
-      <!-- inec.hn -->
-      <div class="col-sm-6 col-md-4 portfolio-item">
-        <div class="project-card card p-3 h-100">
-          <div class="d-flex align-items-center mb-2">
-            <i class="fab fa-wordpress fa-2x me-2" style="color: var(--color-accent);"></i>
-            <h5 class="card-title mb-0">inec.hn</h5>
-          </div>
-          <p class="card-text" style="font-size: 0.9rem; color: var(--color-subtext);">
-            Website for the National Institute of Continuing Education.
-          </p>
-          <p class="card-text" style="font-size: 0.85rem; color: var(--color-subtext);">
-            <strong>Technologies:</strong> WordPress, PHP, MySQL
-          </p>
-          <a href="https://inec.hn/" target="_blank" class="btn btn-custom btn-sm mt-auto">Visit Site</a>
-        </div>
-      </div>
+      <hr>
+    </section>
 
-      <!-- digraphicshn.com -->
-      <div class="col-sm-6 col-md-4 portfolio-item">
-        <div class="project-card card p-3 h-100">
-          <div class="d-flex align-items-center mb-2">
-            <i class="fab fa-wordpress fa-2x me-2" style="color: var(--color-accent);"></i>
-            <h5 class="card-title mb-0">digraphicshn.com</h5>
-          </div>
-          <p class="card-text" style="font-size: 0.9rem; color: var(--color-subtext);">
-            Website for DigiGraphics Honduras.
-          </p>
-          <p class="card-text" style="font-size: 0.85rem; color: var(--color-subtext);">
-            <strong>Technologies:</strong> WordPress, PHP, MySQL
-          </p>
-          <a href="https://digraphicshn.com" target="_blank" class="btn btn-custom btn-sm mt-auto">Visit Site</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+    <section id="skills" aria-label="Skills">
+      <h2>Skills</h2>
 
+      <details open>
+        <summary>IT Support &amp; Systems (Primary)</summary>
+        <ul>
+          <li>IT Support • Help Desk • Technical Support • Troubleshooting</li>
+          <li>Linux System Administration • Systems Maintenance • Logs &amp; Services</li>
+          <li>SSL/TLS Certificates • Basic Firewall Configuration • Monitoring</li>
+          <li>Documentation • User Training • Bilingual Support (EN/ES)</li>
+        </ul>
+      </details>
 
+      <details>
+        <summary>Web Platforms (Secondary)</summary>
+        <ul>
+          <li>Drupal • WordPress • Platform Support • Updates &amp; Maintenance</li>
+          <li>PHP (working knowledge) • MySQL (working knowledge)</li>
+        </ul>
+      </details>
 
+      <details>
+        <summary>Cloud &amp; Databases (Foundations)</summary>
+        <ul>
+          <li>Huawei Cloud (Foundations/Architecture) • Cloud Fundamentals</li>
+          <li>Oracle Database Foundations • MySQL Fundamentals</li>
+        </ul>
+      </details>
 
+      <hr>
+    </section>
 
-  <!-- Contact Section -->
-  <section id="contact" class="py-5 fade-in-section">
-    <div class="container text-center">
-      <h2 class="section-title">Contact</h2>
-      <p class="mb-4">Need any services or want to collaborate on a project? Let’s talk!</p>
-      <a href="mailto:chucklagos17@outlook.com" class="btn btn-outline-light btn-lg mb-3">Send Email</a>
-      <div class="social-links mt-3">
-        <a href="https://www.linkedin.com/in/chucklagos/" target="_blank"><i class="fab fa-linkedin fa-2x"></i></a>
-        <a href="https://github.com/chucklagos" target="_blank"><i class="fab fa-github fa-2x"></i></a>
-        <a href="https://twitter.com/chucklagos" target="_blank"><i class="fab fa-twitter fa-2x"></i></a>
-      </div>
-    </div>
-  </section>
+    <section id="projects" aria-label="Projects and public work">
+      <h2>Projects</h2>
+      <p>
+        Below are public platforms and sites I’ve supported/built/maintained. I treat platforms as production systems:
+        stability, security, maintenance, and uptime matter.
+      </p>
 
-  
-  <!-- Footer -->
+      <article aria-label="Primary: Platforms and portals">
+        <h3>Web Platforms &amp; Public Portals (from my portfolio)</h3>
+        <ul>
+          <li><a href="https://empleos.hn" target="_blank" rel="noopener">empleos.hn</a></li>
+          <li><a href="https://becas.hn" target="_blank" rel="noopener">becas.hn</a></li>
+          <li><a href="https://eventos.hn" target="_blank" rel="noopener">eventos.hn</a></li>
+          <li><a href="https://recultura.hn" target="_blank" rel="noopener">recultura.hn</a></li>
+          <li><a href="https://biblioteca.rds.hn" target="_blank" rel="noopener">biblioteca.rds.hn</a></li>
+          <li><a href="https://sedena.gob.hn" target="_blank" rel="noopener">sedena.gob.hn</a></li>
+          <li><a href="https://rendircuentas.rds.hn" target="_blank" rel="noopener">rendircuentas.rds.hn</a></li>
+          <li><a href="https://portal.rds.hn" target="_blank" rel="noopener">portal.rds.hn</a></li>
+          <li><a href="https://aporto.rds.hn" target="_blank" rel="noopener">aporto.rds.hn</a></li>
+          <li><a href="https://agma.rds.hn" target="_blank" rel="noopener">agma.rds.hn</a></li>
+          <li><a href="https://campus.redcultura.hn" target="_blank" rel="noopener">campus.redcultura.hn</a></li>
+          <li><a href="https://campus.inec.hn" target="_blank" rel="noopener">campus.inec.hn</a></li>
+          <li><a href="https://colegiodenutricionistas.hn/" target="_blank" rel="noopener">colegiodenutricionistas.hn</a></li>
+          <li><a href="https://inec.hn/" target="_blank" rel="noopener">inec.hn</a></li>
+          <li><a href="https://digraphicshn.com" target="_blank" rel="noopener">digraphicshn.com</a></li>
+        </ul>
+      </article>
+
+      <!--details>
+        <summary>Optional: Add a short note per project (recommended)</summary>
+        <p>
+          If you want to make this section stronger, add 1 short line per project like:
+          “Maintenance + uptime + SSL + updates” or “Drupal portal support + performance improvements”.
+          That’s more valuable than long marketing text.
+        </p>
+      </details-->
+
+      <hr>
+    </section>
+
+    <section id="certs" aria-label="Certifications and education">
+      <h2>Certifications &amp; Education</h2>
+
+      <article aria-label="Certifications">
+        <h3>Certifications</h3>
+        <ul>
+          <li>Huawei — Cloud Basics &amp; Architecture</li>
+          <li>Cloud Tech Fundamentals</li>
+          <li>Oracle — Database Foundations</li>
+          <li>Oracle — Java Fundamentals</li>
+          <li>Python Programming — INFOP</li>
+          <li>MySQL Database — INFOP</li>
+          <li>Google — Mobile App Development (Digital Garage)</li>
+        </ul>
+      </article>
+
+      <article aria-label="Education">
+        <h3>Education</h3>
+        <ul>
+          <li><strong>B.S. Systems Engineering</strong> — UNAH (Honors: Cum Laude)</li>
+          <li><strong>M.S. Artificial Intelligence</strong> — Blackwell University (In Progress — Online)</li>
+        </ul>
+      </article>
+
+      <hr>
+    </section>
+
+    <section id="contact" aria-label="Contact">
+      <h2>Contact</h2>
+
+      <address>
+        <p>
+          Email: <a href="mailto:chucklagos17@gmail.com">chucklagos17@gmail.com</a><br>
+          LinkedIn: <a href="https://www.linkedin.com/in/chucklagos/" target="_blank" rel="noopener">linkedin.com/in/chucklagos</a><br>
+          GitHub: <a href="https://github.com/chucklagos" target="_blank" rel="noopener">github.com/chucklagos</a><br>
+          Twitter/X: <a href="https://twitter.com/chucklagos" target="_blank" rel="noopener">@chucklagos</a>
+        </p>
+      </address>
+
+      <p>
+        Resume: <a href="/resume.pdf" target="_blank" rel="noopener">/resume.pdf</a>
+      </p>
+
+      <details>
+        <summary>Recruiter note (short)</summary>
+        <p>
+          U.S. Citizen relocating to Houston (June–July 2025, flexible). Open to IT Support, Systems Support, and Infrastructure Support roles.
+        </p>
+      </details>
+    </section>
+  </main>
+
   <footer>
-    <div class="container text-center">
-      <p>© 2024 <a href="https://chucklagos.dev" target="_blank">chucklagos.dev</a> | Keep innovating!</p>
-    </div>
+    <hr>
+    <p>
+      © <span id="year">2025</span> Chuck Guifarro Lagos
+      <br>
+      <small>Built with semantic HTML + Water.css (fast, accessible, minimal).</small>
+    </p>
+    <script>
+      document.getElementById("year").textContent = String(new Date().getFullYear());
+    </script>
   </footer>
-
-  <!-- Bootstrap JS -->
-  <script
-    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-    crossorigin="anonymous"
-  ></script>
-
-  <!-- Custom Scripts -->
-  <script>
-    // Fade‐in on scroll
-    const fadeSections = document.querySelectorAll('.fade-in-section');
-    function checkFadeIn() {
-      fadeSections.forEach((sec) => {
-        const rect = sec.getBoundingClientRect();
-        if (rect.top < window.innerHeight - 100) {
-          sec.classList.add('fade-in-active');
-        }
-      });
-    }
-    window.addEventListener('scroll', checkFadeIn);
-    window.addEventListener('load', checkFadeIn);
-
-    // Random accent color (optional)
-   /* const accentColors = [
-      '#00ffff', '#f39c12', '#e74c3c', '#2ecc71', '#3498db', '#e67e22', '#16a085'
-    ];
-    const randomColor = accentColors[Math.floor(Math.random() * accentColors.length)];
-    document.documentElement.style.setProperty('--color-accent', randomColor);
-    document.documentElement.style.setProperty('--color-hover-link', randomColor);*/
-  </script>
 </body>
 </html>
-
-
