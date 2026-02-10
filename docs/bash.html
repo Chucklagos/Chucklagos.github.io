@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Linux / Bash Terminal Cheat Sheet</title>
+
+  <!-- Water.css -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/dark.min.css">
+  <!-- Light version -->
+  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.min.css"> -->
+
+  <meta name="description" content="Linux and Bash terminal cheat sheet for daily development and server work.">
+</head>
+
+<body>
+  <header>
+    <h1>Linux / Bash Terminal Cheat Sheet</h1>
+    <p>
+      Practical reference for working efficiently in the Linux terminal.
+      Focused on real-world development and server usage.
+    </p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Basic navigation</h2>
+
+      <pre><code>pwd</code></pre>
+      <p>Prints the current working directory.</p>
+
+      <pre><code>ls</code></pre>
+      <p>Lists files and directories.</p>
+
+      <pre><code>ls -la</code></pre>
+      <p>Lists all files (including hidden) with details.</p>
+
+      <pre><code>cd directory</code></pre>
+      <p>Changes directory.</p>
+
+      <pre><code>cd ..</code></pre>
+      <p>Moves up one directory.</p>
+
+      <pre><code>cd ~</code></pre>
+      <p>Goes to home directory.</p>
+    </section>
+
+    <section>
+      <h2>File and directory management</h2>
+
+      <pre><code>touch file.txt</code></pre>
+      <p>Creates an empty file.</p>
+
+      <pre><code>mkdir folder</code></pre>
+      <p>Creates a directory.</p>
+
+      <pre><code>mkdir -p parent/child</code></pre>
+      <p>Creates nested directories.</p>
+
+      <pre><code>cp file.txt copy.txt</code></pre>
+      <p>Copies a file.</p>
+
+      <pre><code>cp -r dir1 dir2</code></pre>
+      <p>Copies a directory recursively.</p>
+
+      <pre><code>mv old.txt new.txt</code></pre>
+      <p>Moves or renames files.</p>
+
+      <pre><code>rm file.txt</code></pre>
+      <p>Deletes a file.</p>
+
+      <pre><code>rm -r folder</code></pre>
+      <p>Deletes a directory recursively.</p>
+
+      <pre><code>rm -rf folder</code></pre>
+      <p><strong>DANGER:</strong> Force deletes without confirmation.</p>
+    </section>
+
+    <section>
+      <h2>Viewing file content</h2>
+
+      <pre><code>cat file.txt</code></pre>
+      <p>Prints file content.</p>
+
+      <pre><code>less file.txt</code></pre>
+      <p>Views file content page by page.</p>
+
+      <pre><code>head file.txt</code></pre>
+      <p>Shows the first lines of a file.</p>
+
+      <pre><code>tail file.txt</code></pre>
+      <p>Shows the last lines of a file.</p>
+
+      <pre><code>tail -f logfile.log</code></pre>
+      <p>Follows a file in real time (logs).</p>
+    </section>
+
+    <section>
+      <h2>Searching and finding</h2>
+
+      <pre><code>grep "text" file.txt</code></pre>
+      <p>Searches for text inside a file.</p>
+
+      <pre><code>grep -r "text" folder</code></pre>
+      <p>Recursive search in directories.</p>
+
+      <pre><code>find . -name "file.txt"</code></pre>
+      <p>Finds files by name.</p>
+
+      <pre><code>find . -type f</code></pre>
+      <p>Finds all files.</p>
+    </section>
+
+    <section>
+      <h2>Permissions and ownership</h2>
+
+      <pre><code>ls -l</code></pre>
+      <p>Shows permissions and ownership.</p>
+
+      <pre><code>chmod +x script.sh</code></pre>
+      <p>Makes a file executable.</p>
+
+      <pre><code>chmod 755 file</code></pre>
+      <p>Sets permissions using numeric mode.</p>
+
+      <pre><code>chown user:group file</code></pre>
+      <p>Changes file owner and group.</p>
+    </section>
+
+    <section>
+      <h2>Processes and system</h2>
+
+      <pre><code>ps</code></pre>
+      <p>Shows running processes.</p>
+
+      <pre><code>ps aux</code></pre>
+      <p>Lists all processes.</p>
+
+      <pre><code>top</code></pre>
+      <p>Interactive process viewer.</p>
+
+      <pre><code>htop</code></pre>
+      <p>Improved process viewer (if installed).</p>
+
+      <pre><code>kill PID</code></pre>
+      <p>Stops a process by ID.</p>
+
+      <pre><code>kill -9 PID</code></pre>
+      <p><strong>Force kills</strong> a process.</p>
+    </section>
+
+    <section>
+      <h2>Disk and system info</h2>
+
+      <pre><code>df -h</code></pre>
+      <p>Shows disk usage.</p>
+
+      <pre><code>du -sh folder</code></pre>
+      <p>Shows folder size.</p>
+
+      <pre><code>free -h</code></pre>
+      <p>Displays memory usage.</p>
+
+      <pre><code>uname -a</code></pre>
+      <p>Shows system information.</p>
+    </section>
+
+    <section>
+      <h2>Networking</h2>
+
+      <pre><code>ip a</code></pre>
+      <p>Shows network interfaces.</p>
+
+      <pre><code>ping google.com</code></pre>
+      <p>Tests network connectivity.</p>
+
+      <pre><code>curl https://example.com</code></pre>
+      <p>Requests a URL from terminal.</p>
+
+      <pre><code>wget https://example.com/file.zip</code></pre>
+      <p>Downloads a file.</p>
+    </section>
+
+    <section>
+      <h2>Redirection and pipes</h2>
+
+      <pre><code>command &gt; file.txt</code></pre>
+      <p>Redirects output to a file (overwrite).</p>
+
+      <pre><code>command &gt;&gt; file.txt</code></pre>
+      <p>Appends output to a file.</p>
+
+      <pre><code>command1 | command2</code></pre>
+      <p>Pipes output of one command into another.</p>
+
+      <pre><code>grep "error" log.txt | less</code></pre>
+      <p>Example of piping commands.</p>
+    </section>
+
+    <section>
+      <h2>Compression and archives</h2>
+
+      <pre><code>tar -czvf archive.tar.gz folder</code></pre>
+      <p>Creates a compressed archive.</p>
+
+      <pre><code>tar -xzvf archive.tar.gz</code></pre>
+      <p>Extracts a compressed archive.</p>
+
+      <pre><code>zip -r file.zip folder</code></pre>
+      <p>Creates a zip archive.</p>
+
+      <pre><code>unzip file.zip</code></pre>
+      <p>Extracts a zip archive.</p>
+    </section>
+
+    <section>
+      <h2>Environment and shell</h2>
+
+      <pre><code>echo $PATH</code></pre>
+      <p>Shows PATH environment variable.</p>
+
+      <pre><code>env</code></pre>
+      <p>Lists environment variables.</p>
+
+      <pre><code>which node</code></pre>
+      <p>Shows the path of a command.</p>
+
+      <pre><code>history</code></pre>
+      <p>Shows command history.</p>
+
+      <pre><code>clear</code></pre>
+      <p>Clears the terminal screen.</p>
+    </section>
+
+    <section>
+      <h2>Recommended daily workflow</h2>
+
+      <pre><code>pwd
+ls
+cd project
+ls -la
+grep "TODO" .
+tail -f logs/app.log</code></pre>
+
+      <p>Common commands used during development and debugging.</p>
+    </section>
+
+    <section>
+      <h2>Best practices</h2>
+      <ul>
+        <li>Double-check before using <code>rm -rf</code>.</li>
+        <li>Use <code>less</code> instead of <code>cat</code> for large files.</li>
+        <li>Prefer pipes over temporary files.</li>
+        <li>Learn to read permissions and ownership.</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <hr />
+    <p>
+      <small>
+        Personal Linux / Bash terminal reference. Built for daily use and continuous learning.
+      </small>
+    </p>
+  </footer>
+</body>
+</html>
