@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¿Quieres ser mi Valentín?</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
+            font-family: 'Poppins', sans-serif;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Fondo animado de corazones */
+        .hearts-container {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .heart {
+            position: absolute;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 20px;
+            animation: float 10s infinite ease-in;
+            bottom: -100px;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        /* Contenedor principal */
+        .container {
+            position: relative;
+            z-index: 10;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 50px 40px;
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 90%;
+            animation: fadeIn 1s ease-out;
+            backdrop-filter: blur(10px);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3.5rem;
+            color: #e91e63;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .date {
+            color: #ad1457;
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+
+        .question {
+            font-size: 1.5rem;
+            color: #555;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            position: relative;
+            min-height: 80px;
+        }
+
+        button {
+            padding: 15px 40px;
+            font-size: 1.3rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #btnSi {
+            background: linear-gradient(135deg, #f50057, #ff4081);
+            color: white;
+            box-shadow: 0 4px 15px rgba(245, 0, 87, 0.4);
+        }
+
+        #btnSi:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(245, 0, 87, 0.6);
+        }
+
+        #btnNo {
+            background: linear-gradient(135deg, #b0bec5, #78909c);
+            color: white;
+            position: absolute;
+            transition: all 0.2s ease-out;
+            box-shadow: 0 4px 15px rgba(120, 144, 156, 0.4);
+        }
+
+        #btnNo:hover {
+            background: linear-gradient(135deg, #90a4ae, #607d8b);
+        }
+
+        /* Mensaje de éxito */
+        .success-message {
+            display: none;
+            animation: fadeInScale 0.8s ease-out;
+        }
+
+        @keyframes fadeInScale {
+            0% { opacity: 0; transform: scale(0.8); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        .success-message h2 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3rem;
+            color: #e91e63;
+            margin-bottom: 20px;
+        }
+
+        .message-content {
+            font-size: 1.2rem;
+            color: #444;
+            line-height: 2;
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(135deg, #fff5f8 0%, #fff 100%);
+            border-radius: 20px;
+            border-left: 5px solid #e91e63;
+        }
+
+        .message-content p {
+            margin-bottom: 15px;
+        }
+
+        .highlight {
+            color: #e91e63;
+            font-weight: 600;
+        }
+
+        .emoji {
+            font-size: 3rem;
+            margin: 20px 0;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* Efecto de confeti */
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: #f00;
+            position: absolute;
+            animation: confetti-fall 3s linear forwards;
+        }
+
+        @keyframes confetti-fall {
+            0% { transform: translateY(-100px) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            h1 { font-size: 2.5rem; }
+            .question { font-size: 1.2rem; }
+            button { padding: 12px 30px; font-size: 1.1rem; }
+            .card { padding: 30px 20px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Corazones flotantes de fondo -->
+    <div class="hearts-container" id="heartsContainer"></div>
+
+    <div class="container">
+        <div class="card" id="mainCard">
+            <div id="questionSection">
+                <h1>Mi Amor</h1>
+                <div class="date">14 de Febrero de 2026</div>
+                <div class="question">
+                    Hoy es un día especial...<br>
+                    ¿Quieres ser mi Valentín? ❤️
+                </div>
+                
+                <div class="buttons" id="buttonContainer">
+                    <button id="btnSi" onclick="aceptar()">¡Sí! 💕</button>
+                    <button id="btnNo" onmouseover="moverBoton()" ontouchstart="moverBoton()">No 😅</button>
+                </div>
+            </div>
+
+            <div class="success-message" id="successMessage">
+                <div class="emoji">🥰💍❤️</div>
+                <h2>¡Sabía que dirías que sí!</h2>
+                <div class="message-content">
+                    <p>Mi amor,</p>
+                    <p>
+                        Estoy <span class="highlight">inmensamente orgulloso</span> de la mujer increíble que eres. 
+                        Te admiro profundamente por tu fortaleza, tu bondad y tu hermosa forma de ver la vida.
+                    </p>
+                    <p>
+                        Anhelo con todo mi corazón construir una <span class="highlight">vida a tu lado</span>, 
+                        llena de risas, aventuras y momentos inolvidables.
+                    </p>
+                    <p>
+                        Sueño con nuestra <span class="highlight">propia familia</span>, con despertar cada día 
+                        a tu lado y crear juntos un hogar lleno de amor.
+                    </p>
+                    <p style="font-family: 'Dancing Script', cursive; font-size: 1.5rem; color: #e91e63; margin-top: 20px;">
+                        Eres mi hoy, mi mañana y mi siempre.<br>
+                        Te amo con todo mi ser. 💖
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Generar corazones flotantes
+        function createHearts() {
+            const container = document.getElementById('heartsContainer');
+            const heartSymbols = ['❤️', '💖', '💕', '💗', '💝', '💘'];
+            
+            setInterval(() => {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.innerHTML = heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.animationDuration = (Math.random() * 5 + 5) + 's';
+                heart.style.fontSize = (Math.random() * 20 + 15) + 'px';
+                container.appendChild(heart);
+                
+                setTimeout(() => heart.remove(), 10000);
+            }, 800);
+        }
+
+        // Función para mover el botón "No" (efecto esquiva)
+        function moverBoton() {
+            const btnNo = document.getElementById('btnNo');
+            const container = document.getElementById('buttonContainer');
+            const rect = container.getBoundingClientRect();
+            
+            // Calcular posición aleatoria dentro del contenedor
+            const maxX = rect.width - btnNo.offsetWidth - 20;
+            const maxY = rect.height - btnNo.offsetHeight + 100;
+            
+            const newX = Math.random() * maxX - (maxX / 2);
+            const newY = Math.random() * maxY - (maxY / 2);
+            
+            btnNo.style.transform = `translate(${newX}px, ${newY}px)`;
+            
+            // Cambiar texto del botón ocasionalmente
+            const textos = ['No 😅', '¿Segura? 🤔', 'Piénsalo 😢', 'Por favor 🥺', 'Nooo 😭'];
+            if (Math.random() > 0.7) {
+                btnNo.innerText = textos[Math.floor(Math.random() * textos.length)];
+            }
+        }
+
+        // Función cuando acepta
+        function aceptar() {
+            // Ocultar pregunta y mostrar mensaje
+            document.getElementById('questionSection').style.display = 'none';
+            document.getElementById('successMessage').style.display = 'block';
+            
+            // Crear confeti
+            createConfetti();
+            
+            // Efecto de vibración en móviles (si está disponible)
+            if (navigator.vibrate) {
+                navigator.vibrate([100, 50, 100, 50, 200]);
+            }
+        }
+
+        // Crear efecto confeti
+        function createConfetti() {
+            const colors = ['#ff0000', '#ff69b4', '#ffd700', '#ff1493', '#00ced1', '#ff4500'];
+            
+            for (let i = 0; i < 100; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.left = Math.random() * 100 + '%';
+                    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                    confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+                    document.body.appendChild(confetti);
+                    
+                    setTimeout(() => confetti.remove(), 4000);
+                }, i * 30);
+            }
+        }
+
+        // Inicializar corazones
+        createHearts();
+
+        // Prevenir que el botón "No" sea clickeable en móviles
+        document.getElementById('btnNo').addEventListener('click', function(e) {
+            e.preventDefault();
+            moverBoton();
+        });
+    </script>
+</body>
+</html>
