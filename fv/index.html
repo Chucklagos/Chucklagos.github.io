@@ -117,8 +117,9 @@
             justify-content: center;
             align-items: center;
             position: relative;
-            min-height: 150px;
+            min-height: 300px; /* Más espacio para que salte lejos */
             width: 100%;
+            padding: 20px 0;
         }
 
         button {
@@ -141,6 +142,7 @@
             box-shadow: 0 4px 15px rgba(245, 0, 87, 0.4);
             order: 1;
             z-index: 10;
+            position: relative;
         }
 
         #btnSi:hover {
@@ -153,8 +155,9 @@
             color: white;
             order: 2;
             z-index: 5;
-            position: relative;
-            transition: all 0.3s ease-out;
+            position: absolute; /* Siempre absoluto para moverse libremente */
+            top: 100px; /* Posición inicial debajo del SÍ */
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55); /* Efecto rebote */
             box-shadow: 0 4px 15px rgba(120, 144, 156, 0.4);
         }
 
@@ -257,6 +260,7 @@
             .success-message h2 { font-size: 2rem; }
             .message-content { font-size: 1rem; padding: 15px; }
             .container { padding: 10px; }
+            .buttons { min-height: 350px; } /* Más espacio en móvil */
         }
     </style>
 </head>
@@ -286,7 +290,7 @@
                 <div class="message-content">
                     <p>Mi amor,</p>
                     <p>
-                        Estoy <span class="highlight">inmensamente orgulloso</span> de la mujer increíble que es usted. 
+                        Estoy <span class="highlight">inmensamente orgulloso</span> de la mujer increíble que es. 
                         La admiro profundamente por su fortaleza, su bondad y su hermosa forma de ver la vida.
                     </p>
                     <p>
@@ -294,11 +298,11 @@
                         llena de risas, aventuras y momentos inolvidables.
                     </p>
                     <p>
-                        Sueño con nuestra <span class="highlight">propia familia</span>, con despertar cada día 
+                        Sueño con que Dios nos permita tener nuestra <span class="highlight">propia familia</span>, con despertar cada día 
                         a su lado y crear juntos un hogar lleno de amor.
                     </p>
                     <p style="font-family: 'Dancing Script', cursive; font-size: 1.4rem; color: #e91e63; margin-top: 20px;">
-                        Usted es mi hoy, mi mañana y mi siempre.<br>
+                        Es mi hoy, mi mañana y mi siempre.<br>
                         La amo con todo mi ser. 💖
                     </p>
                 </div>
@@ -325,7 +329,7 @@
             }, 800);
         }
 
-        // Función para mover el botón "No" (efecto esquiva) - NUNCA encima del SÍ
+        // Función para mover el botón "No" - SALTOS LARGOS Y LEJANOS
         function moverBoton(event) {
             if (event) {
                 event.preventDefault();
@@ -339,25 +343,63 @@
             // Obtener dimensiones
             const containerRect = container.getBoundingClientRect();
             const siRect = btnSi.getBoundingClientRect();
+            const noRect = btnNo.getBoundingClientRect();
             
-            // Área segura: debajo del botón SÍ
-            const safeZoneTop = siRect.bottom - containerRect.top + 20; // 20px de margen
-            const maxX = containerRect.width - btnNo.offsetWidth - 20;
-            const maxY = containerRect.height - safeZoneTop - btnNo.offsetHeight - 10;
+            // Dimensiones útiles
+            const siHeight = siRect.height;
+            const siWidth = siRect.width;
+            const noWidth = noRect.width;
+            const noHeight = noRect.height;
+            const containerWidth = containerRect.width;
+            const containerHeight = containerRect.height;
             
-            // Calcular nueva posición (solo debajo del botón SÍ)
-            const newX = Math.random() * maxX;
-            const newY = safeZoneTop + Math.random() * Math.max(0, maxY);
+            // Zona segura: debajo del botón SÍ (con margen de seguridad)
+            const safeZoneTop = siHeight + 40; // 40px de margen debajo del SÍ
+            const margin = 20; // Margen de los bordes
             
-            // Aplicar transformación relativa al contenedor
+            // Calcular posición aleatoria con saltos grandes
+            let newX, newY;
+            
+            // En móvil: saltos más dramáticos
+            const isMobile = window.innerWidth <= 600;
+            const jumpRange = isMobile ? 0.8 : 0.7; // 80% del espacio disponible en móvil
+            
+            // Generar posición X (horizontal) - puede ir de izquierda a derecha
+            const maxX = containerWidth - noWidth - (margin * 2);
+            newX = margin + Math.random() * maxX;
+            
+            // Generar posición Y (vertical) - siempre debajo del SÍ pero saltando lejos
+            const availableHeight = containerHeight - safeZoneTop - noHeight - margin;
+            newY = safeZoneTop + Math.random() * availableHeight;
+            
+            // A veces hacer un "salto extremo" al otro lado
+            if (Math.random() > 0.5) {
+                // Salto al lado opuesto
+                if (newX < containerWidth / 2) {
+                    newX = containerWidth - noWidth - margin - Math.random() * 50;
+                } else {
+                    newX = margin + Math.random() * 50;
+                }
+            }
+            
+            // Aplicar transformación con efecto de "teletransporte"
+            btnNo.style.transition = 'all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
             btnNo.style.position = 'absolute';
             btnNo.style.left = newX + 'px';
             btnNo.style.top = newY + 'px';
-            btnNo.style.transform = 'none';
+            
+            // Rotación aleatoria para efecto divertido
+            const rotation = (Math.random() - 0.5) * 20; // Entre -10 y 10 grados
+            btnNo.style.transform = `rotate(${rotation}deg) scale(0.9)`;
+            
+            setTimeout(() => {
+                btnNo.style.transform = `rotate(${rotation}deg) scale(1)`;
+            }, 150);
             
             // Cambiar texto del botón ocasionalmente
-            const textos = ['No 😅', '¿Segura? 🤔', 'Piénsalo 😢', 'Por favor 🥺', 'Nooo 😭', 'Rechazar 💔'];
-            if (Math.random() > 0.6) {
+            const textos = ['No 😅', '¿Segura? 🤔', 'Piénsalo 😢', 'Por favor 🥺', 'Nooo 😭', 
+                           'Rechazar 💔', 'Imposible 🚫', 'Nunca ❌', '¿Por qué? 😰', 'Uy casi! 😱'];
+            if (Math.random() > 0.4) {
                 btnNo.innerText = textos[Math.floor(Math.random() * textos.length)];
             }
         }
@@ -417,6 +459,12 @@
         // Prevenir que el botón No interfiera con el Sí en touch
         document.getElementById('btnNo').addEventListener('touchmove', function(e) {
             e.preventDefault();
+        }, { passive: false });
+        
+        // Mover el botón No cada vez que se intente tocar (para móviles)
+        document.getElementById('btnNo').addEventListener('touchstart', function(e) {
+            e.preventDefault();
+            moverBoton(e);
         }, { passive: false });
     </script>
 </body>
