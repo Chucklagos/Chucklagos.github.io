@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>¿Quieres ser mi Valentín?</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap');
@@ -13,11 +13,16 @@
             box-sizing: border-box;
         }
 
+        html, body {
+            height: 100%;
+            overflow-x: hidden;
+        }
+
         body {
             min-height: 100vh;
             background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
             font-family: 'Poppins', sans-serif;
-            overflow: hidden;
+            overflow-y: auto;
             position: relative;
         }
 
@@ -59,19 +64,21 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: flex-start;
             align-items: center;
             padding: 20px;
             text-align: center;
+            overflow-y: auto;
         }
 
         .card {
             background: rgba(255, 255, 255, 0.95);
-            padding: 50px 40px;
+            padding: 40px 30px;
             border-radius: 30px;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
             max-width: 600px;
             width: 90%;
+            margin: 20px auto;
             animation: fadeIn 1s ease-out;
             backdrop-filter: blur(10px);
         }
@@ -83,7 +90,7 @@
 
         h1 {
             font-family: 'Dancing Script', cursive;
-            font-size: 3.5rem;
+            font-size: 3rem;
             color: #e91e63;
             margin-bottom: 10px;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
@@ -91,30 +98,31 @@
 
         .date {
             color: #ad1457;
-            font-size: 1.2rem;
-            margin-bottom: 30px;
+            font-size: 1.1rem;
+            margin-bottom: 25px;
             font-weight: 300;
         }
 
         .question {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             color: #555;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
             line-height: 1.6;
         }
 
         .buttons {
             display: flex;
-            gap: 30px;
+            flex-direction: column;
+            gap: 20px;
             justify-content: center;
             align-items: center;
-            flex-wrap: wrap;
             position: relative;
-            min-height: 80px;
+            min-height: 150px;
+            width: 100%;
         }
 
         button {
-            padding: 15px 40px;
+            padding: 15px 50px;
             font-size: 1.3rem;
             border: none;
             border-radius: 50px;
@@ -124,12 +132,15 @@
             font-weight: 600;
             position: relative;
             overflow: hidden;
+            min-width: 150px;
         }
 
         #btnSi {
             background: linear-gradient(135deg, #f50057, #ff4081);
             color: white;
             box-shadow: 0 4px 15px rgba(245, 0, 87, 0.4);
+            order: 1;
+            z-index: 10;
         }
 
         #btnSi:hover {
@@ -140,8 +151,10 @@
         #btnNo {
             background: linear-gradient(135deg, #b0bec5, #78909c);
             color: white;
-            position: absolute;
-            transition: all 0.2s ease-out;
+            order: 2;
+            z-index: 5;
+            position: relative;
+            transition: all 0.3s ease-out;
             box-shadow: 0 4px 15px rgba(120, 144, 156, 0.4);
         }
 
@@ -149,10 +162,27 @@
             background: linear-gradient(135deg, #90a4ae, #607d8b);
         }
 
-        /* Mensaje de éxito */
+        /* Mensaje de éxito - AHORA CON SCROLL */
         .success-message {
             display: none;
             animation: fadeInScale 0.8s ease-out;
+            max-height: 80vh;
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+
+        .success-message::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .success-message::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+
+        .success-message::-webkit-scrollbar-thumb {
+            background: #e91e63;
+            border-radius: 10px;
         }
 
         @keyframes fadeInScale {
@@ -162,15 +192,19 @@
 
         .success-message h2 {
             font-family: 'Dancing Script', cursive;
-            font-size: 3rem;
+            font-size: 2.5rem;
             color: #e91e63;
             margin-bottom: 20px;
+            position: sticky;
+            top: 0;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 10px 0;
         }
 
         .message-content {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             color: #444;
-            line-height: 2;
+            line-height: 1.8;
             text-align: center;
             padding: 20px;
             background: linear-gradient(135deg, #fff5f8 0%, #fff 100%);
@@ -188,14 +222,14 @@
         }
 
         .emoji {
-            font-size: 3rem;
-            margin: 20px 0;
+            font-size: 2.5rem;
+            margin: 15px 0;
             animation: bounce 2s infinite;
         }
 
         @keyframes bounce {
             0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
+            50% { transform: translateY(-15px); }
         }
 
         /* Efecto de confeti */
@@ -206,6 +240,7 @@
             background: #f00;
             position: absolute;
             animation: confetti-fall 3s linear forwards;
+            z-index: 1000;
         }
 
         @keyframes confetti-fall {
@@ -215,10 +250,13 @@
 
         /* Responsive */
         @media (max-width: 600px) {
-            h1 { font-size: 2.5rem; }
-            .question { font-size: 1.2rem; }
-            button { padding: 12px 30px; font-size: 1.1rem; }
-            .card { padding: 30px 20px; }
+            h1 { font-size: 2.2rem; }
+            .question { font-size: 1.1rem; }
+            button { padding: 12px 40px; font-size: 1.1rem; }
+            .card { padding: 25px 20px; margin: 10px auto; }
+            .success-message h2 { font-size: 2rem; }
+            .message-content { font-size: 1rem; padding: 15px; }
+            .container { padding: 10px; }
         }
     </style>
 </head>
@@ -238,7 +276,7 @@
                 
                 <div class="buttons" id="buttonContainer">
                     <button id="btnSi" onclick="aceptar()">¡Sí! 💕</button>
-                    <button id="btnNo" onmouseover="moverBoton()" ontouchstart="moverBoton()">No 😅</button>
+                    <button id="btnNo" onmouseover="moverBoton()" ontouchstart="moverBoton(event)">No 😅</button>
                 </div>
             </div>
 
@@ -248,20 +286,20 @@
                 <div class="message-content">
                     <p>Mi amor,</p>
                     <p>
-                        Estoy <span class="highlight">inmensamente orgulloso</span> de la mujer increíble que eres. 
-                        Te admiro profundamente por tu fortaleza, tu bondad y tu hermosa forma de ver la vida.
+                        Estoy <span class="highlight">inmensamente orgulloso</span> de la mujer increíble que es usted. 
+                        La admiro profundamente por su fortaleza, su bondad y su hermosa forma de ver la vida.
                     </p>
                     <p>
-                        Anhelo con todo mi corazón construir una <span class="highlight">vida a tu lado</span>, 
+                        Anhelo con todo mi corazón construir una <span class="highlight">vida a su lado</span>, 
                         llena de risas, aventuras y momentos inolvidables.
                     </p>
                     <p>
                         Sueño con nuestra <span class="highlight">propia familia</span>, con despertar cada día 
-                        a tu lado y crear juntos un hogar lleno de amor.
+                        a su lado y crear juntos un hogar lleno de amor.
                     </p>
-                    <p style="font-family: 'Dancing Script', cursive; font-size: 1.5rem; color: #e91e63; margin-top: 20px;">
-                        Eres mi hoy, mi mañana y mi siempre.<br>
-                        Te amo con todo mi ser. 💖
+                    <p style="font-family: 'Dancing Script', cursive; font-size: 1.4rem; color: #e91e63; margin-top: 20px;">
+                        Usted es mi hoy, mi mañana y mi siempre.<br>
+                        La amo con todo mi ser. 💖
                     </p>
                 </div>
             </div>
@@ -287,24 +325,39 @@
             }, 800);
         }
 
-        // Función para mover el botón "No" (efecto esquiva)
-        function moverBoton() {
+        // Función para mover el botón "No" (efecto esquiva) - NUNCA encima del SÍ
+        function moverBoton(event) {
+            if (event) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
+            
             const btnNo = document.getElementById('btnNo');
+            const btnSi = document.getElementById('btnSi');
             const container = document.getElementById('buttonContainer');
-            const rect = container.getBoundingClientRect();
             
-            // Calcular posición aleatoria dentro del contenedor
-            const maxX = rect.width - btnNo.offsetWidth - 20;
-            const maxY = rect.height - btnNo.offsetHeight + 100;
+            // Obtener dimensiones
+            const containerRect = container.getBoundingClientRect();
+            const siRect = btnSi.getBoundingClientRect();
             
-            const newX = Math.random() * maxX - (maxX / 2);
-            const newY = Math.random() * maxY - (maxY / 2);
+            // Área segura: debajo del botón SÍ
+            const safeZoneTop = siRect.bottom - containerRect.top + 20; // 20px de margen
+            const maxX = containerRect.width - btnNo.offsetWidth - 20;
+            const maxY = containerRect.height - safeZoneTop - btnNo.offsetHeight - 10;
             
-            btnNo.style.transform = `translate(${newX}px, ${newY}px)`;
+            // Calcular nueva posición (solo debajo del botón SÍ)
+            const newX = Math.random() * maxX;
+            const newY = safeZoneTop + Math.random() * Math.max(0, maxY);
+            
+            // Aplicar transformación relativa al contenedor
+            btnNo.style.position = 'absolute';
+            btnNo.style.left = newX + 'px';
+            btnNo.style.top = newY + 'px';
+            btnNo.style.transform = 'none';
             
             // Cambiar texto del botón ocasionalmente
-            const textos = ['No 😅', '¿Segura? 🤔', 'Piénsalo 😢', 'Por favor 🥺', 'Nooo 😭'];
-            if (Math.random() > 0.7) {
+            const textos = ['No 😅', '¿Segura? 🤔', 'Piénsalo 😢', 'Por favor 🥺', 'Nooo 😭', 'Rechazar 💔'];
+            if (Math.random() > 0.6) {
                 btnNo.innerText = textos[Math.floor(Math.random() * textos.length)];
             }
         }
@@ -313,7 +366,12 @@
         function aceptar() {
             // Ocultar pregunta y mostrar mensaje
             document.getElementById('questionSection').style.display = 'none';
-            document.getElementById('successMessage').style.display = 'block';
+            const successMsg = document.getElementById('successMessage');
+            successMsg.style.display = 'block';
+            
+            // Habilitar scroll en el body para el mensaje largo
+            document.body.style.overflow = 'auto';
+            document.body.style.height = 'auto';
             
             // Crear confeti
             createConfetti();
@@ -322,6 +380,9 @@
             if (navigator.vibrate) {
                 navigator.vibrate([100, 50, 100, 50, 200]);
             }
+            
+            // Scroll suave al inicio del mensaje
+            successMsg.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
 
         // Crear efecto confeti
@@ -346,11 +407,17 @@
         // Inicializar corazones
         createHearts();
 
-        // Prevenir que el botón "No" sea clickeable en móviles
+        // Prevenir clicks accidentales en el botón No
         document.getElementById('btnNo').addEventListener('click', function(e) {
             e.preventDefault();
-            moverBoton();
+            e.stopPropagation();
+            moverBoton(e);
         });
+
+        // Prevenir que el botón No interfiera con el Sí en touch
+        document.getElementById('btnNo').addEventListener('touchmove', function(e) {
+            e.preventDefault();
+        }, { passive: false });
     </script>
 </body>
 </html>
