@@ -158,6 +158,8 @@ strong { color: var(--text); }
 .project-featured { grid-row: span 2; min-height: 100%; background: #0a2739; color: #fff; }
 .project-featured p { color: #c5d2da; }
 .project-featured strong, .project-featured h3 { color: #fff; }
+.project-featured .project-label { color: #8fd8f4; }
+.project-featured .project-top > a:hover { border-color: #8fd8f4; color: #8fd8f4; }
 .project-featured .tag-list li { border-color: #315166; background: #0e3146; color: #d7e3e9; }
 .project-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; margin-bottom: auto; }
 .project-top > a { display: grid; width: 36px; height: 36px; flex: none; place-items: center; border: 1px solid var(--border); border-radius: 50%; text-decoration: none; font-size: 1.15rem; }
