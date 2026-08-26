@@ -1,29 +1,40 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Git & GitHub Cheat Sheet (Terminal)</title>
-
-  <!-- Water.css -->
-   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
-  <!--link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/dark.min.css"-->
-  <!-- Light version -->
-  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.min.css"> -->
-
-  <meta name="description" content="Git and GitHub cheat sheet focused on real terminal workflows for software projects.">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>Git &amp; GitHub Reference — Chuck Guifarro Lagos</title>
+  <meta name="description" content="Practical Git and GitHub reference focused on real terminal workflows for software projects.">
+  <link rel="canonical" href="https://chucklagos.dev/docs/git.html">
+  <link rel="stylesheet" href="../css/custom.css">
+  <script>
+    (() => {
+      try {
+        const theme = localStorage.getItem('theme');
+        if (theme === 'light' || theme === 'dark') document.documentElement.dataset.theme = theme;
+      } catch (error) { /* The page remains usable when storage is unavailable. */ }
+    })();
+  </script>
 </head>
-
-<body>
-  <header>
-    <h1>Git & GitHub Cheat Sheet (Terminal)</h1>
-    <p>
-      Practical guide to using <strong>Git</strong> locally and <strong>GitHub</strong> remotely.
-      Designed as a daily reference for real-world projects.
-    </p>
+<body class="docs-body">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header docs-header">
+    <div class="nav-wrap container">
+      <a class="brand" href="../index.html" aria-label="Chuck Guifarro Lagos, home">CGL<span aria-hidden="true">.</span></a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav"><span class="sr-only">Open navigation</span><span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span></button>
+      <nav id="site-nav" class="site-nav docs-nav" aria-label="Documentation navigation"><a href="../index.html">Home</a><a href="index.html">Technical Notes</a><a href="https://github.com/chucklagos" target="_blank" rel="noopener">GitHub</a></nav>
+      <button class="theme-toggle" type="button" aria-label="Switch color theme" title="Switch color theme"><svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.66 6.34l1.41-1.41"/></svg><svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.4 15.3A8.5 8.5 0 0 1 8.7 3.6 8.5 8.5 0 1 0 20.4 15.3Z"/></svg></button>
+    </div>
   </header>
 
-  <main>
+  <main class="docs-main docs-content" id="main">
+    <div class="docs-hero">
+      <a class="back-link" href="index.html">← Back to Technical Notes</a>
+      <p class="section-index">Technical Notes / Version Control</p>
+      <h1>Git &amp; GitHub Reference</h1>
+      <p>Practical guidance for using Git locally and GitHub remotely, designed as a daily reference for real-world projects.</p>
+    </div>
     <section>
       <h2>Core concepts</h2>
       <ul>
@@ -245,13 +256,7 @@ git commit -m "Resolve merge conflicts"</code></pre>
     </section>
   </main>
 
-  <footer>
-    <hr />
-    <p>
-      <small>
-        Personal Git & GitHub reference page. Built for daily use and continuous learning.
-      </small>
-    </p>
-  </footer>
+  <footer class="site-footer docs-footer"><div class="container"><p>© <span id="year">2026</span> Chuck Guifarro Lagos</p><p>Personal Git &amp; GitHub reference.</p></div></footer>
+  <script src="../js/main.js" defer></script>
 </body>
 </html>

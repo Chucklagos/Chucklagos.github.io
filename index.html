@@ -1,380 +1,207 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="color-scheme" content="light dark" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>Chuck Guifarro Lagos — Systems &amp; Web Engineer | Technical Coordinator</title>
+  <meta name="description" content="Systems &amp; Web Engineer and Technical Coordinator with experience in web development, Linux infrastructure, production systems, technical support, and team coordination.">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://chucklagos.dev/">
+  <link rel="stylesheet" href="css/custom.css">
 
-  <title>Chuck Guifarro Lagos — IT Support & Systems | Infrastructure & Linux</title>
-  <meta name="description" content="U.S. Citizen — IT Support & Systems Engineer with infrastructure & Linux background. Bilingual (EN/ES). Relocating to Houston (June–July 2025, flexible)." />
-  <meta name="robots" content="index,follow" />
-  <link rel="canonical" href="https://chucklagos.dev/" />
+  <meta property="og:title" content="Chuck Guifarro Lagos — Systems &amp; Web Engineer">
+  <meta property="og:description" content="Web platforms, Linux infrastructure, production systems, and hands-on technical coordination.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://chucklagos.dev/">
+  <meta property="og:image" content="https://chucklagos.dev/img/og-image.webp">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Abstract technical network on a dark blue background">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Chuck Guifarro Lagos — Systems &amp; Web Engineer">
+  <meta name="twitter:description" content="Web platforms, Linux infrastructure, production systems, and hands-on technical coordination.">
+  <meta name="twitter:image" content="https://chucklagos.dev/img/og-image.webp">
 
-  <!-- Open Graph -->
-  <meta property="og:title" content="Chuck Guifarro Lagos — IT Support & Systems" />
-  <meta property="og:description" content="Infrastructure & Linux | Bilingual (EN/ES) | U.S. Citizen | Relocating to Houston (June–July 2025)" />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://chucklagos.dev/" />
-  <meta property="og:image" content="https://chucklagos.dev/og-image.jpg" />
-
-  <!-- Twitter -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Chuck Guifarro Lagos — IT Support & Systems" />
-  <meta name="twitter:description" content="Infrastructure & Linux | Bilingual (EN/ES) | U.S. Citizen" />
-  <meta name="twitter:image" content="https://chucklagos.dev/og-image.jpg" />
-
-  <!-- Minimal CSS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
-
-  <!-- Structured data (SEO) -->
+  <script>
+    (() => {
+      try {
+        const theme = localStorage.getItem('theme');
+        if (theme === 'light' || theme === 'dark') document.documentElement.dataset.theme = theme;
+      } catch (error) { /* The site remains usable when storage is unavailable. */ }
+    })();
+  </script>
   <script type="application/ld+json">
   {
-    "@context":"https://schema.org",
-    "@type":"Person",
-    "name":"Chuck Heriberto Guifarro Lagos",
-    "url":"https://chucklagos.dev/",
-    "email":"mailto:chucklagos17@gmail.com",
-    "jobTitle":"IT Support & Systems Engineer",
-    "knowsLanguage":["English","Spanish"],
-    "sameAs":[
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Chuck Heriberto Guifarro Lagos",
+    "url": "https://chucklagos.dev/",
+    "email": "mailto:chucklagos17@gmail.com",
+    "jobTitle": "Systems & Web Engineer / Technical Coordinator",
+    "knowsLanguage": ["English", "Spanish"],
+    "sameAs": [
       "https://www.linkedin.com/in/chucklagos/",
-      "https://github.com/chucklagos"
+      "https://github.com/chucklagos",
+      "https://twitter.com/chucklagos"
     ],
-    "description":"U.S. Citizen — IT Support & Systems Engineer with infrastructure & Linux background. Bilingual (EN/ES). Relocating to Houston (June–July 2025, flexible)."
+    "description": "Systems and Web Engineer with experience in web development, Linux infrastructure, technical coordination, and production support."
   }
   </script>
 </head>
-
 <body>
-  <!--a href="#main">Skip to content</a--> 
+  <a class="skip-link" href="#main">Skip to content</a>
 
-  <header>
-    <h1>Chuck Guifarro Lagos</h1>
-    <p>
-      <strong>IT Support &amp; Systems</strong> — Infrastructure &amp; Linux • Bilingual (EN/ES) • <strong>U.S. Citizen</strong><br>
-      Relocating to <strong>Houston, TX</strong> (<time datetime="2026-06">June 2026</time>–<time datetime="2026-07">July 2026</time>, flexible)
-    </p>
-
-    <nav aria-label="Primary navigation">
-      <a href="#focus">Focus</a> |
-      <a href="#what">What I do</a> |
-      <a href="#highlights">Highlights</a> |
-      <a href="#experience">Experience</a> |
-      <a href="#skills">Skills</a> |
-      <a href="#projects">Projects</a> |
-      <a href="#certs">Certifications</a> |
-      <a href="#contact">Contact</a>
-    </nav>
-
-    <p>
-      <a href="/resume.pdf" target="_blank" rel="noopener">Resume (PDF)</a> |
-      <a href="https://www.linkedin.com/in/chucklagos/" target="_blank" rel="noopener">LinkedIn</a> |
-      <a href="https://github.com/chucklagos" target="_blank" rel="noopener">GitHub</a> |
-      <a href="mailto:chucklagos17@gmail.com">Email</a>
-    </p>
-
-    <hr>
+  <header class="site-header">
+    <div class="nav-wrap container">
+      <a class="brand" href="#top" aria-label="Chuck Guifarro Lagos, home">CGL<span aria-hidden="true">.</span></a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+        <span class="sr-only">Open navigation</span>
+        <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
+      </button>
+      <nav id="site-nav" class="site-nav" aria-label="Primary navigation">
+        <a href="#about">About</a>
+        <a href="#expertise">Expertise</a>
+        <a href="#experience">Experience</a>
+        <a href="#work">Work</a>
+        <a href="#technologies">Technologies</a>
+        <a href="#notes">Notes</a>
+        <a href="#education">Education</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <button class="theme-toggle" type="button" aria-label="Switch color theme" title="Switch color theme">
+        <svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.66 6.34l1.41-1.41"/></svg>
+        <svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.4 15.3A8.5 8.5 0 0 1 8.7 3.6 8.5 8.5 0 1 0 20.4 15.3Z"/></svg>
+      </button>
+    </div>
   </header>
 
   <main id="main">
-    <section id="focus" aria-label="Quick facts">
-      <h2>Quick facts</h2>
-
-      <aside aria-label="Summary card">
-        <dl>
-          <dt>Target roles</dt>
-          <dd>IT Support • Help Desk • Systems Support • Infrastructure Support</dd>
-
-          <dt>Work authorization</dt>
-          <dd>U.S. Citizen (authorized to work in the U.S.)</dd>
-
-          <dt>Location</dt>
-          <dd>Relocating to Houston, TX (June–July 2026, flexible)</dd>
-
-          <dt>Languages</dt>
-          <dd>English / Spanish</dd>
-
-          <dt>Education</dt>
-          <dd>B.S. Systems Engineering (Cum Laude) • M.S. Artificial Intelligence (Online, In Progress)</dd>
-        </dl>
-      </aside>
-
-      <figure aria-label="Personal image (optional)">
-        <!-- Optional: keep or remove. If you keep it, ensure the file exists where you deploy. -->
-        <!-- <img src="img/curiosity.webp" alt="Abstract image representing curiosity and learning" loading="lazy"> -->
-        <!-- <figcaption>Curiosity-driven, reliability-focused: support, systems, and continuous improvement.</figcaption> -->
-      </figure>
-
-      <hr>
+    <section class="hero" id="top">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">Systems engineering · Web platforms · Infrastructure</p>
+          <h1>Chuck Guifarro Lagos</h1>
+          <p class="hero-role">Systems &amp; Web Engineer<br><span>Technical Coordinator</span></p>
+          <p class="hero-lead">I build, deploy, maintain, and improve web platforms—and the infrastructure that keeps them running.</p>
+          <div class="hero-actions" aria-label="Primary actions">
+            <a class="button button-primary" href="#work">View My Work</a>
+            <a class="button" href="resume.pdf" target="_blank" rel="noopener">Download Resume</a>
+            <a class="text-link" href="https://www.linkedin.com/in/chucklagos/" target="_blank" rel="noopener">LinkedIn <span aria-hidden="true">↗</span></a>
+            <a class="text-link" href="#contact">Contact <span aria-hidden="true">↓</span></a>
+          </div>
+        </div>
+        <aside class="availability" aria-label="Work availability">
+          <p class="status"><span aria-hidden="true"></span> Open to opportunities</p>
+          <dl>
+            <div><dt>Current location</dt><dd>Honduras</dd></div>
+            <div><dt>Work authorization</dt><dd>U.S. Citizen · Authorized to work in the United States</dd></div>
+            <div><dt>Availability</dt><dd>Open to relocation and remote opportunities</dd></div>
+            <div><dt>Languages</dt><dd>English · Spanish</dd></div>
+          </dl>
+        </aside>
+      </div>
     </section>
 
-    <section id="what" aria-label="What I do (60/30/10)">
-      <h2>What I do (60/30/10)</h2>
-      <p>
-        I’m primarily focused on <strong>IT Support</strong> and <strong>Systems/Infrastructure Support</strong> (60%),
-        with strong experience supporting <strong>web platforms (Drupal/WordPress)</strong> (30%),
-        and ongoing study in <strong>AI</strong> (10%).
-      </p>
-
-      <article aria-label="IT Support">
-        <h3>IT Support (Primary — 60%)</h3>
-        <ul>
-          <li>End-user troubleshooting, incident resolution, and clear communication.</li>
-          <li>Documentation and user guidance to reduce repeated issues.</li>
-          <li>Support for productivity/collaboration tools (as required by the role).</li>
-        </ul>
-      </article>
-
-      <article aria-label="Systems and Infrastructure">
-        <h3>Systems &amp; Infrastructure (Primary — 60%)</h3>
-        <ul>
-          <li>Linux server administration and production support (services, logs, maintenance).</li>
-          <li>Security basics: SSL/TLS, access controls, basic firewall configuration.</li>
-          <li>Monitoring, performance checks, and basic automation for repeatable operations.</li>
-        </ul>
-      </article>
-
-      <article aria-label="Web Platforms">
-        <h3>Web Platforms &amp; CMS Support (Secondary — 30%)</h3>
-        <ul>
-          <li>Drupal/WordPress maintenance, updates, uptime, and platform troubleshooting.</li>
-          <li>Support mindset applied to platforms: stability, security, and continuity.</li>
-          <li>Database fundamentals (MySQL / Oracle foundations).</li>
-        </ul>
-      </article>
-
-      <article aria-label="AI Learning">
-        <h3>Learning (10%)</h3>
-        <p>
-          Currently pursuing an online <strong>Master’s in Artificial Intelligence</strong>.
-          My near-term focus is strong performance in IT Support / Systems roles while expanding into automation over time.
-        </p>
-      </article>
-
-      <hr>
+    <section class="section" id="about">
+      <div class="container split-heading">
+        <div><p class="section-index">01 / About</p><h2>An engineer across the full platform lifecycle.</h2></div>
+        <div class="prose">
+          <p>I’m a Systems Engineer with 4+ years of professional experience building and maintaining web platforms, administering Linux-based infrastructure, and troubleshooting production systems.</p>
+          <p>My work combines hands-on delivery with technical coordination: collaborating with clients and stakeholders, clarifying requirements, defining approaches with the team, reviewing work, and coordinating delivery. I also take on independent web projects and am currently pursuing an online M.S. in Artificial Intelligence.</p>
+        </div>
+      </div>
     </section>
 
-    <section id="highlights" aria-label="Highlights">
-      <h2>Highlights</h2>
-      <ul>
-        <li>Improved reliability through proactive monitoring and consistent maintenance practices.</li>
-        <li>Strengthened security baseline via SSL/TLS management and basic firewall/access controls.</li>
-        <li>Reduced repeat support needs by training users and documenting solutions clearly.</li>
-      </ul>
-
-      <details>
-        <summary>How I approach troubleshooting</summary>
-        <ol>
-          <li>Confirm the issue and scope (who/when/impact).</li>
-          <li>Check recent changes, logs, and obvious misconfigurations.</li>
-          <li>Isolate: network vs system vs application vs user workflow.</li>
-          <li>Apply a safe fix, validate, and document the resolution.</li>
-        </ol>
-      </details>
-
-      <hr>
+    <section class="section section-muted" id="expertise">
+      <div class="container">
+        <div class="section-heading"><p class="section-index">02 / Expertise</p><h2>One profile, four connected capabilities.</h2><p>Practical experience spanning delivery, operations, coordination, and support.</p></div>
+        <div class="expertise-grid">
+          <article class="expertise-card"><span class="card-number">01</span><h3>Web Development</h3><p>Complete Drupal and WordPress websites, static sites, API integrations, and production-ready front ends.</p><ul class="tag-list"><li>Drupal</li><li>WordPress</li><li>PHP</li><li>JavaScript</li><li>Astro</li><li>REST APIs</li><li>SQL</li></ul><p class="detail">Advanced practical WordPress experience without claiming custom plugin or theme specialization. Growing professional and independent experience with Astro.</p></article>
+          <article class="expertise-card"><span class="card-number">02</span><h3>Systems &amp; Infrastructure</h3><p>Intermediate, hands-on administration of web servers and the services required to run reliable platforms.</p><ul class="tag-list"><li>Linux</li><li>Apache</li><li>Nginx</li><li>cPanel / WHM</li><li>VPS</li><li>Cloudflare</li><li>DNS</li><li>SSL / TLS</li><li>Migrations</li></ul><p class="detail">Ubuntu, AlmaLinux, SSH, firewalls, backups, MySQL/MariaDB, PostgreSQL, AWS, Contabo, LogicBoxes, GitHub, and GitLab.</p></article>
+          <article class="expertise-card"><span class="card-number">03</span><h3>Technical Coordination</h3><p>A hands-on coordinator working closely with approximately six technical team members.</p><ul class="clean-list"><li>Assign tasks and review deliverables</li><li>Participate in technical decisions</li><li>Clarify client requirements</li><li>Estimate timelines and coordinate delivery</li><li>Support the team’s technical approach</li></ul></article>
+          <article class="expertise-card"><span class="card-number">04</span><h3>Production &amp; IT Support</h3><p>Complementary support experience focused on keeping people, platforms, and infrastructure productive.</p><ul class="clean-list"><li>Production incidents and platform maintenance</li><li>Linux, DNS, and SSL troubleshooting</li><li>Website and server migrations</li><li>Microsoft 365 and Teams</li><li>Windows, drivers, printers, and hardware</li></ul></article>
+        </div>
+      </div>
     </section>
 
-    <section id="experience" aria-label="Experience">
-      <h2>Experience</h2>
-
-      <article>
-        <h3>Web Development Coordinator / IT Support &amp; Systems</h3>
-          <p>
-            <strong>RDS-HN</strong> — Tegucigalpa, Honduras<br>
-              <small>
-              <time datetime="2025-01">Jan 2025</time> – <time datetime="present">Present</time>
-              </small>
-          </p>
-        <ul>
-          <li>Supported users and platforms, resolving technical issues and improving system reliability.</li>
-          <li>Maintained Linux-based systems and production environments (SSL/TLS, monitoring, basic security configs).</li>
-          <li>Coordinated web platform support with focus on uptime, maintenance, and operational continuity.</li>
-        </ul>
-      </article>
-
-      <article>
-        <h3>Web Developer / IT Support</h3>
-          <p>
-            <strong>Punto HN</strong> — Tegucigalpa, Honduras<br>
-              <small>
-                <time datetime="2023-02">Feb 2023</time> – <time datetime="2025-01">Jan 2025</time>
-              </small>
-          </p>
-
-        <ul>
-          <li>Provided IT support for platforms and internal users; troubleshot issues to reduce downtime.</li>
-          <li>Performed maintenance and updates to improve stability and security.</li>
-          <li>Supported CMS environments (Drupal/WordPress) in production contexts.</li>
-        </ul>
-      </article>
-
-      <article>
-        <h3>IT Support Technician (Junior)</h3>
-          <p>
-            <strong>Punto HN</strong> — Tegucigalpa, Honduras<br>
-              <small>
-                <time datetime="2022-10">Oct 2022</time> – <time datetime="2023-02">Feb 2023</time>
-              </small>
-          </p>
-
-        <ul>
-          <li>Assisted with end-user troubleshooting, access requests, and basic system tasks.</li>
-          <li>Helped maintain continuity through timely support and documentation.</li>
-        </ul>
-      </article>
-
-      <article>
-        <h3>IT Support &amp; Computer Science Instructor</h3>
-        <p>
-          <strong>Instituto Fuente Divina</strong> — Tegucigalpa, Honduras<br>
-            <small>
-              <time datetime="2022-03">Mar 2022</time> – <time datetime="2022-10">Oct 2022</time>
-            </small>
-        </p>
-        <ul>
-          <li>Provided technical support for classroom hardware/software and digital learning platforms.</li>
-          <li>Supported Microsoft 365 / Teams environments and trained teachers/students.</li>
-        </ul>
-      </article>
-
-      <hr>
+    <section class="impact" aria-label="Professional impact">
+      <div class="container impact-grid">
+        <div><strong>30+</strong><span>Websites developed</span></div>
+        <div><strong>~6</strong><span>Technical team members coordinated</span></div>
+        <div><strong>~8</strong><span>Server environments managed</span></div>
+        <div><strong>4+</strong><span>Years of professional experience</span></div>
+      </div>
     </section>
 
-    <section id="skills" aria-label="Skills">
-      <h2>Skills</h2>
-
-      <details open>
-        <summary>IT Support &amp; Systems (Primary)</summary>
-        <ul>
-          <li>IT Support • Help Desk • Technical Support • Troubleshooting</li>
-          <li>Linux System Administration • Systems Maintenance • Logs &amp; Services</li>
-          <li>SSL/TLS Certificates • Basic Firewall Configuration • Monitoring</li>
-          <li>Documentation • User Training • Bilingual Support (EN/ES)</li>
-        </ul>
-      </details>
-
-      <details>
-        <summary>Web Platforms (Secondary)</summary>
-        <ul>
-          <li>Drupal • WordPress • Platform Support • Updates &amp; Maintenance</li>
-          <li>PHP (working knowledge) • MySQL (working knowledge)</li>
-        </ul>
-      </details>
-
-      <details>
-        <summary>Cloud &amp; Databases (Foundations)</summary>
-        <ul>
-          <li>Huawei Cloud (Foundations/Architecture) • Cloud Fundamentals</li>
-          <li>Oracle Database Foundations • MySQL Fundamentals</li>
-        </ul>
-      </details>
-
-      <hr>
+    <section class="section" id="experience">
+      <div class="container">
+        <div class="section-heading"><p class="section-index">03 / Experience</p><h2>Professional experience</h2></div>
+        <div class="timeline">
+          <article class="job"><div class="job-meta"><p><time datetime="2025-01">Jan 2025</time> — Present</p><p>RDS-HN</p><p>Tegucigalpa, Honduras</p></div><div class="job-body"><h3>Web Development Coordinator</h3><p>Coordinate approximately six technical team members while remaining hands-on across development, infrastructure, production support, and maintenance.</p><ul><li>Assign tasks, review deliverables, and participate in technical decisions.</li><li>Communicate directly with clients and translate requirements into technical solutions.</li><li>Estimate delivery timelines and coordinate development and support work.</li><li>Oversee multiple web platforms and server environments.</li><li>Contribute directly to platform development, deployments, troubleshooting, and infrastructure administration.</li></ul></div></article>
+          <article class="job"><div class="job-meta"><p><time datetime="2023-02">Feb 2023</time> — <time datetime="2025-01">Jan 2025</time></p><p>Punto HN</p><p>Tegucigalpa, Honduras</p></div><div class="job-body"><h3>Web Developer / IT Support</h3><p>Built and supported complete web platforms in Drupal and WordPress, with direct responsibility for their production environment.</p><ul><li>Developed full websites and supported CMS platforms in production.</li><li>Configured Linux servers, web services, SSL, DNS, and related infrastructure.</li><li>Performed website and server migrations, maintenance, and troubleshooting.</li><li>Resolved platform and user issues to maintain service continuity.</li></ul></div></article>
+          <article class="job job-compact"><div class="job-meta"><p><time datetime="2022-10">Oct 2022</time> — <time datetime="2023-02">Feb 2023</time></p><p>Punto HN</p></div><div class="job-body"><h3>IT Support Technician (Junior)</h3><p>Provided user support, systems troubleshooting, platform support, and assistance with infrastructure tasks.</p></div></article>
+          <article class="job job-compact"><div class="job-meta"><p><time datetime="2022-03">Mar 2022</time> — <time datetime="2022-10">Oct 2022</time></p><p>Instituto Fuente Divina</p></div><div class="job-body"><h3>Computer Science Instructor / IT Support</h3><p>Taught Computer Science and delivered technical training while supporting Microsoft 365, Teams, classroom hardware, and software.</p></div></article>
+        </div>
+        <article class="freelance"><div><p class="section-index">Independent work</p><h3>Independent Web Developer</h3><p class="job-date">Freelance · <time datetime="2024">2024</time> — Present</p></div><p>Build and maintain independent client websites using WordPress, static HTML/CSS, and Astro. Projects also include troubleshooting, technical support, hosting, DNS, and deployment when required.</p></article>
+      </div>
     </section>
 
-    <section id="projects" aria-label="Projects and public work">
-      <h2>Projects</h2>
-      <p>
-        Below are public platforms and sites I’ve supported/built/maintained. I treat platforms as production systems:
-        stability, security, maintenance, and uptime matter.
-      </p>
+    <section class="section section-muted" id="work">
+      <div class="container">
+        <div class="section-heading"><p class="section-index">04 / Selected work</p><h2>Platforms built to run in the real world.</h2><p>Professional work and independent client projects are presented separately, with clear contribution boundaries.</p></div>
+        <div class="subsection-heading"><p class="section-index">Professional work</p><h3>Featured Professional Work</h3></div>
+        <div class="project-grid">
+          <article class="project-card project-featured"><div class="project-top"><span class="project-label">Professional Project — RDS-HN</span><a href="https://empleos.hn" target="_blank" rel="noopener" aria-label="Visit Empleos.hn">↗</a></div><h3>Empleos.hn</h3><p class="project-summary">One of Honduras’ major employment platforms, serving hundreds of thousands of visits.</p><p><strong>Contribution</strong> End-to-end initial implementation, including Drupal development, server configuration, production deployment, and ongoing infrastructure administration. Contributed to security, maintenance, and performance, then coordinated subsequent feature development with other developers.</p><ul class="tag-list"><li>Drupal</li><li>Linux</li><li>MySQL</li><li>Cloudflare</li><li>Web Infrastructure</li></ul></article>
+          <article class="project-card"><div class="project-top"><span class="project-label">Professional Project — RDS-HN</span><a href="https://becas.hn" target="_blank" rel="noopener" aria-label="Visit Becas.hn">↗</a></div><h3>Becas.hn</h3><p class="project-summary">A public platform connecting users with scholarship opportunities.</p><p><strong>Contribution</strong> End-to-end initial Drupal implementation, including server configuration, production deployment, infrastructure administration, maintenance, and troubleshooting.</p><ul class="tag-list"><li>Drupal</li><li>Linux</li><li>MySQL</li><li>Infrastructure</li></ul></article>
+          <article class="project-card"><div class="project-top"><span class="project-label">Professional Project — RDS-HN</span><a href="https://rdsradio.hn" target="_blank" rel="noopener" aria-label="Visit RDS Radio">↗</a></div><h3>RDS Radio</h3><p class="project-summary">A Drupal-based digital radio platform.</p><p><strong>Contribution</strong> Complete initial implementation, including Drupal development, server and hosting configuration, production deployment, and ongoing platform maintenance.</p><ul class="tag-list"><li>Drupal</li><li>Linux</li><li>Hosting</li><li>Deployment</li></ul></article>
+          <article class="project-card"><div class="project-top"><span class="project-label">Professional Project — RDS-HN</span><a href="https://tecnicos.empleos.hn" target="_blank" rel="noopener" aria-label="Visit Técnicos Empleos">↗</a></div><h3>Técnicos Empleos</h3><p class="project-summary">A focused web platform within the employment ecosystem.</p><p><strong>Contribution</strong> Initial platform implementation, including Drupal development, infrastructure and server configuration, deployment, and production maintenance. Subsequent feature development was coordinated with the technical team.</p><ul class="tag-list"><li>Drupal</li><li>Linux</li><li>Web Infrastructure</li></ul></article>
+        </div>
 
-      <article aria-label="Primary: Platforms and portals">
-        <h3>Web Platforms &amp; Public Portals (from my portfolio)</h3>
-        <ul>
-          <li><a href="https://empleos.hn" target="_blank" rel="noopener">empleos.hn</a></li>
-          <li><a href="https://becas.hn" target="_blank" rel="noopener">becas.hn</a></li>
-          <li><a href="https://eventos.hn" target="_blank" rel="noopener">eventos.hn</a></li>
-          <li><a href="https://recultura.hn" target="_blank" rel="noopener">recultura.hn</a></li>
-          <li><a href="https://biblioteca.rds.hn" target="_blank" rel="noopener">biblioteca.rds.hn</a></li>
-          <li><a href="https://sedena.gob.hn" target="_blank" rel="noopener">sedena.gob.hn</a></li>
-          <li><a href="https://rendircuentas.rds.hn" target="_blank" rel="noopener">rendircuentas.rds.hn</a></li>
-          <li><a href="https://portal.rds.hn" target="_blank" rel="noopener">portal.rds.hn</a></li>
-          <li><a href="https://aporto.rds.hn" target="_blank" rel="noopener">aporto.rds.hn</a></li>
-          <li><a href="https://agma.rds.hn" target="_blank" rel="noopener">agma.rds.hn</a></li>
-          <li><a href="https://campus.redcultura.hn" target="_blank" rel="noopener">campus.redcultura.hn</a></li>
-          <li><a href="https://campus.inec.hn" target="_blank" rel="noopener">campus.inec.hn</a></li>
-          <li><a href="https://colegiodenutricionistas.hn/" target="_blank" rel="noopener">colegiodenutricionistas.hn</a></li>
-          <li><a href="https://inec.hn/" target="_blank" rel="noopener">inec.hn</a></li>
-          <li><a href="https://digraphicshn.com" target="_blank" rel="noopener">digraphicshn.com</a></li>
-        </ul>
-      </article>
+        <div class="work-subsection"><div class="subsection-heading"><p class="section-index">Independent / freelance work</p><h3>Featured Independent Work</h3></div><div class="project-grid project-grid-small">
+          <article class="project-card"><div class="project-top"><span class="project-label">Independent / Freelance Project</span><a href="https://kairosseminary.com" target="_blank" rel="noopener" aria-label="Visit Kairos Seminary">↗</a></div><h3>Kairos Seminary</h3><p class="project-summary">Web platform for an online seminary, including site implementation, administration, and ongoing technical support.</p><ul class="tag-list"><li>WordPress</li><li>PHP ecosystem</li><li>Web Administration</li><li>Hosting / Deployment</li></ul></article>
+          <article class="project-card"><div class="project-top"><span class="project-label">Independent / Freelance Project</span><a href="https://qr.kairosseminary.com/" target="_blank" rel="noopener" aria-label="Visit Kairos Seminary QR Tool">↗</a></div><h3>Kairos Seminary QR Tool</h3><p class="project-summary">Custom web utility for generating QR codes aligned with Kairos Seminary’s visual identity.</p><ul class="tag-list"><li>Custom Web Utility</li></ul></article>
+          <article class="project-card"><div class="project-top"><span class="project-label">Independent / Freelance Project</span><a href="https://inec.hn/" target="_blank" rel="noopener" aria-label="Visit INEC">↗</a></div><h3>INEC</h3><p class="project-summary">WordPress-based institutional website developed and configured as an independent client project.</p><ul class="tag-list"><li>WordPress</li><li>Web Administration</li></ul></article>
+          <article class="project-card"><div class="project-top"><span class="project-label">Independent / Freelance Project</span><a href="https://campus.inec.hn/" target="_blank" rel="noopener" aria-label="Visit INEC Campus">↗</a></div><h3>INEC Campus</h3><p class="project-summary">Customization and implementation of a Moodle-based learning environment for INEC.</p><ul class="tag-list"><li>Moodle</li><li>LMS customization</li><li>Web Administration</li></ul></article>
+        </div><div class="compact-projects" aria-labelledby="more-independent-title"><h4 id="more-independent-title">More Independent Work</h4><a href="https://digraphicshn.com" target="_blank" rel="noopener"><strong>Digraphics HN</strong><span>WordPress · Web Development · Web Administration ↗</span></a><a href="https://colegiodenutricionistas.hn/" target="_blank" rel="noopener"><strong>Colegio de Nutricionistas</strong><span>WordPress · Web Administration ↗</span></a></div></div>
 
-      <!--details>
-        <summary>Optional: Add a short note per project (recommended)</summary>
-        <p>
-          If you want to make this section stronger, add 1 short line per project like:
-          “Maintenance + uptime + SSL + updates” or “Drupal portal support + performance improvements”.
-          That’s more valuable than long marketing text.
-        </p>
-      </details-->
-
-      <hr>
+        <details class="more-projects"><summary>More Projects</summary><div class="link-grid"><a href="https://eventos.hn" target="_blank" rel="noopener">eventos.hn ↗</a><a href="https://biblioteca.rds.hn" target="_blank" rel="noopener">biblioteca.rds.hn ↗</a><a href="https://sedena.gob.hn" target="_blank" rel="noopener">sedena.gob.hn ↗</a><a href="https://rendircuentas.rds.hn" target="_blank" rel="noopener">rendircuentas.rds.hn ↗</a><a href="https://portal.rds.hn" target="_blank" rel="noopener">portal.rds.hn ↗</a><a href="https://aporto.rds.hn" target="_blank" rel="noopener">aporto.rds.hn ↗</a><a href="https://agma.rds.hn" target="_blank" rel="noopener">agma.rds.hn ↗</a></div><p class="fine-print">Additional public platforms from the broader portfolio. No professional or freelance classification is implied here.</p></details>
+      </div>
     </section>
 
-    <section id="certs" aria-label="Certifications and education">
-      <h2>Certifications &amp; Education</h2>
-
-      <article aria-label="Certifications">
-        <h3>Certifications</h3>
-        <ul>
-          <li>Huawei — Cloud Basics &amp; Architecture</li>
-          <li>Cloud Tech Fundamentals</li>
-          <li>Oracle — Database Foundations</li>
-          <li>Oracle — Java Fundamentals</li>
-          <li>Python Programming — INFOP</li>
-          <li>MySQL Database — INFOP</li>
-          <li>Google — Mobile App Development (Digital Garage)</li>
-        </ul>
-      </article>
-
-      <article aria-label="Education">
-        <h3>Education</h3>
-        <ul>
-          <li><strong>B.S. Systems Engineering</strong> — UNAH (Honors: Cum Laude)</li>
-          <li><strong>M.S. Artificial Intelligence</strong> — Blackwell University (In Progress — Online)</li>
-        </ul>
-      </article>
-
-      <hr>
+    <section class="section" id="technologies">
+      <div class="container"><div class="section-heading"><p class="section-index">05 / Technologies</p><h2>A practical working toolkit.</h2><p>Grouped by use—not scored with arbitrary percentages.</p></div><div class="tech-grid">
+        <article><h3>Development</h3><p>PHP · JavaScript · Node.js · Drupal · WordPress · Astro · HTML · CSS · Bootstrap · REST APIs</p></article>
+        <article><h3>Infrastructure</h3><p>Linux · Ubuntu · AlmaLinux · Apache · Nginx · cPanel / WHM · Cloudflare · AWS · VPS · DNS · SSL / TLS · SSH</p></article>
+        <article><h3>Data</h3><p>MySQL · MariaDB · PostgreSQL · SQL · Oracle Database Foundations</p></article>
+        <article><h3>Tools</h3><p>Git · GitHub · GitLab · Microsoft 365 · Microsoft Teams · Bash · Python</p></article>
+        <article class="learning"><h3>Learning / Exploring</h3><p>Docker · CI/CD · n8n · Power Automate · LLM deployment · AI automation</p></article>
+      </div>
+      <article class="automation"><div><p class="section-index">Automation &amp; AI</p><h3>Expanding the operational toolkit</h3></div><p>I use Bash and basic Python scripts for practical automation, integrate and consume REST APIs, and experiment with n8n and Power Automate. I’m also learning AI infrastructure through running and deploying LLMs on Ubuntu servers—an emerging capability, not a claim of AI or MLOps specialization.</p></article>
+      </div>
     </section>
 
-    <section id="contact" aria-label="Contact">
-      <h2>Contact</h2>
+    <section class="section section-muted" id="notes">
+      <div class="container"><div class="section-heading"><p class="section-index">06 / Technical notes</p><h2>References from day-to-day work.</h2><p>Notes and references from technologies I’m learning and using in my day-to-day work. <a href="docs/">Browse all Technical Notes →</a></p></div><div class="notes-grid">
+        <a class="note-card" href="docs/bash.html"><span>Available</span><h3>Linux &amp; Bash Reference</h3><p>Daily commands for terminal, servers, processes, permissions, networking, and files.</p><strong>Read notes →</strong></a>
+        <a class="note-card" href="docs/git.html"><span>Available</span><h3>Git &amp; GitHub Reference</h3><p>A practical reference for repositories, branches, collaboration, and recovery.</p><strong>Read notes →</strong></a>
+        <div class="note-card note-placeholder"><span>Future notes</span><h3>More field references</h3><p>MySQL troubleshooting · Docker · Linux production troubleshooting · Networking</p></div>
+      </div></div>
+    </section>
 
-      <address>
-        <p>
-          Email: <a href="mailto:chucklagos17@gmail.com">chucklagos17@gmail.com</a><br>
-          LinkedIn: <a href="https://www.linkedin.com/in/chucklagos/" target="_blank" rel="noopener">linkedin.com/in/chucklagos</a><br>
-          GitHub: <a href="https://github.com/chucklagos" target="_blank" rel="noopener">github.com/chucklagos</a><br>
-          Twitter/X: <a href="https://twitter.com/chucklagos" target="_blank" rel="noopener">@chucklagos</a>
-        </p>
-      </address>
+    <section class="section" id="education">
+      <div class="container education-layout"><div><p class="section-index">07 / Education</p><h2>Education &amp; certifications</h2></div><div>
+        <div class="education-grid"><article><p class="degree-type">Bachelor of Science</p><h3>Systems Engineering</h3><p>Universidad Nacional Autónoma de Honduras (UNAH)</p><p class="honor">Honors: Cum Laude</p></article><article><p class="degree-type">Master of Science</p><h3>Artificial Intelligence</h3><p>Blackwell University</p><p class="honor">In Progress — Online</p></article></div>
+        <div class="certifications"><h3>Certifications</h3><ul><li>Oracle — Database Foundations</li><li>Oracle — Java Fundamentals</li><li>Huawei — Cloud Basics</li><li>Huawei — Cloud Advanced Architecture <!-- Verify official certificate title before publication. --></li><li>Cloud Tech Fundamentals</li><li>Python Programming — INFOP</li><li>MySQL Database — INFOP</li><li>Google — Mobile App Development</li></ul></div>
+      </div></div>
+    </section>
 
-      <p>
-        Resume: <a href="/resume.pdf" target="_blank" rel="noopener">/resume.pdf</a>
-      </p>
-
-      <details>
-        <summary>Recruiter note (short)</summary>
-        <p>
-          U.S. Citizen relocating to Houston (June–July 2025, flexible). Open to IT Support, Systems Support, and Infrastructure Support roles.
-        </p>
-      </details>
+    <section class="contact-section" id="contact">
+      <div class="container contact-grid"><div><p class="section-index">08 / Contact</p><h2>Let’s build and operate something dependable.</h2><p>I’m open to U.S. opportunities, relocation, remote roles, and conversations about systems, web platforms, and technical coordination.</p></div><div class="contact-links"><a href="mailto:chucklagos17@gmail.com"><span>Email</span><strong>chucklagos17@gmail.com</strong></a><a href="https://www.linkedin.com/in/chucklagos/" target="_blank" rel="noopener"><span>LinkedIn</span><strong>linkedin.com/in/chucklagos ↗</strong></a><a href="https://github.com/chucklagos" target="_blank" rel="noopener"><span>GitHub</span><strong>github.com/chucklagos ↗</strong></a><a href="resume.pdf" target="_blank" rel="noopener"><span>Resume</span><strong>Download PDF ↗</strong></a></div></div>
     </section>
   </main>
 
-  <footer>
-    <hr>
-    <p>
-      © <span id="year">2025</span> Chuck Guifarro Lagos
-      <br>
-      <small>Built with semantic HTML + Water.css (fast, accessible, minimal).</small>
-    </p>
-    <script>
-      document.getElementById("year").textContent = String(new Date().getFullYear());
-    </script>
-  </footer>
+  <footer class="site-footer"><div class="container"><p>© <span id="year">2026</span> Chuck Guifarro Lagos</p><p>Built with HTML, CSS &amp; JavaScript.</p></div></footer>
+  <script src="js/main.js" defer></script>
 </body>
 </html>

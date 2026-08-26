@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>Technical Notes — Chuck Guifarro Lagos</title>
+  <meta name="description" content="Personal technical notes and practical guides for Linux, Git, web infrastructure, and software development.">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://chucklagos.dev/docs/">
+  <link rel="stylesheet" href="../css/custom.css">
+  <script>
+    (() => {
+      try {
+        const theme = localStorage.getItem('theme');
+        if (theme === 'light' || theme === 'dark') document.documentElement.dataset.theme = theme;
+      } catch (error) { /* The page remains usable when storage is unavailable. */ }
+    })();
+  </script>
+</head>
+<body class="docs-body">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header docs-header">
+    <div class="nav-wrap container">
+      <a class="brand" href="../index.html" aria-label="Chuck Guifarro Lagos, home">CGL<span aria-hidden="true">.</span></a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav"><span class="sr-only">Open navigation</span><span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span></button>
+      <nav id="site-nav" class="site-nav docs-nav" aria-label="Documentation navigation"><a href="../index.html">Home</a><a href="index.html" aria-current="page">Technical Notes</a><a href="https://github.com/chucklagos" target="_blank" rel="noopener">GitHub</a></nav>
+      <button class="theme-toggle" type="button" aria-label="Switch color theme" title="Switch color theme"><svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.66 6.34l1.41-1.41"/></svg><svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.4 15.3A8.5 8.5 0 0 1 8.7 3.6 8.5 8.5 0 1 0 20.4 15.3Z"/></svg></button>
+    </div>
+  </header>
+
+  <main class="docs-main docs-main-wide" id="main">
+    <div class="docs-hero">
+      <a class="back-link" href="../index.html#notes">← Back to portfolio</a>
+      <p class="section-index">Field references</p>
+      <h1>Technical Notes</h1>
+      <p>Personal notes, references, and practical guides from technologies I use, study, and troubleshoot.</p>
+    </div>
+
+    <section aria-labelledby="available-notes">
+      <div class="section-heading"><p class="section-index">Available now</p><h2 id="available-notes">Practical working references</h2></div>
+      <div class="notes-grid docs-index-grid">
+        <a class="note-card" href="bash.html"><span>Linux / Operations</span><h3>Linux &amp; Bash</h3><p>Commands for navigation, files, processes, permissions, networking, and routine server work.</p><strong>Open reference →</strong></a>
+        <a class="note-card" href="git.html"><span>Version Control</span><h3>Git &amp; GitHub</h3><p>Repository setup, branches, everyday collaboration, review, recovery, and terminal workflows.</p><strong>Open reference →</strong></a>
+      </div>
+    </section>
+
+    <section class="docs-future" aria-labelledby="future-notes">
+      <p class="section-index">Coming later</p>
+      <h2 id="future-notes">Topics planned for future notes</h2>
+      <ul class="future-topics"><li>MySQL</li><li>Linux Production Troubleshooting</li><li>Networking Fundamentals</li><li>Docker</li><li>CI/CD</li><li>Cloudflare</li><li>Apache / Nginx</li><li>Python &amp; Bash Automation</li></ul>
+    </section>
+  </main>
+
+  <footer class="site-footer docs-footer"><div class="container"><p>© <span id="year">2026</span> Chuck Guifarro Lagos</p><p>Built with HTML, CSS &amp; JavaScript.</p></div></footer>
+  <script src="../js/main.js" defer></script>
+</body>
+</html>
