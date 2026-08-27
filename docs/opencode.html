@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>OpenCode + Ollama Local Models — Chuck Guifarro Lagos</title>
+  <meta name="description" content="Practical reference for connecting OpenCode to local Ollama models and using them to work with project directories and source files.">
+  <link rel="canonical" href="https://chucklagos.dev/docs/opencode-ollama.html">
+  <link rel="stylesheet" href="../css/custom.css">
+  <script>
+    (() => {
+      try {
+        const theme = localStorage.getItem('theme');
+        if (theme === 'light' || theme === 'dark') document.documentElement.dataset.theme = theme;
+      } catch (error) { /* The page remains usable when storage is unavailable. */ }
+    })();
+  </script>
+</head>
+<body class="docs-body">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header docs-header">
+    <div class="nav-wrap container">
+      <a class="brand" href="../index.html" aria-label="Chuck Guifarro Lagos, home">CGL<span aria-hidden="true">.</span></a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+        <span class="sr-only">Open navigation</span>
+        <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
+      </button>
+      <nav id="site-nav" class="site-nav docs-nav" aria-label="Documentation navigation">
+        <a href="../index.html">Home</a>
+        <a href="index.html">Technical Notes</a>
+        <a href="https://github.com/chucklagos" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+      <button class="theme-toggle" type="button" aria-label="Switch color theme" title="Switch color theme">
+        <svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.66 6.34l1.41-1.41"/></svg>
+        <svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.4 15.3A8.5 8.5 0 0 1 8.7 3.6 8.5 8.5 0 1 0 20.4 15.3Z"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main class="docs-main docs-content" id="main">
+    <div class="docs-hero">
+      <a class="back-link" href="index.html">← Back to Technical Notes</a>
+      <p class="section-index">Technical Notes / Local AI</p>
+      <h1>OpenCode + Ollama Local Models</h1>
+      <p>Practical guide for connecting OpenCode to Ollama, selecting local language models, and allowing an AI coding agent to work directly with a project directory.</p>
+    </div>
+
+    <section>
+      <h2>Overview</h2>
+      <p><strong>Ollama</strong> runs language models locally, while <strong>OpenCode</strong> acts as the coding agent that can inspect, search, create, and modify files inside a project.</p>
+      <p>Running a model with Ollama alone does not automatically give that model access to files in the current directory. OpenCode provides the agent and tool layer needed to work with the project.</p>
+      <pre><code>Project directory
+      │
+      ▼
+   OpenCode
+      │
+      ├── Read files
+      ├── Search source code
+      ├── Create files
+      ├── Modify files
+      └── Use coding tools
+      │
+      ▼
+    Ollama
+      │
+      ▼
+ Local language model</code></pre>
+    </section>
+
+    <section>
+      <h2>Verify Ollama</h2>
+      <p>Confirm that Ollama is installed and list the models currently available:</p>
+      <pre><code>ollama list</code></pre>
+      <p>Example:</p>
+      <pre><code>NAME                     SIZE
+codegemma:2b             1.6 GB
+deepseek-coder:1.3b      776 MB
+gemma3:1b                815 MB
+gemma3:latest            3.3 GB
+qwen3:4b                 2.5 GB
+qwen3.5:0.8b             1.0 GB
+mistral:7b               4.4 GB
+deepseek-coder:6.7b      3.8 GB
+qwen2.5:3b               1.9 GB</code></pre>
+    </section>
+
+    <section>
+      <h2>Verify the Ollama API</h2>
+      <p>OpenCode communicates with Ollama through its local HTTP API. Test the OpenAI-compatible endpoint:</p>
+      <pre><code>curl http://localhost:11434/v1/models</code></pre>
+      <p>If Ollama is running correctly, the command should return JSON containing the locally installed models.</p>
+
+      <details>
+        <summary>If Ollama is not running</summary>
+        <p>Start the Ollama server manually:</p>
+        <pre><code>ollama serve</code></pre>
+        <p>Keep that process running and open another terminal for OpenCode.</p>
+      </details>
+    </section>
+
+    <section>
+      <h2>OpenCode provider selection</h2>
+      <p>OpenCode may display <strong>Ollama Cloud</strong> in the provider list. Ollama Cloud is not the same as the Ollama server running locally on the machine.</p>
+      <p>For local models, configure a custom provider pointing to the local Ollama API.</p>
+    </section>
+
+    <section>
+      <h2>Create the OpenCode configuration</h2>
+      <p>Create the OpenCode configuration directory if it does not already exist:</p>
+      <pre><code>mkdir -p ~/.config/opencode</code></pre>
+
+      <p>Open the configuration file:</p>
+      <pre><code>nano ~/.config/opencode/opencode.json</code></pre>
+
+      <p>Add the local Ollama provider:</p>
+      <pre><code>{
+  "$schema": "https://opencode.ai/config.json",
+  "provider": {
+    "ollama": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Ollama Local",
+      "options": {
+        "baseURL": "http://localhost:11434/v1"
+      },
+      "models": {
+        "qwen3:4b": {
+          "name": "Qwen 3 4B"
+        },
+        "deepseek-coder:6.7b": {
+          "name": "DeepSeek Coder 6.7B"
+        },
+        "codegemma:2b": {
+          "name": "CodeGemma 2B"
+        },
+        "deepseek-coder:1.3b": {
+          "name": "DeepSeek Coder 1.3B"
+        },
+        "gemma3:latest": {
+          "name": "Gemma 3"
+        },
+        "gemma3:1b": {
+          "name": "Gemma 3 1B"
+        },
+        "qwen2.5:3b": {
+          "name": "Qwen 2.5 3B"
+        },
+        "mistral:7b": {
+          "name": "Mistral 7B"
+        }
+      }
+    }
+  }
+}</code></pre>
+
+      <p>When using Nano, save and exit with:</p>
+      <pre><code>Ctrl + O
+Enter
+Ctrl + X</code></pre>
+    </section>
+
+    <section>
+      <h2>Start OpenCode</h2>
+      <p>After saving the configuration, start OpenCode:</p>
+      <pre><code>opencode</code></pre>
+      <p>Inside OpenCode, open the model selector:</p>
+      <pre><code>/models</code></pre>
+      <p>The configured models should appear under <strong>Ollama Local</strong>.</p>
+    </section>
+
+    <section>
+      <h2>Recommended models</h2>
+      <h3>Qwen 3 4B</h3>
+      <pre><code>qwen3:4b</code></pre>
+      <p>A useful first option when balancing general reasoning, coding ability, and local resource consumption.</p>
+
+      <h3>DeepSeek Coder 6.7B</h3>
+      <pre><code>deepseek-coder:6.7b</code></pre>
+      <p>A larger coding-focused model that can be useful for source-code generation and analysis when enough RAM is available.</p>
+
+      <h3>Smaller models</h3>
+      <pre><code>codegemma:2b
+deepseek-coder:1.3b
+gemma3:1b</code></pre>
+      <p>Smaller models consume fewer resources, but their ability to follow complex agent workflows and use tools can be more limited.</p>
+    </section>
+
+    <section>
+      <h2>Tool support matters</h2>
+      <p>OpenCode is an agent, not only a chat interface. To inspect and modify a project effectively, the selected model must be able to work reliably with the tools exposed by OpenCode.</p>
+      <p>A model may work correctly in a normal Ollama chat but still fail when OpenCode requests tool usage.</p>
+      <p>A typical error is:</p>
+      <pre><code>does not support tools</code></pre>
+      <p>If this occurs, select another model with better tool-calling support.</p>
+    </section>
+
+    <section>
+      <h2>Work inside a project directory</h2>
+      <p>The recommended workflow is to enter the project directory before starting OpenCode.</p>
+      <p>Example:</p>
+      <pre><code>cd ~/Projects/my-project
+opencode</code></pre>
+      <p>OpenCode now uses that directory as the working context for the coding session.</p>
+
+      <p>For example, given:</p>
+      <pre><code>my-project/
+├── index.html
+├── css/
+│   └── style.css
+├── js/
+│   └── main.js
+└── README.md</code></pre>
+
+      <p>OpenCode can use its tools to inspect relevant files and provide their contents to the local model as context.</p>
+    </section>
+
+    <section>
+      <h2>Example tasks</h2>
+      <p>Once OpenCode is running inside the project, prompts can focus on the repository itself:</p>
+
+      <pre><code>Analyze this project and explain its structure.</code></pre>
+
+      <pre><code>Find where the database connection is configured.</code></pre>
+
+      <pre><code>Review the PHP files and identify possible errors.</code></pre>
+
+      <pre><code>Explain how authentication works in this project.</code></pre>
+
+      <pre><code>Modify the home page to add a dark mode.</code></pre>
+    </section>
+
+    <section>
+      <h2>Ollama alone vs OpenCode + Ollama</h2>
+      <h3>Ollama alone</h3>
+      <pre><code>cd ~/Projects/my-project
+ollama run qwen3:4b</code></pre>
+      <p>Starting Ollama from a directory does <strong>not</strong> automatically grant the model access to that directory or its files.</p>
+
+      <h3>OpenCode + Ollama</h3>
+      <pre><code>cd ~/Projects/my-project
+opencode</code></pre>
+      <p>OpenCode provides the file and coding tools, while Ollama performs the local model inference.</p>
+    </section>
+
+    <section>
+      <h2>Typical local workflow</h2>
+      <pre><code># 1. Verify available models
+ollama list
+
+# 2. Verify Ollama API
+curl http://localhost:11434/v1/models
+
+# 3. Enter the project
+cd ~/Projects/my-project
+
+# 4. Start OpenCode
+opencode
+
+# 5. Select a model inside OpenCode
+/models</code></pre>
+    </section>
+
+    <section>
+      <h2>Troubleshooting</h2>
+
+      <details>
+        <summary>Ollama Local does not appear in OpenCode</summary>
+        <p>Verify that the configuration file exists:</p>
+        <pre><code>cat ~/.config/opencode/opencode.json</code></pre>
+        <p>Check the JSON syntax and restart OpenCode after making changes.</p>
+      </details>
+
+      <details>
+        <summary>OpenCode cannot connect to Ollama</summary>
+        <p>Test the API directly:</p>
+        <pre><code>curl http://localhost:11434/v1/models</code></pre>
+        <p>If the request fails, verify that Ollama is running:</p>
+        <pre><code>ollama serve</code></pre>
+      </details>
+
+      <details>
+        <summary>The model does not support tools</summary>
+        <p>Choose another model from <code>/models</code>. Coding agents depend on reliable tool support, so very small or older models may not be suitable even if they work correctly for normal chat.</p>
+      </details>
+
+      <details>
+        <summary>Check installed Ollama models</summary>
+        <pre><code>ollama list</code></pre>
+      </details>
+    </section>
+
+    <section>
+      <h2>Quick reference</h2>
+      <pre><code># List local models
+ollama list
+
+# Start Ollama server
+ollama serve
+
+# Test local API
+curl http://localhost:11434/v1/models
+
+# Edit OpenCode configuration
+nano ~/.config/opencode/opencode.json
+
+# Open a project
+cd ~/Projects/my-project
+
+# Start OpenCode
+opencode</code></pre>
+    </section>
+
+    <section>
+      <h2>Key concept</h2>
+      <p><strong>Ollama runs the model. OpenCode gives the model the ability to work with the project.</strong></p>
+      <p>This separation makes it possible to use local language models for coding workflows while keeping model inference on the local machine.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer docs-footer">
+    <div class="container">
+      <p>© <span id="year">2026</span> Chuck Guifarro Lagos</p>
+      <p>Personal OpenCode &amp; Ollama reference.</p>
+    </div>
+  </footer>
+
+  <script src="../js/main.js" defer></script>
+</body>
+</html>
