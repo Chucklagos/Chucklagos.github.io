@@ -11,6 +11,7 @@ The site is intentionally built without a framework or build process. It uses se
 ├── index.html          # Main professional website
 ├── css/custom.css      # Site design, responsive layout, and themes
 ├── js/main.js          # Theme switcher, mobile navigation, and footer year
+├── js/translate.js     # Optional GTranslate widget initialization
 ├── img/                # Optimized site and social-preview images
 ├── resume.pdf          # Downloadable resume
 ├── docs/
@@ -42,10 +43,11 @@ The repository is designed for GitHub Pages. Changes pushed to the configured pu
 - `/docs/` is the Technical Notes section and shares the portfolio's design, responsive navigation, and theme preference.
 - `/fv/` is an independent static page and is intentionally not linked from the professional portfolio.
 - The main page respects system light/dark preferences and stores a manual theme selection in `localStorage`.
+- `/js/translate.js` provides optional client-side translation while English remains the canonical language. It loads the official widget from GTranslate's CDN; new professional HTML and docs pages should include it, while `/fv/` intentionally does not use translation.
 
 ## Add a technical guide
 
 1. Create a new semantic HTML file under `/docs/`.
-2. Reuse the documentation header, footer, `../css/custom.css`, and `../js/main.js` from an existing guide.
+2. Reuse the documentation header, footer, `../css/custom.css`, `../js/main.js`, and `../js/translate.js` from an existing guide.
 3. Add the guide to `/docs/index.html`.
 4. Keep relative navigation, heading hierarchy, keyboard focus, and mobile code-block overflow accessible.

@@ -1,11 +1,14 @@
 <!doctype html>
 <html lang="en">
+
 <head>
+  <script src="../js/analytics.js"></script>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light dark">
   <title>OpenCode + Ollama Local Models — Chuck Guifarro Lagos</title>
-  <meta name="description" content="Practical reference for connecting OpenCode to local Ollama models and using them to work with project directories and source files.">
+  <meta name="description"
+    content="Practical reference for connecting OpenCode to local Ollama models and using them to work with project directories and source files.">
   <link rel="canonical" href="https://chucklagos.dev/docs/opencode-ollama.html">
   <link rel="stylesheet" href="../css/custom.css">
   <script>
@@ -17,12 +20,14 @@
     })();
   </script>
 </head>
+
 <body class="docs-body">
   <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="site-header docs-header">
     <div class="nav-wrap container">
-      <a class="brand" href="../index.html" aria-label="Chuck Guifarro Lagos, home">CGL<span aria-hidden="true">.</span></a>
+      <a class="brand" href="../index.html" aria-label="Chuck Guifarro Lagos, home">CGL<span
+          aria-hidden="true">.</span></a>
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
         <span class="sr-only">Open navigation</span>
         <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
@@ -33,8 +38,14 @@
         <a href="https://github.com/chucklagos" target="_blank" rel="noopener">GitHub</a>
       </nav>
       <button class="theme-toggle" type="button" aria-label="Switch color theme" title="Switch color theme">
-        <svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.66 6.34l1.41-1.41"/></svg>
-        <svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.4 15.3A8.5 8.5 0 0 1 8.7 3.6 8.5 8.5 0 1 0 20.4 15.3Z"/></svg>
+        <svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="12" cy="12" r="4" />
+          <path
+            d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.66 6.34l1.41-1.41" />
+        </svg>
+        <svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M20.4 15.3A8.5 8.5 0 0 1 8.7 3.6 8.5 8.5 0 1 0 20.4 15.3Z" />
+        </svg>
       </button>
     </div>
   </header>
@@ -44,13 +55,16 @@
       <a class="back-link" href="index.html">← Back to Technical Notes</a>
       <p class="section-index">Technical Notes / Local AI</p>
       <h1>OpenCode + Ollama Local Models</h1>
-      <p>Practical guide for connecting OpenCode to Ollama, selecting local language models, and allowing an AI coding agent to work directly with a project directory.</p>
+      <p>Practical guide for connecting OpenCode to Ollama, selecting local language models, and allowing an AI coding
+        agent to work directly with a project directory.</p>
     </div>
 
     <section>
       <h2>Overview</h2>
-      <p><strong>Ollama</strong> runs language models locally, while <strong>OpenCode</strong> acts as the coding agent that can inspect, search, create, and modify files inside a project.</p>
-      <p>Running a model with Ollama alone does not automatically give that model access to files in the current directory. OpenCode provides the agent and tool layer needed to work with the project.</p>
+      <p><strong>Ollama</strong> runs language models locally, while <strong>OpenCode</strong> acts as the coding agent
+        that can inspect, search, create, and modify files inside a project.</p>
+      <p>Running a model with Ollama alone does not automatically give that model access to files in the current
+        directory. OpenCode provides the agent and tool layer needed to work with the project.</p>
       <pre><code>Project directory
       │
       ▼
@@ -102,7 +116,8 @@ qwen2.5:3b               1.9 GB</code></pre>
 
     <section>
       <h2>OpenCode provider selection</h2>
-      <p>OpenCode may display <strong>Ollama Cloud</strong> in the provider list. Ollama Cloud is not the same as the Ollama server running locally on the machine.</p>
+      <p>OpenCode may display <strong>Ollama Cloud</strong> in the provider list. Ollama Cloud is not the same as the
+        Ollama server running locally on the machine.</p>
       <p>For local models, configure a custom provider pointing to the local Ollama API.</p>
     </section>
 
@@ -177,18 +192,21 @@ Ctrl + X</code></pre>
 
       <h3>DeepSeek Coder 6.7B</h3>
       <pre><code>deepseek-coder:6.7b</code></pre>
-      <p>A larger coding-focused model that can be useful for source-code generation and analysis when enough RAM is available.</p>
+      <p>A larger coding-focused model that can be useful for source-code generation and analysis when enough RAM is
+        available.</p>
 
       <h3>Smaller models</h3>
       <pre><code>codegemma:2b
 deepseek-coder:1.3b
 gemma3:1b</code></pre>
-      <p>Smaller models consume fewer resources, but their ability to follow complex agent workflows and use tools can be more limited.</p>
+      <p>Smaller models consume fewer resources, but their ability to follow complex agent workflows and use tools can
+        be more limited.</p>
     </section>
 
     <section>
       <h2>Tool support matters</h2>
-      <p>OpenCode is an agent, not only a chat interface. To inspect and modify a project effectively, the selected model must be able to work reliably with the tools exposed by OpenCode.</p>
+      <p>OpenCode is an agent, not only a chat interface. To inspect and modify a project effectively, the selected
+        model must be able to work reliably with the tools exposed by OpenCode.</p>
       <p>A model may work correctly in a normal Ollama chat but still fail when OpenCode requests tool usage.</p>
       <p>A typical error is:</p>
       <pre><code>does not support tools</code></pre>
@@ -212,7 +230,8 @@ opencode</code></pre>
 │   └── main.js
 └── README.md</code></pre>
 
-      <p>OpenCode can use its tools to inspect relevant files and provide their contents to the local model as context.</p>
+      <p>OpenCode can use its tools to inspect relevant files and provide their contents to the local model as context.
+      </p>
     </section>
 
     <section>
@@ -235,7 +254,8 @@ opencode</code></pre>
       <h3>Ollama alone</h3>
       <pre><code>cd ~/Projects/my-project
 ollama run qwen3:4b</code></pre>
-      <p>Starting Ollama from a directory does <strong>not</strong> automatically grant the model access to that directory or its files.</p>
+      <p>Starting Ollama from a directory does <strong>not</strong> automatically grant the model access to that
+        directory or its files.</p>
 
       <h3>OpenCode + Ollama</h3>
       <pre><code>cd ~/Projects/my-project
@@ -281,7 +301,8 @@ opencode
 
       <details>
         <summary>The model does not support tools</summary>
-        <p>Choose another model from <code>/models</code>. Coding agents depend on reliable tool support, so very small or older models may not be suitable even if they work correctly for normal chat.</p>
+        <p>Choose another model from <code>/models</code>. Coding agents depend on reliable tool support, so very small
+          or older models may not be suitable even if they work correctly for normal chat.</p>
       </details>
 
       <details>
@@ -314,7 +335,8 @@ opencode</code></pre>
     <section>
       <h2>Key concept</h2>
       <p><strong>Ollama runs the model. OpenCode gives the model the ability to work with the project.</strong></p>
-      <p>This separation makes it possible to use local language models for coding workflows while keeping model inference on the local machine.</p>
+      <p>This separation makes it possible to use local language models for coding workflows while keeping model
+        inference on the local machine.</p>
     </section>
   </main>
 
@@ -326,5 +348,7 @@ opencode</code></pre>
   </footer>
 
   <script src="../js/main.js" defer></script>
+  <script src="../js/translate.js" defer></script>
 </body>
+
 </html>
