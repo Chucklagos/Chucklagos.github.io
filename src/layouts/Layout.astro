@@ -1,0 +1,51 @@
+---
+import Header from '../components/Header.astro';
+import person from '../data/person.json';
+import '../styles/global.css';
+const { title, description, article = false } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light dark" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonical} />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:type" content={article ? 'article' : 'website'} />
+  <meta property="og:url" content={canonical} />
+  <meta property="og:image" content="https://chucklagos.dev/img/og-image.webp" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content="https://chucklagos.dev/img/og-image.webp" />
+  {Astro.url.pathname === "/" && <script is:inline type="application/ld+json" set:html={JSON.stringify(person)} />}
+  <script is:inline>
+    try {
+      const theme = localStorage.getItem('theme');
+      if (theme === 'light' || theme === 'dark') document.documentElement.dataset.theme = theme;
+    } catch {}
+  </script>
+  <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-7HZQN96LNZ"></script>
+  <script is:inline>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){window.dataLayer.push(arguments);}
+    window.gtag = gtag;
+    gtag('js', new Date());
+    gtag('config', 'G-7HZQN96LNZ');
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <Header />
+  <slot />
+  <footer class="site-footer">
+    <div class="container"><p>© <span id="year">{new Date().getFullYear()}</span> Chuck Guifarro Lagos</p><p>Built with Astro &amp; Tailwind CSS.</p></div>
+  </footer>
+  <script is:inline src="/main.js" defer></script>
+</body>
+</html>

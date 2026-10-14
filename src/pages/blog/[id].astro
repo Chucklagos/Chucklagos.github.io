@@ -1,0 +1,19 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+export async function getStaticPaths() {
+  return (await getCollection('blog', ({data})=>!data.draft)).map(post=>({params:{id:post.id},props:{post}}));
+}
+const {post} = Astro.props;
+const {Content, headings} = await render(post);
+---
+<Layout title={`${post.data.title} — Chuck Guifarro Lagos`} description={post.data.description} article>
+<div class="article-layout">
+<main class="docs-main docs-content" id="main">
+  <div class="docs-hero"><a class="back-link" href="/blog/">← All notes</a><p class="section-index">Technical notes / {post.data.tags.join(' · ')}</p><h1>{post.data.title}</h1><p>{post.data.description}</p>{post.data.updated && <p>Updated <time datetime={post.data.updated.toISOString()}>{post.data.updated.toLocaleDateString('en-US',{timeZone:'UTC',year:'numeric',month:'long',day:'numeric'})}</time></p>}</div>
+  <Content />
+  <p class="mt-12"><a href="/blog/">← Browse all technical notes</a></p>
+</main>
+<aside class="article-toc" aria-label="On this page"><strong>On this page</strong>{headings.filter(h=>h.depth===2).map(h=><a href={`#${h.slug}`}>{h.text}</a>)}</aside>
+</div>
+</Layout>

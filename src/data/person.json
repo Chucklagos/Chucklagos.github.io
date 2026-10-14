@@ -1,0 +1,15 @@
+{
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Chuck Heriberto Guifarro Lagos",
+    "url": "https://chucklagos.dev/",
+    "email": "mailto:chucklagos17@gmail.com",
+    "jobTitle": "Systems & Web Engineer / Technical Coordinator",
+    "knowsLanguage": ["English", "Spanish"],
+    "sameAs": [
+      "https://www.linkedin.com/in/chucklagos/",
+      "https://github.com/chucklagos",
+      "https://twitter.com/chucklagos"
+    ],
+    "description": "Systems and Web Engineer with experience in web development, Linux infrastructure, technical coordination, and production support."
+  }

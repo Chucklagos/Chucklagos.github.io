@@ -1,0 +1,149 @@
+{
+  "freelance": [
+    {
+      "name": "Kairos Seminary",
+      "summary": "Built from the existing visual identity: graphical direction and Figma layout, followed by WordPress and Elementor implementation, hosting, deployment, and ongoing technical support. Also supported its custom QR utility.",
+      "tags": [
+        "Figma",
+        "WordPress",
+        "Elementor",
+        "Hosting"
+      ],
+      "url": "https://kairosseminary.com"
+    },
+    {
+      "name": "Educa Digital",
+      "summary": "Collaborated on the complete educational website, handling hosting configuration, WordPress setup, development, and production configuration.",
+      "tags": [
+        "WordPress",
+        "Hosting",
+        "Deployment"
+      ],
+      "url": null
+    },
+    {
+      "name": "INEC",
+      "summary": "Implemented the institutional WordPress website from a provided visual design.",
+      "tags": [
+        "WordPress",
+        "Web implementation"
+      ],
+      "url": "https://inec.hn/"
+    },
+    {
+      "name": "INEC Campus",
+      "summary": "Installed and configured Moodle, customized a purchased theme, deployed to a VPS, and configured CloudPanel for server administration.",
+      "tags": [
+        "Moodle",
+        "VPS",
+        "CloudPanel"
+      ],
+      "url": "https://campus.inec.hn/"
+    },
+    {
+      "name": "Digraphics HN",
+      "summary": "Contract web development for a consulting team: hosting setup, WordPress installation, and implementation of the supplied visual design.",
+      "tags": [
+        "WordPress",
+        "Hosting"
+      ],
+      "url": "https://digraphicshn.com"
+    },
+    {
+      "name": "Colegio de Nutricionistas",
+      "summary": "Contract WordPress implementation and hosting configuration from a visual design supplied by the consulting team.",
+      "tags": [
+        "WordPress",
+        "Hosting"
+      ],
+      "url": "https://colegiodenutricionistas.hn/"
+    }
+  ],
+  "professional": [
+    {
+      "name": "Empleos HN",
+      "summary": "Initial Drupal implementation and production environment; continued maintenance, infrastructure, troubleshooting, and later technical coordination.",
+      "url": "https://empleos.hn"
+    },
+    {
+      "name": "Becas HN",
+      "summary": "Initial Drupal implementation, followed by production support, maintenance, infrastructure, and troubleshooting.",
+      "url": "https://becas.hn"
+    },
+    {
+      "name": "Eventos HN",
+      "summary": "Developed and implemented the initial Drupal portal for publishing and promoting events.",
+      "url": "https://eventos.hn"
+    },
+    {
+      "name": "RedCultura.hn",
+      "summary": "Built from scratch with Drupal 10, Bootstrap, and HTML/CSS, organizing cultural content across multiple content types.",
+      "url": null
+    },
+    {
+      "name": "Portal Educativo RedCultura",
+      "summary": "Installed and configured Chamilo and MySQL and created a custom theme for artistic and cultural courses.",
+      "url": null
+    },
+    {
+      "name": "Portal de Transparencia RDS",
+      "summary": "Implemented the transparency portal with WordPress and Astra.",
+      "url": "https://rendircuentas.rds.hn"
+    },
+    {
+      "name": "SAN Radio",
+      "summary": "Implemented a WordPress, Elementor, and MySQL web platform.",
+      "url": null
+    },
+    {
+      "name": "RDS Radio 88.9 FM",
+      "summary": "Developed and implemented the initial station website and digital platform.",
+      "url": "https://rdsradio.hn"
+    },
+    {
+      "name": "APORTO",
+      "summary": "Collaborated on WordPress and Elementor installation, pages, and hosting configuration.",
+      "url": "https://aporto.rds.hn"
+    },
+    {
+      "name": "AGMA RDS",
+      "summary": "Contributed to a small Astro project featuring an interactive SVG map of Honduras.",
+      "url": "https://agma.rds.hn"
+    },
+    {
+      "name": "Secretar\u00eda de Defensa Nacional de Honduras",
+      "summary": "Complete Drupal development, including installation, configuration, updates, and implementation.",
+      "url": "https://sedena.gob.hn"
+    },
+    {
+      "name": "Internet Society Honduras",
+      "summary": "Participated in the static chapter website development with Astro and Tailwind CSS.",
+      "url": null
+    },
+    {
+      "name": "IXP-HN",
+      "summary": "Participated in development of the static IXP Honduras website with Astro and Tailwind CSS.",
+      "url": null
+    },
+    {
+      "name": "T\u00e9cnicos Empleos",
+      "summary": "Installed Drupal, made modifications and adjustments, and continued contributing to platform development.",
+      "url": "https://tecnicos.empleos.hn"
+    },
+    {
+      "name": "RDS Library",
+      "summary": "Collaborated on a decoupled document platform with a Drupal backend and Astro frontend.",
+      "url": "https://biblioteca.rds.hn"
+    },
+    {
+      "name": "RDS Institutional Portal",
+      "summary": "Maintained the previous WordPress portal with updates, adjustments, and selected new functionality.",
+      "url": "https://portal.rds.hn"
+    },
+    {
+      "name": "RDS-HN Institutional Website",
+      "summary": "Participated substantially in the newer institutional website using Astro and Tailwind CSS.",
+      "url": "https://fundacion.rds.hn"
+    }
+  ]
+}

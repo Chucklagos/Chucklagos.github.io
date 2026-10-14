@@ -1,0 +1,41 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort((a,b)=>a.data.title.localeCompare(b.data.title));
+const tags = [...new Set(posts.flatMap(p=>p.data.tags))].sort();
+---
+<Layout title="Blog & Technical Notes — Chuck Guifarro Lagos" description="Personal technical references on Git, Linux, local AI, and the tools I use in everyday work.">
+<main id="main" class="container py-16 md:py-24">
+  <div class="section-heading"><p class="section-index">Blog / Technical notes</p><h1 class="text-4xl md:text-6xl">A notebook for everyday work.</h1><p>Commands, configurations, and lessons I want to find again. Personal references from the tools I use and the things I’m learning.</p></div>
+  <div class="blog-tools">
+    <label for="blog-search" class="block mb-2 font-semibold">Search notes</label>
+    <input id="blog-search" class="search-input" type="search" placeholder="Try branches, permissions, or Ollama…" />
+    <div class="flex flex-wrap gap-2 mt-4" aria-label="Filter by topic"><button class="filter-button" data-tag="" aria-pressed="true">All topics</button>{tags.map(tag=><button class="filter-button" data-tag={tag} aria-pressed="false">{tag}</button>)}</div>
+    <p id="search-status" class="mt-4" role="status" aria-live="polite">{posts.length} notes</p>
+  </div>
+  <div class="notes-grid">{posts.map(post=><a class="note-card" href={`/blog/${post.id}/`} data-post data-tags={JSON.stringify(post.data.tags)} data-search={[post.data.title,post.data.description,...post.data.tags,post.body].join(' ')}><span>{post.data.tags.join(' / ')}</span><h2 class="text-2xl">{post.data.title}</h2><p>{post.data.description}</p><strong>Read note →</strong></a>)}</div>
+  <p id="search-empty" hidden>No notes match your search. Try a different term or topic.</p>
+</main>
+<script>
+ const input = document.querySelector<HTMLInputElement>('#blog-search')!;
+ const cards = [...document.querySelectorAll<HTMLElement>('[data-post]')];
+ const buttons = [...document.querySelectorAll<HTMLButtonElement>('[data-tag]')];
+ let topic = '';
+ const normalize = (value: string) => value.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
+ function filter() {
+   const terms = normalize(input.value).trim().split(/\s+/).filter(Boolean);
+   let count = 0;
+   cards.forEach(card => {
+     const match = (!topic || JSON.parse(card.dataset.tags!).includes(topic)) && terms.every(term=>normalize(card.dataset.search!).includes(term));
+     card.hidden = !match; if(match) count++;
+   });
+   document.querySelector('#search-status')!.textContent = `${count} ${count === 1 ? 'note' : 'notes'}`;
+   (document.querySelector('#search-empty') as HTMLElement).hidden = count !== 0;
+ }
+ input.addEventListener('input',filter);
+ buttons.forEach(button=>button.addEventListener('click',()=>{
+   topic = button.dataset.tag!;
+   buttons.forEach(b=>b.setAttribute('aria-pressed',String(b===button))); filter();
+ }));
+</script>
+</Layout>

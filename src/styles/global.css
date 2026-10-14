@@ -1,0 +1,25 @@
+@layer theme, base, components, utilities;
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities);
+@import "./legacy.css";
+/* Preserve the established visual system without Tailwind's reset. */
+[hidden] { display: none !important; }
+.search-input { width: 100%; padding: 1rem; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); color: var(--text); }
+.blog-tools { max-width: 760px; margin: 2rem 0; }
+.filter-button { padding: .45rem .85rem; border: 1px solid var(--border); border-radius: 999px; color: var(--text-soft); background: var(--surface); cursor: pointer; }
+.filter-button[aria-pressed="true"] { background: var(--accent); color: var(--bg); }
+.article-layout { width: min(calc(100% - 40px), 1180px); margin: 0 auto; display: grid; grid-template-columns: minmax(0, 820px) 240px; gap: 3rem; }
+.article-layout .docs-main { width: 100%; }
+.article-toc { position: sticky; top: 100px; align-self: start; max-height: calc(100vh - 120px); overflow: auto; padding-top: 3rem; }
+.article-toc a { display: block; margin: .7rem 0; font-size: .85rem; color: var(--text-soft); }
+.docs-content pre { white-space: pre; overflow-x: auto; }
+.docs-content pre code { background: none; }
+.docs-content h2, .docs-content h3 { scroll-margin-top: 100px; }
+.professional-list { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 1rem 2rem; }
+.professional-list article { padding-block: 1.3rem; border-bottom: 1px solid var(--border); }
+.professional-list h4 { margin: 0 0 .5rem; }
+@media (max-width: 920px) { .article-layout { display: block; } .article-toc { position: static; padding-top: 2rem; max-height: none; } }
+@media (max-width: 600px) { .professional-list { grid-template-columns: 1fr; } }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { transition: none !important; } }
+
+.docs-content > h2 { margin-top: 3.5rem; padding-top: 2rem; border-top: 1px solid var(--border); }

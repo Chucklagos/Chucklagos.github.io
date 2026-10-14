@@ -1,0 +1,33 @@
+{
+  "name": "chucklagos.github.io",
+  "version": "1.0.0",
+  "description": "Personal website for Chuck Guifarro Lagos, presenting professional experience across web development, systems and infrastructure, production support, and hands-on technical coordination.",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "astro check"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Chucklagos/Chucklagos.github.io.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/Chucklagos/Chucklagos.github.io/issues"
+  },
+  "homepage": "https://github.com/Chucklagos/Chucklagos.github.io#readme",
+  "private": true,
+  "dependencies": {
+    "@tailwindcss/vite": "^4.3.3",
+    "astro": "^7.3.8",
+    "tailwindcss": "^4.3.3"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.10",
+    "typescript": "^6.0.3"
+  }
+}
