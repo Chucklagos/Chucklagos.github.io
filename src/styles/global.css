@@ -4,6 +4,11 @@
 @import "./legacy.css";
 /* Preserve the established visual system without Tailwind's reset. */
 [hidden] { display: none !important; }
+.site-nav .nav-blog { margin-left: .35rem; padding-left: 1rem; border-left: 1px solid var(--border); }
+.site-nav .nav-blog::after { left: 1rem; }
+@media (max-width: 920px) {
+  .site-nav .nav-blog { margin: .35rem 0 0; padding: .85rem 0 .65rem; border-left: 0; border-top: 1px solid var(--border); }
+}
 .search-input { width: 100%; padding: 1rem; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); color: var(--text); }
 .blog-tools { max-width: 760px; margin: 2rem 0; }
 .filter-button { padding: .45rem .85rem; border: 1px solid var(--border); border-radius: 999px; color: var(--text-soft); background: var(--surface); cursor: pointer; }

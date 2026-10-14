@@ -28,6 +28,8 @@ npm run preview
 
 ### Add a blog article
 
+For a complete step-by-step tutorial in Spanish, see [Publishing posts](guides/PUBLISHING_POSTS.md).
+
 Create `src/content/blog/my-note.md`:
 
 ```markdown
@@ -51,10 +53,12 @@ Existing `/docs/` and `/docs/*.html` addresses redirect to the new blog routes i
 
 ## Deployment
 
-`.github/workflows/deploy.yml` builds and deploys `dist/` on pushes to `master` or `main`. In repository Settings → Pages, select **GitHub Actions** as the source. Keep the custom domain set to `chucklagos.dev`; `public/CNAME` is included in every build. The workflow has not been published or run as part of the local migration.
+The project build command is `npm run build` and its output directory is `dist/`. These are the build and publish settings to use when connecting the repository to Netlify.
+
+The existing `.github/workflows/deploy.yml` also builds and deploys `dist/` to GitHub Pages on pushes to `master` or `main`, if Pages is configured to use **GitHub Actions**. This configuration is retained while the hosting choice is reviewed. `public/CNAME` is included in every build for the existing custom domain, `chucklagos.dev`.
 
 ## Resume
 
-The supplied full-profile CV is the source for the website content. The downloadable summary link is intentionally pending the new PDF. When ready, put the summary at `public/resume.pdf` and add `/resume.pdf` to the hero and contact actions. The original root PDF files are retained as source material and are not copied into the public build.
+The supplied full-profile CV was the source for the website content. The downloadable summary is `public/Chuck_Guifarro_Resume.pdf`, linked from the hero and contact section. Replace this file when updating the resume and run `npm run build` to refresh the tracked `dist/` output.
 
 Analytics loads through the shared layout on every Astro page; it does not depend on navigation markup. Translation widget scripts were removed. `/fv/` remains an independent static project.
