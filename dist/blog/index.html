@@ -1,0 +1,1102 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="color-scheme" content="light dark"><title>Blog &amp; Technical Notes — Chuck Guifarro Lagos</title><meta name="description" content="Personal technical references on Git, Linux, local AI, and the tools I use in everyday work."><link rel="canonical" href="https://chucklagos.dev/blog/"><meta property="og:title" content="Blog &amp; Technical Notes — Chuck Guifarro Lagos"><meta property="og:description" content="Personal technical references on Git, Linux, local AI, and the tools I use in everyday work."><meta property="og:type" content="website"><meta property="og:url" content="https://chucklagos.dev/blog/"><meta property="og:image" content="https://chucklagos.dev/img/og-image.webp"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Blog &amp; Technical Notes — Chuck Guifarro Lagos"><meta name="twitter:description" content="Personal technical references on Git, Linux, local AI, and the tools I use in everyday work."><meta name="twitter:image" content="https://chucklagos.dev/img/og-image.webp"><script>
+    try {
+      const theme = localStorage.getItem('theme');
+      if (theme === 'light' || theme === 'dark') document.documentElement.dataset.theme = theme;
+    } catch {}
+  </script><script async src="https://www.googletagmanager.com/gtag/js?id=G-7HZQN96LNZ"></script><script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){window.dataLayer.push(arguments);}
+    window.gtag = gtag;
+    gtag('js', new Date());
+    gtag('config', 'G-7HZQN96LNZ');
+  </script><link rel="stylesheet" href="/_astro/Layout.CcUVEH1K.css"></head><body><a class="skip-link" href="#main">Skip to content</a><header class="site-header"><div class="nav-wrap container"><a aria-label="Chuck Guifarro Lagos, home" class="brand" href="/">CGL<span aria-hidden="true">.</span></a><button aria-controls="site-nav" aria-expanded="false" class="nav-toggle" type="button"><span class="sr-only">Open navigation</span><span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span></button><nav aria-label="Primary navigation" class="site-nav" id="site-nav"><a href="/#about">About</a><a href="/#expertise">Expertise</a><a href="/#experience">Experience</a><a href="/#work">Work</a><a href="/#technologies">Technologies</a><a href="/blog/">Blog</a><a href="/#education">Education</a><a href="/#contact">Contact</a></nav><button aria-label="Switch color theme" class="theme-toggle" title="Switch color theme" type="button"><svg aria-hidden="true" class="theme-icon theme-icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.66 6.34l1.41-1.41"></path></svg><svg aria-hidden="true" class="theme-icon theme-icon-moon" viewBox="0 0 24 24"><path d="M20.4 15.3A8.5 8.5 0 0 1 8.7 3.6 8.5 8.5 0 1 0 20.4 15.3Z"></path></svg></button></div></header><main id="main" class="container py-16 md:py-24"><div class="section-heading"><p class="section-index">Blog / Technical notes</p><h1 class="text-4xl md:text-6xl">A notebook for everyday work.</h1><p>Commands, configurations, and lessons I want to find again. Personal references from the tools I use and the things I’m learning.</p></div><div class="blog-tools"><label for="blog-search" class="block mb-2 font-semibold">Search notes</label><input id="blog-search" class="search-input" type="search" placeholder="Try branches, permissions, or Ollama…"><div class="flex flex-wrap gap-2 mt-4" aria-label="Filter by topic"><button class="filter-button" data-tag="" aria-pressed="true">All topics</button><button class="filter-button" data-tag="Bash" aria-pressed="false">Bash</button><button class="filter-button" data-tag="Development" aria-pressed="false">Development</button><button class="filter-button" data-tag="Git" aria-pressed="false">Git</button><button class="filter-button" data-tag="GitHub" aria-pressed="false">GitHub</button><button class="filter-button" data-tag="Infrastructure" aria-pressed="false">Infrastructure</button><button class="filter-button" data-tag="Linux" aria-pressed="false">Linux</button><button class="filter-button" data-tag="Local AI" aria-pressed="false">Local AI</button><button class="filter-button" data-tag="Ollama" aria-pressed="false">Ollama</button><button class="filter-button" data-tag="OpenCode" aria-pressed="false">OpenCode</button></div><p id="search-status" class="mt-4" role="status" aria-live="polite">3 notes</p></div><div class="notes-grid"><a class="note-card" href="/blog/git/" data-post data-tags="[&quot;Git&quot;,&quot;GitHub&quot;,&quot;Development&quot;]" data-search="Git &amp; GitHub Reference Practical guidance for using Git locally and GitHub remotely, designed as a daily reference for real-world
+        projects. Git GitHub Development ## Core concepts
+
+- **Git**: version control system running on your machine.
+
+- **GitHub**: remote platform for hosting Git repositories.
+
+- **Repository**: project folder tracked by Git.
+
+- **Commit**: snapshot of changes.
+
+- **Branch**: parallel line of development.
+
+- **Remote**: external repository (usually called `origin`).
+
+## Initial configuration (run once)
+
+Set your identity for commits:
+
+```
+git config --global user.name &quot;Your Name&quot;
+git config --global user.email &quot;you@email.com&quot;
+```
+
+Set default main branch:
+
+```
+git config --global init.defaultBranch main
+```
+
+## Create or clone repositories
+
+### Initialize an existing project
+
+```
+git init
+```
+
+Creates a new Git repository in the current directory.
+
+### Clone from GitHub
+
+```
+git clone https://github.com/username/repository.git
+```
+
+Downloads a remote repository.
+
+## Status and history
+
+```
+git status
+```
+
+Shows modified files, staged files, and untracked files.
+
+```
+git log
+```
+
+Full commit history.
+
+```
+git log --oneline --graph --decorate
+```
+
+Compact history with branch visualization.
+
+## Staging and committing changes
+
+### Stage files
+
+```
+git add file.txt
+```
+
+Adds a file to the staging area.
+
+```
+git add .
+```
+
+Stages all changes.
+
+### Create a commit
+
+```
+git commit -m &quot;Clear and meaningful message&quot;
+```
+
+Saves staged changes into the repository history.
+
+**Tip:** Keep commits small and messages descriptive.
+
+## Branches
+
+```
+git branch
+```
+
+Lists local branches.
+
+```
+git branch feature-name
+```
+
+Creates a new branch.
+
+```
+git checkout feature-name
+```
+
+Switches to another branch.
+
+```
+git checkout -b feature-name
+```
+
+Creates and switches to a new branch.
+
+```
+git merge feature-name
+```
+
+Merges a branch into the current one.
+
+<details>
+<summary>Extra: rename or delete branches</summary>
+
+
+
+```
+# Rename current branch
+git branch -m new-name
+
+# Delete local branch
+git branch -d branch-name
+
+# Delete remote branch
+git push origin --delete branch-name
+```
+
+
+
+</details>
+
+## Remotes (GitHub)
+
+```
+git remote -v
+```
+
+Displays configured remotes.
+
+```
+git remote add origin https://github.com/username/repo.git
+```
+
+Links your local repo to GitHub.
+
+<details>
+<summary>Extra: change remote URL</summary>
+
+
+
+```
+git remote set-url origin https://github.com/username/new-repo.git
+```
+
+
+
+</details>
+
+## Push changes
+
+```
+git push
+```
+
+Uploads commits to the tracked remote branch.
+
+```
+git push origin main
+```
+
+Pushes the main branch.
+
+```
+git push -u origin feature-name
+```
+
+Pushes a new branch and sets upstream tracking.
+
+## Fetch vs Pull
+
+```
+git fetch
+```
+
+Downloads changes without merging.
+
+```
+git pull
+```
+
+Downloads and merges changes into the current branch.
+
+**Rule of thumb:** fetch to inspect, pull to apply.
+
+## Diff and review
+
+```
+git diff
+```
+
+Shows unstaged differences.
+
+```
+git diff --staged
+```
+
+Shows staged differences.
+
+## Undoing changes (careful)
+
+```
+git restore file.txt
+```
+
+Discards local changes in a file.
+
+```
+git reset HEAD file.txt
+```
+
+Removes file from staging area.
+
+```
+git reset --hard
+```
+
+**DANGER:** Deletes all uncommitted local changes.
+
+<details>
+<summary>Safe undo for shared history</summary>
+
+
+
+```
+git revert <commit-hash>
+```
+
+
+<p>Creates a new commit that undoes a previous one.</p>
+
+</details>
+
+## Stash (temporary save)
+
+```
+git stash
+```
+
+Saves local changes temporarily.
+
+```
+git stash pop
+```
+
+Restores the last stash.
+
+<details>
+<summary>Extra stash commands</summary>
+
+
+
+```
+git stash list
+git stash apply
+```
+
+
+
+</details>
+
+## Recommended workflow
+
+```
+git checkout main
+git pull
+
+git checkout -b feature-x
+git add .
+git commit -m &quot;Add feature X&quot;
+git push -u origin feature-x
+```
+
+Create a Pull Request on GitHub to merge into `main`.
+
+## Best practices
+
+- Do not work directly on `main`.
+
+- Pull before starting work.
+
+- Use clear, concise commit messages.
+
+- One feature or fix per branch.
+
+## Common emergency commands
+
+<details>
+<summary>Resolve merge conflicts</summary>
+
+<ol>
+<li>Edit conflicted files.</li>
+<li>Resolve manually.</li>
+<li>Stage and commit.</li>
+</ol>
+
+
+```
+git status
+git add .
+git commit -m &quot;Resolve merge conflicts&quot;
+```
+
+
+
+</details>"><span>Git / GitHub / Development</span><h2 class="text-2xl">Git &amp; GitHub Reference</h2><p>Practical guidance for using Git locally and GitHub remotely, designed as a daily reference for real-world
+        projects.</p><strong>Read note →</strong></a><a class="note-card" href="/blog/bash/" data-post data-tags="[&quot;Linux&quot;,&quot;Bash&quot;,&quot;Infrastructure&quot;]" data-search="Linux &amp; Bash Reference Practical commands for working efficiently in the Linux terminal, focused on real-world development,
+        troubleshooting, and server usage. Linux Bash Infrastructure ## Basic navigation
+
+```
+pwd
+```
+
+Prints the current working directory.
+
+```
+ls
+```
+
+Lists files and directories.
+
+```
+ls -la
+```
+
+Lists all files (including hidden) with details.
+
+```
+cd directory
+```
+
+Changes directory.
+
+```
+cd ..
+```
+
+Moves up one directory.
+
+```
+cd ~
+```
+
+Goes to home directory.
+
+## File and directory management
+
+```
+touch file.txt
+```
+
+Creates an empty file.
+
+```
+mkdir folder
+```
+
+Creates a directory.
+
+```
+mkdir -p parent/child
+```
+
+Creates nested directories.
+
+```
+cp file.txt copy.txt
+```
+
+Copies a file.
+
+```
+cp -r dir1 dir2
+```
+
+Copies a directory recursively.
+
+```
+mv old.txt new.txt
+```
+
+Moves or renames files.
+
+```
+rm file.txt
+```
+
+Deletes a file.
+
+```
+rm -r folder
+```
+
+Deletes a directory recursively.
+
+```
+rm -rf folder
+```
+
+**DANGER:** Force deletes without confirmation.
+
+## Viewing file content
+
+```
+cat file.txt
+```
+
+Prints file content.
+
+```
+less file.txt
+```
+
+Views file content page by page.
+
+```
+head file.txt
+```
+
+Shows the first lines of a file.
+
+```
+tail file.txt
+```
+
+Shows the last lines of a file.
+
+```
+tail -f logfile.log
+```
+
+Follows a file in real time (logs).
+
+## Searching and finding
+
+```
+grep &quot;text&quot; file.txt
+```
+
+Searches for text inside a file.
+
+```
+grep -r &quot;text&quot; folder
+```
+
+Recursive search in directories.
+
+```
+find . -name &quot;file.txt&quot;
+```
+
+Finds files by name.
+
+```
+find . -type f
+```
+
+Finds all files.
+
+## Permissions and ownership
+
+```
+ls -l
+```
+
+Shows permissions and ownership.
+
+```
+chmod +x script.sh
+```
+
+Makes a file executable.
+
+```
+chmod 755 file
+```
+
+Sets permissions using numeric mode.
+
+```
+chown user:group file
+```
+
+Changes file owner and group.
+
+## Processes and system
+
+```
+ps
+```
+
+Shows running processes.
+
+```
+ps aux
+```
+
+Lists all processes.
+
+```
+top
+```
+
+Interactive process viewer.
+
+```
+htop
+```
+
+Improved process viewer (if installed).
+
+```
+kill PID
+```
+
+Stops a process by ID.
+
+```
+kill -9 PID
+```
+
+**Force kills** a process.
+
+## Disk and system info
+
+```
+df -h
+```
+
+Shows disk usage.
+
+```
+du -sh folder
+```
+
+Shows folder size.
+
+```
+free -h
+```
+
+Displays memory usage.
+
+```
+uname -a
+```
+
+Shows system information.
+
+## Networking
+
+```
+ip a
+```
+
+Shows network interfaces.
+
+```
+ping google.com
+```
+
+Tests network connectivity.
+
+```
+curl https://example.com
+```
+
+Requests a URL from terminal.
+
+```
+wget https://example.com/file.zip
+```
+
+Downloads a file.
+
+## Redirection and pipes
+
+```
+command > file.txt
+```
+
+Redirects output to a file (overwrite).
+
+```
+command >> file.txt
+```
+
+Appends output to a file.
+
+```
+command1 | command2
+```
+
+Pipes output of one command into another.
+
+```
+grep &quot;error&quot; log.txt | less
+```
+
+Example of piping commands.
+
+## Compression and archives
+
+```
+tar -czvf archive.tar.gz folder
+```
+
+Creates a compressed archive.
+
+```
+tar -xzvf archive.tar.gz
+```
+
+Extracts a compressed archive.
+
+```
+zip -r file.zip folder
+```
+
+Creates a zip archive.
+
+```
+unzip file.zip
+```
+
+Extracts a zip archive.
+
+## Environment and shell
+
+```
+echo $PATH
+```
+
+Shows PATH environment variable.
+
+```
+env
+```
+
+Lists environment variables.
+
+```
+which node
+```
+
+Shows the path of a command.
+
+```
+history
+```
+
+Shows command history.
+
+```
+clear
+```
+
+Clears the terminal screen.
+
+## Recommended daily workflow
+
+```
+pwd
+ls
+cd project
+ls -la
+grep &quot;TODO&quot; .
+tail -f logs/app.log
+```
+
+Common commands used during development and debugging.
+
+## Best practices
+
+- Double-check before using `rm -rf`.
+
+- Use `less` instead of `cat` for large files.
+
+- Prefer pipes over temporary files.
+
+- Learn to read permissions and ownership."><span>Linux / Bash / Infrastructure</span><h2 class="text-2xl">Linux &amp; Bash Reference</h2><p>Practical commands for working efficiently in the Linux terminal, focused on real-world development,
+        troubleshooting, and server usage.</p><strong>Read note →</strong></a><a class="note-card" href="/blog/opencode/" data-post data-tags="[&quot;OpenCode&quot;,&quot;Ollama&quot;,&quot;Local AI&quot;]" data-search="OpenCode + Ollama Local Models Practical guide for connecting OpenCode to Ollama, selecting local language models, and allowing an AI coding
+        agent to work directly with a project directory. OpenCode Ollama Local AI ## Overview
+
+**Ollama** runs language models locally, while **OpenCode** acts as the coding agent
+        that can inspect, search, create, and modify files inside a project.
+
+Running a model with Ollama alone does not automatically give that model access to files in the current
+        directory. OpenCode provides the agent and tool layer needed to work with the project.
+
+```
+Project directory
+      │
+      ▼
+   OpenCode
+      │
+      ├── Read files
+      ├── Search source code
+      ├── Create files
+      ├── Modify files
+      └── Use coding tools
+      │
+      ▼
+    Ollama
+      │
+      ▼
+ Local language model
+```
+
+## Verify Ollama
+
+Confirm that Ollama is installed and list the models currently available:
+
+```
+ollama list
+```
+
+Example:
+
+```
+NAME                     SIZE
+codegemma:2b             1.6 GB
+deepseek-coder:1.3b      776 MB
+gemma3:1b                815 MB
+gemma3:latest            3.3 GB
+qwen3:4b                 2.5 GB
+qwen3.5:0.8b             1.0 GB
+mistral:7b               4.4 GB
+deepseek-coder:6.7b      3.8 GB
+qwen2.5:3b               1.9 GB
+```
+
+## Verify the Ollama API
+
+OpenCode communicates with Ollama through its local HTTP API. Test the OpenAI-compatible endpoint:
+
+```
+curl http://localhost:11434/v1/models
+```
+
+If Ollama is running correctly, the command should return JSON containing the locally installed models.
+
+<details>
+<summary>If Ollama is not running</summary>
+
+<p>Start the Ollama server manually:</p>
+
+
+```
+ollama serve
+```
+
+
+<p>Keep that process running and open another terminal for OpenCode.</p>
+
+</details>
+
+## OpenCode provider selection
+
+OpenCode may display **Ollama Cloud** in the provider list. Ollama Cloud is not the same as the
+        Ollama server running locally on the machine.
+
+For local models, configure a custom provider pointing to the local Ollama API.
+
+## Create the OpenCode configuration
+
+Create the OpenCode configuration directory if it does not already exist:
+
+```
+mkdir -p ~/.config/opencode
+```
+
+Open the configuration file:
+
+```
+nano ~/.config/opencode/opencode.json
+```
+
+Add the local Ollama provider:
+
+```
+{
+  &quot;$schema&quot;: &quot;https://opencode.ai/config.json&quot;,
+  &quot;provider&quot;: {
+    &quot;ollama&quot;: {
+      &quot;npm&quot;: &quot;@ai-sdk/openai-compatible&quot;,
+      &quot;name&quot;: &quot;Ollama Local&quot;,
+      &quot;options&quot;: {
+        &quot;baseURL&quot;: &quot;http://localhost:11434/v1&quot;
+      },
+      &quot;models&quot;: {
+        &quot;qwen3:4b&quot;: {
+          &quot;name&quot;: &quot;Qwen 3 4B&quot;
+        },
+        &quot;deepseek-coder:6.7b&quot;: {
+          &quot;name&quot;: &quot;DeepSeek Coder 6.7B&quot;
+        },
+        &quot;codegemma:2b&quot;: {
+          &quot;name&quot;: &quot;CodeGemma 2B&quot;
+        },
+        &quot;deepseek-coder:1.3b&quot;: {
+          &quot;name&quot;: &quot;DeepSeek Coder 1.3B&quot;
+        },
+        &quot;gemma3:latest&quot;: {
+          &quot;name&quot;: &quot;Gemma 3&quot;
+        },
+        &quot;gemma3:1b&quot;: {
+          &quot;name&quot;: &quot;Gemma 3 1B&quot;
+        },
+        &quot;qwen2.5:3b&quot;: {
+          &quot;name&quot;: &quot;Qwen 2.5 3B&quot;
+        },
+        &quot;mistral:7b&quot;: {
+          &quot;name&quot;: &quot;Mistral 7B&quot;
+        }
+      }
+    }
+  }
+}
+```
+
+When using Nano, save and exit with:
+
+```
+Ctrl + O
+Enter
+Ctrl + X
+```
+
+## Start OpenCode
+
+After saving the configuration, start OpenCode:
+
+```
+opencode
+```
+
+Inside OpenCode, open the model selector:
+
+```
+/models
+```
+
+The configured models should appear under **Ollama Local**.
+
+## Recommended models
+
+### Qwen 3 4B
+
+```
+qwen3:4b
+```
+
+A useful first option when balancing general reasoning, coding ability, and local resource consumption.
+
+### DeepSeek Coder 6.7B
+
+```
+deepseek-coder:6.7b
+```
+
+A larger coding-focused model that can be useful for source-code generation and analysis when enough RAM is
+        available.
+
+### Smaller models
+
+```
+codegemma:2b
+deepseek-coder:1.3b
+gemma3:1b
+```
+
+Smaller models consume fewer resources, but their ability to follow complex agent workflows and use tools can
+        be more limited.
+
+## Tool support matters
+
+OpenCode is an agent, not only a chat interface. To inspect and modify a project effectively, the selected
+        model must be able to work reliably with the tools exposed by OpenCode.
+
+A model may work correctly in a normal Ollama chat but still fail when OpenCode requests tool usage.
+
+A typical error is:
+
+```
+does not support tools
+```
+
+If this occurs, select another model with better tool-calling support.
+
+## Work inside a project directory
+
+The recommended workflow is to enter the project directory before starting OpenCode.
+
+Example:
+
+```
+cd ~/Projects/my-project
+opencode
+```
+
+OpenCode now uses that directory as the working context for the coding session.
+
+For example, given:
+
+```
+my-project/
+├── index.html
+├── css/
+│   └── style.css
+├── js/
+│   └── main.js
+└── README.md
+```
+
+OpenCode can use its tools to inspect relevant files and provide their contents to the local model as context.
+
+## Example tasks
+
+Once OpenCode is running inside the project, prompts can focus on the repository itself:
+
+```
+Analyze this project and explain its structure.
+```
+
+```
+Find where the database connection is configured.
+```
+
+```
+Review the PHP files and identify possible errors.
+```
+
+```
+Explain how authentication works in this project.
+```
+
+```
+Modify the home page to add a dark mode.
+```
+
+## Ollama alone vs OpenCode + Ollama
+
+### Ollama alone
+
+```
+cd ~/Projects/my-project
+ollama run qwen3:4b
+```
+
+Starting Ollama from a directory does **not** automatically grant the model access to that
+        directory or its files.
+
+### OpenCode + Ollama
+
+```
+cd ~/Projects/my-project
+opencode
+```
+
+OpenCode provides the file and coding tools, while Ollama performs the local model inference.
+
+## Typical local workflow
+
+```
+# 1. Verify available models
+ollama list
+
+# 2. Verify Ollama API
+curl http://localhost:11434/v1/models
+
+# 3. Enter the project
+cd ~/Projects/my-project
+
+# 4. Start OpenCode
+opencode
+
+# 5. Select a model inside OpenCode
+/models
+```
+
+## Troubleshooting
+
+<details>
+<summary>Ollama Local does not appear in OpenCode</summary>
+
+<p>Verify that the configuration file exists:</p>
+
+
+```
+cat ~/.config/opencode/opencode.json
+```
+
+
+<p>Check the JSON syntax and restart OpenCode after making changes.</p>
+
+</details>
+<details>
+<summary>OpenCode cannot connect to Ollama</summary>
+
+<p>Test the API directly:</p>
+
+
+```
+curl http://localhost:11434/v1/models
+```
+
+
+<p>If the request fails, verify that Ollama is running:</p>
+
+
+```
+ollama serve
+```
+
+
+
+</details>
+<details>
+<summary>The model does not support tools</summary>
+
+<p>Choose another model from <code>/models</code>. Coding agents depend on reliable tool support, so very small
+          or older models may not be suitable even if they work correctly for normal chat.</p>
+
+</details>
+<details>
+<summary>Check installed Ollama models</summary>
+
+
+
+```
+ollama list
+```
+
+
+
+</details>
+
+## Quick reference
+
+```
+# List local models
+ollama list
+
+# Start Ollama server
+ollama serve
+
+# Test local API
+curl http://localhost:11434/v1/models
+
+# Edit OpenCode configuration
+nano ~/.config/opencode/opencode.json
+
+# Open a project
+cd ~/Projects/my-project
+
+# Start OpenCode
+opencode
+```
+
+## Key concept
+
+**Ollama runs the model. OpenCode gives the model the ability to work with the project.**
+
+This separation makes it possible to use local language models for coding workflows while keeping model
+        inference on the local machine."><span>OpenCode / Ollama / Local AI</span><h2 class="text-2xl">OpenCode + Ollama Local Models</h2><p>Practical guide for connecting OpenCode to Ollama, selecting local language models, and allowing an AI coding
+        agent to work directly with a project directory.</p><strong>Read note →</strong></a></div><p id="search-empty" hidden>No notes match your search. Try a different term or topic.</p></main><script type="module">var e=document.querySelector(`#blog-search`),t=[...document.querySelectorAll(`[data-post]`)],n=[...document.querySelectorAll(`[data-tag]`)],r=``,i=e=>e.normalize(`NFD`).replace(/[\u0300-\u036f]/g,``).toLowerCase();function a(){let n=i(e.value).trim().split(/\s+/).filter(Boolean),a=0;t.forEach(e=>{let t=(!r||JSON.parse(e.dataset.tags).includes(r))&&n.every(t=>i(e.dataset.search).includes(t));e.hidden=!t,t&&a++}),document.querySelector(`#search-status`).textContent=`${a} ${a===1?`note`:`notes`}`,document.querySelector(`#search-empty`).hidden=a!==0}e.addEventListener(`input`,a),n.forEach(e=>e.addEventListener(`click`,()=>{r=e.dataset.tag,n.forEach(t=>t.setAttribute(`aria-pressed`,String(t===e))),a()}));</script><footer class="site-footer"><div class="container"><p>© <span id="year">2026</span> Chuck Guifarro Lagos</p><p>Built with Astro &amp; Tailwind CSS.</p></div></footer><script src="/main.js" defer></script></body></html>

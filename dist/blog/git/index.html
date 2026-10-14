@@ -1,0 +1,174 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="color-scheme" content="light dark"><title>Git &amp; GitHub Reference — Chuck Guifarro Lagos</title><meta name="description" content="Practical guidance for using Git locally and GitHub remotely, designed as a daily reference for real-world
+        projects."><link rel="canonical" href="https://chucklagos.dev/blog/git/"><meta property="og:title" content="Git &amp; GitHub Reference — Chuck Guifarro Lagos"><meta property="og:description" content="Practical guidance for using Git locally and GitHub remotely, designed as a daily reference for real-world
+        projects."><meta property="og:type" content="article"><meta property="og:url" content="https://chucklagos.dev/blog/git/"><meta property="og:image" content="https://chucklagos.dev/img/og-image.webp"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Git &amp; GitHub Reference — Chuck Guifarro Lagos"><meta name="twitter:description" content="Practical guidance for using Git locally and GitHub remotely, designed as a daily reference for real-world
+        projects."><meta name="twitter:image" content="https://chucklagos.dev/img/og-image.webp"><script>
+    try {
+      const theme = localStorage.getItem('theme');
+      if (theme === 'light' || theme === 'dark') document.documentElement.dataset.theme = theme;
+    } catch {}
+  </script><script async src="https://www.googletagmanager.com/gtag/js?id=G-7HZQN96LNZ"></script><script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){window.dataLayer.push(arguments);}
+    window.gtag = gtag;
+    gtag('js', new Date());
+    gtag('config', 'G-7HZQN96LNZ');
+  </script><link rel="stylesheet" href="/_astro/Layout.CcUVEH1K.css"></head><body><a class="skip-link" href="#main">Skip to content</a><header class="site-header"><div class="nav-wrap container"><a aria-label="Chuck Guifarro Lagos, home" class="brand" href="/">CGL<span aria-hidden="true">.</span></a><button aria-controls="site-nav" aria-expanded="false" class="nav-toggle" type="button"><span class="sr-only">Open navigation</span><span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span></button><nav aria-label="Primary navigation" class="site-nav" id="site-nav"><a href="/#about">About</a><a href="/#expertise">Expertise</a><a href="/#experience">Experience</a><a href="/#work">Work</a><a href="/#technologies">Technologies</a><a href="/blog/">Blog</a><a href="/#education">Education</a><a href="/#contact">Contact</a></nav><button aria-label="Switch color theme" class="theme-toggle" title="Switch color theme" type="button"><svg aria-hidden="true" class="theme-icon theme-icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.66 6.34l1.41-1.41"></path></svg><svg aria-hidden="true" class="theme-icon theme-icon-moon" viewBox="0 0 24 24"><path d="M20.4 15.3A8.5 8.5 0 0 1 8.7 3.6 8.5 8.5 0 1 0 20.4 15.3Z"></path></svg></button></div></header><div class="article-layout"><main class="docs-main docs-content" id="main"><div class="docs-hero"><a class="back-link" href="/blog/">← All notes</a><p class="section-index">Technical notes / Git · GitHub · Development</p><h1>Git &amp; GitHub Reference</h1><p>Practical guidance for using Git locally and GitHub remotely, designed as a daily reference for real-world
+        projects.</p></div><h2 id="core-concepts">Core concepts</h2>
+<ul>
+<li>
+<p><strong>Git</strong>: version control system running on your machine.</p>
+</li>
+<li>
+<p><strong>GitHub</strong>: remote platform for hosting Git repositories.</p>
+</li>
+<li>
+<p><strong>Repository</strong>: project folder tracked by Git.</p>
+</li>
+<li>
+<p><strong>Commit</strong>: snapshot of changes.</p>
+</li>
+<li>
+<p><strong>Branch</strong>: parallel line of development.</p>
+</li>
+<li>
+<p><strong>Remote</strong>: external repository (usually called <code>origin</code>).</p>
+</li>
+</ul>
+<h2 id="initial-configuration-run-once">Initial configuration (run once)</h2>
+<p>Set your identity for commits:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>git config --global user.name "Your Name"</span></span>
+<span class="line"><span>git config --global user.email "you@email.com"</span></span></code></pre>
+<p>Set default main branch:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>git config --global init.defaultBranch main</span></span></code></pre>
+<h2 id="create-or-clone-repositories">Create or clone repositories</h2>
+<h3 id="initialize-an-existing-project">Initialize an existing project</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>git init</span></span></code></pre>
+<p>Creates a new Git repository in the current directory.</p>
+<h3 id="clone-from-github">Clone from GitHub</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>git clone https://github.com/username/repository.git</span></span></code></pre>
+<p>Downloads a remote repository.</p>
+<h2 id="status-and-history">Status and history</h2>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>git status</span></span></code></pre>
+<p>Shows modified files, staged files, and untracked files.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>git log</span></span></code></pre>
+<p>Full commit history.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>git log --oneline --graph --decorate</span></span></code></pre>
+<p>Compact history with branch visualization.</p>
+<h2 id="staging-and-committing-changes">Staging and committing changes</h2>
+<h3 id="stage-files">Stage files</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>git add file.txt</span></span></code></pre>
+<p>Adds a file to the staging area.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>git add .</span></span></code></pre>
+<p>Stages all changes.</p>
+<h3 id="create-a-commit">Create a commit</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>git commit -m "Clear and meaningful message"</span></span></code></pre>
+<p>Saves staged changes into the repository history.</p>
+<p><strong>Tip:</strong> Keep commits small and messages descriptive.</p>
+<h2 id="branches">Branches</h2>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>git branch</span></span></code></pre>
+<p>Lists local branches.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>git branch feature-name</span></span></code></pre>
+<p>Creates a new branch.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>git checkout feature-name</span></span></code></pre>
+<p>Switches to another branch.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>git checkout -b feature-name</span></span></code></pre>
+<p>Creates and switches to a new branch.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>git merge feature-name</span></span></code></pre>
+<p>Merges a branch into the current one.</p>
+<details>
+<summary>Extra: rename or delete branches</summary>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span># Rename current branch</span></span>
+<span class="line"><span>git branch -m new-name</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># Delete local branch</span></span>
+<span class="line"><span>git branch -d branch-name</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># Delete remote branch</span></span>
+<span class="line"><span>git push origin --delete branch-name</span></span></code></pre>
+</details>
+<h2 id="remotes-github">Remotes (GitHub)</h2>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>git remote -v</span></span></code></pre>
+<p>Displays configured remotes.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>git remote add origin https://github.com/username/repo.git</span></span></code></pre>
+<p>Links your local repo to GitHub.</p>
+<details>
+<summary>Extra: change remote URL</summary>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>git remote set-url origin https://github.com/username/new-repo.git</span></span></code></pre>
+</details>
+<h2 id="push-changes">Push changes</h2>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>git push</span></span></code></pre>
+<p>Uploads commits to the tracked remote branch.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>git push origin main</span></span></code></pre>
+<p>Pushes the main branch.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>git push -u origin feature-name</span></span></code></pre>
+<p>Pushes a new branch and sets upstream tracking.</p>
+<h2 id="fetch-vs-pull">Fetch vs Pull</h2>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>git fetch</span></span></code></pre>
+<p>Downloads changes without merging.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>git pull</span></span></code></pre>
+<p>Downloads and merges changes into the current branch.</p>
+<p><strong>Rule of thumb:</strong> fetch to inspect, pull to apply.</p>
+<h2 id="diff-and-review">Diff and review</h2>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>git diff</span></span></code></pre>
+<p>Shows unstaged differences.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>git diff --staged</span></span></code></pre>
+<p>Shows staged differences.</p>
+<h2 id="undoing-changes-careful">Undoing changes (careful)</h2>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>git restore file.txt</span></span></code></pre>
+<p>Discards local changes in a file.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>git reset HEAD file.txt</span></span></code></pre>
+<p>Removes file from staging area.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>git reset --hard</span></span></code></pre>
+<p><strong>DANGER:</strong> Deletes all uncommitted local changes.</p>
+<details>
+<summary>Safe undo for shared history</summary>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>git revert &lt;commit-hash&gt;</span></span></code></pre>
+<p>Creates a new commit that undoes a previous one.</p>
+</details>
+<h2 id="stash-temporary-save">Stash (temporary save)</h2>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>git stash</span></span></code></pre>
+<p>Saves local changes temporarily.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>git stash pop</span></span></code></pre>
+<p>Restores the last stash.</p>
+<details>
+<summary>Extra stash commands</summary>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>git stash list</span></span>
+<span class="line"><span>git stash apply</span></span></code></pre>
+</details>
+<h2 id="recommended-workflow">Recommended workflow</h2>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>git checkout main</span></span>
+<span class="line"><span>git pull</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>git checkout -b feature-x</span></span>
+<span class="line"><span>git add .</span></span>
+<span class="line"><span>git commit -m "Add feature X"</span></span>
+<span class="line"><span>git push -u origin feature-x</span></span></code></pre>
+<p>Create a Pull Request on GitHub to merge into <code>main</code>.</p>
+<h2 id="best-practices">Best practices</h2>
+<ul>
+<li>
+<p>Do not work directly on <code>main</code>.</p>
+</li>
+<li>
+<p>Pull before starting work.</p>
+</li>
+<li>
+<p>Use clear, concise commit messages.</p>
+</li>
+<li>
+<p>One feature or fix per branch.</p>
+</li>
+</ul>
+<h2 id="common-emergency-commands">Common emergency commands</h2>
+<details>
+<summary>Resolve merge conflicts</summary>
+<ol>
+<li>Edit conflicted files.</li>
+<li>Resolve manually.</li>
+<li>Stage and commit.</li>
+</ol>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>git status</span></span>
+<span class="line"><span>git add .</span></span>
+<span class="line"><span>git commit -m "Resolve merge conflicts"</span></span></code></pre>
+</details>
+<p class="mt-12"><a href="/blog/">← Browse all technical notes</a></p></main><aside class="article-toc" aria-label="On this page"><strong>On this page</strong><a href="#core-concepts">Core concepts</a><a href="#initial-configuration-run-once">Initial configuration (run once)</a><a href="#create-or-clone-repositories">Create or clone repositories</a><a href="#status-and-history">Status and history</a><a href="#staging-and-committing-changes">Staging and committing changes</a><a href="#branches">Branches</a><a href="#remotes-github">Remotes (GitHub)</a><a href="#push-changes">Push changes</a><a href="#fetch-vs-pull">Fetch vs Pull</a><a href="#diff-and-review">Diff and review</a><a href="#undoing-changes-careful">Undoing changes (careful)</a><a href="#stash-temporary-save">Stash (temporary save)</a><a href="#recommended-workflow">Recommended workflow</a><a href="#best-practices">Best practices</a><a href="#common-emergency-commands">Common emergency commands</a></aside></div><footer class="site-footer"><div class="container"><p>© <span id="year">2026</span> Chuck Guifarro Lagos</p><p>Built with Astro &amp; Tailwind CSS.</p></div></footer><script src="/main.js" defer></script></body></html>

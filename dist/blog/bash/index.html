@@ -1,0 +1,160 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="color-scheme" content="light dark"><title>Linux &amp; Bash Reference — Chuck Guifarro Lagos</title><meta name="description" content="Practical commands for working efficiently in the Linux terminal, focused on real-world development,
+        troubleshooting, and server usage."><link rel="canonical" href="https://chucklagos.dev/blog/bash/"><meta property="og:title" content="Linux &amp; Bash Reference — Chuck Guifarro Lagos"><meta property="og:description" content="Practical commands for working efficiently in the Linux terminal, focused on real-world development,
+        troubleshooting, and server usage."><meta property="og:type" content="article"><meta property="og:url" content="https://chucklagos.dev/blog/bash/"><meta property="og:image" content="https://chucklagos.dev/img/og-image.webp"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Linux &amp; Bash Reference — Chuck Guifarro Lagos"><meta name="twitter:description" content="Practical commands for working efficiently in the Linux terminal, focused on real-world development,
+        troubleshooting, and server usage."><meta name="twitter:image" content="https://chucklagos.dev/img/og-image.webp"><script>
+    try {
+      const theme = localStorage.getItem('theme');
+      if (theme === 'light' || theme === 'dark') document.documentElement.dataset.theme = theme;
+    } catch {}
+  </script><script async src="https://www.googletagmanager.com/gtag/js?id=G-7HZQN96LNZ"></script><script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){window.dataLayer.push(arguments);}
+    window.gtag = gtag;
+    gtag('js', new Date());
+    gtag('config', 'G-7HZQN96LNZ');
+  </script><link rel="stylesheet" href="/_astro/Layout.CcUVEH1K.css"></head><body><a class="skip-link" href="#main">Skip to content</a><header class="site-header"><div class="nav-wrap container"><a aria-label="Chuck Guifarro Lagos, home" class="brand" href="/">CGL<span aria-hidden="true">.</span></a><button aria-controls="site-nav" aria-expanded="false" class="nav-toggle" type="button"><span class="sr-only">Open navigation</span><span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span></button><nav aria-label="Primary navigation" class="site-nav" id="site-nav"><a href="/#about">About</a><a href="/#expertise">Expertise</a><a href="/#experience">Experience</a><a href="/#work">Work</a><a href="/#technologies">Technologies</a><a href="/blog/">Blog</a><a href="/#education">Education</a><a href="/#contact">Contact</a></nav><button aria-label="Switch color theme" class="theme-toggle" title="Switch color theme" type="button"><svg aria-hidden="true" class="theme-icon theme-icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.66 6.34l1.41-1.41"></path></svg><svg aria-hidden="true" class="theme-icon theme-icon-moon" viewBox="0 0 24 24"><path d="M20.4 15.3A8.5 8.5 0 0 1 8.7 3.6 8.5 8.5 0 1 0 20.4 15.3Z"></path></svg></button></div></header><div class="article-layout"><main class="docs-main docs-content" id="main"><div class="docs-hero"><a class="back-link" href="/blog/">← All notes</a><p class="section-index">Technical notes / Linux · Bash · Infrastructure</p><h1>Linux &amp; Bash Reference</h1><p>Practical commands for working efficiently in the Linux terminal, focused on real-world development,
+        troubleshooting, and server usage.</p></div><h2 id="basic-navigation">Basic navigation</h2>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>pwd</span></span></code></pre>
+<p>Prints the current working directory.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>ls</span></span></code></pre>
+<p>Lists files and directories.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>ls -la</span></span></code></pre>
+<p>Lists all files (including hidden) with details.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>cd directory</span></span></code></pre>
+<p>Changes directory.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>cd ..</span></span></code></pre>
+<p>Moves up one directory.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>cd ~</span></span></code></pre>
+<p>Goes to home directory.</p>
+<h2 id="file-and-directory-management">File and directory management</h2>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>touch file.txt</span></span></code></pre>
+<p>Creates an empty file.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>mkdir folder</span></span></code></pre>
+<p>Creates a directory.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>mkdir -p parent/child</span></span></code></pre>
+<p>Creates nested directories.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>cp file.txt copy.txt</span></span></code></pre>
+<p>Copies a file.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>cp -r dir1 dir2</span></span></code></pre>
+<p>Copies a directory recursively.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>mv old.txt new.txt</span></span></code></pre>
+<p>Moves or renames files.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>rm file.txt</span></span></code></pre>
+<p>Deletes a file.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>rm -r folder</span></span></code></pre>
+<p>Deletes a directory recursively.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>rm -rf folder</span></span></code></pre>
+<p><strong>DANGER:</strong> Force deletes without confirmation.</p>
+<h2 id="viewing-file-content">Viewing file content</h2>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>cat file.txt</span></span></code></pre>
+<p>Prints file content.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>less file.txt</span></span></code></pre>
+<p>Views file content page by page.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>head file.txt</span></span></code></pre>
+<p>Shows the first lines of a file.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>tail file.txt</span></span></code></pre>
+<p>Shows the last lines of a file.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>tail -f logfile.log</span></span></code></pre>
+<p>Follows a file in real time (logs).</p>
+<h2 id="searching-and-finding">Searching and finding</h2>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>grep "text" file.txt</span></span></code></pre>
+<p>Searches for text inside a file.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>grep -r "text" folder</span></span></code></pre>
+<p>Recursive search in directories.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>find . -name "file.txt"</span></span></code></pre>
+<p>Finds files by name.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>find . -type f</span></span></code></pre>
+<p>Finds all files.</p>
+<h2 id="permissions-and-ownership">Permissions and ownership</h2>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>ls -l</span></span></code></pre>
+<p>Shows permissions and ownership.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>chmod +x script.sh</span></span></code></pre>
+<p>Makes a file executable.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>chmod 755 file</span></span></code></pre>
+<p>Sets permissions using numeric mode.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>chown user:group file</span></span></code></pre>
+<p>Changes file owner and group.</p>
+<h2 id="processes-and-system">Processes and system</h2>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>ps</span></span></code></pre>
+<p>Shows running processes.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>ps aux</span></span></code></pre>
+<p>Lists all processes.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>top</span></span></code></pre>
+<p>Interactive process viewer.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>htop</span></span></code></pre>
+<p>Improved process viewer (if installed).</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>kill PID</span></span></code></pre>
+<p>Stops a process by ID.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>kill -9 PID</span></span></code></pre>
+<p><strong>Force kills</strong> a process.</p>
+<h2 id="disk-and-system-info">Disk and system info</h2>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>df -h</span></span></code></pre>
+<p>Shows disk usage.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>du -sh folder</span></span></code></pre>
+<p>Shows folder size.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>free -h</span></span></code></pre>
+<p>Displays memory usage.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>uname -a</span></span></code></pre>
+<p>Shows system information.</p>
+<h2 id="networking">Networking</h2>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>ip a</span></span></code></pre>
+<p>Shows network interfaces.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>ping google.com</span></span></code></pre>
+<p>Tests network connectivity.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>curl https://example.com</span></span></code></pre>
+<p>Requests a URL from terminal.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>wget https://example.com/file.zip</span></span></code></pre>
+<p>Downloads a file.</p>
+<h2 id="redirection-and-pipes">Redirection and pipes</h2>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>command &gt; file.txt</span></span></code></pre>
+<p>Redirects output to a file (overwrite).</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>command &gt;&gt; file.txt</span></span></code></pre>
+<p>Appends output to a file.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>command1 | command2</span></span></code></pre>
+<p>Pipes output of one command into another.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>grep "error" log.txt | less</span></span></code></pre>
+<p>Example of piping commands.</p>
+<h2 id="compression-and-archives">Compression and archives</h2>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>tar -czvf archive.tar.gz folder</span></span></code></pre>
+<p>Creates a compressed archive.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>tar -xzvf archive.tar.gz</span></span></code></pre>
+<p>Extracts a compressed archive.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>zip -r file.zip folder</span></span></code></pre>
+<p>Creates a zip archive.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>unzip file.zip</span></span></code></pre>
+<p>Extracts a zip archive.</p>
+<h2 id="environment-and-shell">Environment and shell</h2>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>echo $PATH</span></span></code></pre>
+<p>Shows PATH environment variable.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>env</span></span></code></pre>
+<p>Lists environment variables.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>which node</span></span></code></pre>
+<p>Shows the path of a command.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>history</span></span></code></pre>
+<p>Shows command history.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>clear</span></span></code></pre>
+<p>Clears the terminal screen.</p>
+<h2 id="recommended-daily-workflow">Recommended daily workflow</h2>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>pwd</span></span>
+<span class="line"><span>ls</span></span>
+<span class="line"><span>cd project</span></span>
+<span class="line"><span>ls -la</span></span>
+<span class="line"><span>grep "TODO" .</span></span>
+<span class="line"><span>tail -f logs/app.log</span></span></code></pre>
+<p>Common commands used during development and debugging.</p>
+<h2 id="best-practices">Best practices</h2>
+<ul>
+<li>
+<p>Double-check before using <code>rm -rf</code>.</p>
+</li>
+<li>
+<p>Use <code>less</code> instead of <code>cat</code> for large files.</p>
+</li>
+<li>
+<p>Prefer pipes over temporary files.</p>
+</li>
+<li>
+<p>Learn to read permissions and ownership.</p>
+</li>
+</ul>
+<p class="mt-12"><a href="/blog/">← Browse all technical notes</a></p></main><aside class="article-toc" aria-label="On this page"><strong>On this page</strong><a href="#basic-navigation">Basic navigation</a><a href="#file-and-directory-management">File and directory management</a><a href="#viewing-file-content">Viewing file content</a><a href="#searching-and-finding">Searching and finding</a><a href="#permissions-and-ownership">Permissions and ownership</a><a href="#processes-and-system">Processes and system</a><a href="#disk-and-system-info">Disk and system info</a><a href="#networking">Networking</a><a href="#redirection-and-pipes">Redirection and pipes</a><a href="#compression-and-archives">Compression and archives</a><a href="#environment-and-shell">Environment and shell</a><a href="#recommended-daily-workflow">Recommended daily workflow</a><a href="#best-practices">Best practices</a></aside></div><footer class="site-footer"><div class="container"><p>© <span id="year">2026</span> Chuck Guifarro Lagos</p><p>Built with Astro &amp; Tailwind CSS.</p></div></footer><script src="/main.js" defer></script></body></html>
