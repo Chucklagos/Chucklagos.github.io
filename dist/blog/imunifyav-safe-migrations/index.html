@@ -1,0 +1,117 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="color-scheme" content="light dark"><title>How to Use ImunifyAV and Prepare Safe Website Migrations — Chuck Guifarro Lagos</title><meta name="description" content="Verify ImunifyAV, update malware signatures, review scans, and restore PHP applications in a controlled environment with original backups preserved."><link rel="canonical" href="https://chucklagos.dev/blog/imunifyav-safe-migrations/"><meta property="og:title" content="How to Use ImunifyAV and Prepare Safe Website Migrations — Chuck Guifarro Lagos"><meta property="og:description" content="Verify ImunifyAV, update malware signatures, review scans, and restore PHP applications in a controlled environment with original backups preserved."><meta property="og:type" content="article"><meta property="og:url" content="https://chucklagos.dev/blog/imunifyav-safe-migrations/"><meta property="og:image" content="https://chucklagos.dev/img/og-image.webp"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="How to Use ImunifyAV and Prepare Safe Website Migrations — Chuck Guifarro Lagos"><meta name="twitter:description" content="Verify ImunifyAV, update malware signatures, review scans, and restore PHP applications in a controlled environment with original backups preserved."><meta name="twitter:image" content="https://chucklagos.dev/img/og-image.webp"><script>
+    try {
+      const theme = localStorage.getItem('theme');
+      if (theme === 'light' || theme === 'dark') document.documentElement.dataset.theme = theme;
+    } catch {}
+  </script><script async src="https://www.googletagmanager.com/gtag/js?id=G-7HZQN96LNZ"></script><script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){window.dataLayer.push(arguments);}
+    window.gtag = gtag;
+    gtag('js', new Date());
+    gtag('config', 'G-7HZQN96LNZ');
+  </script><link rel="stylesheet" href="/_astro/Layout.BOTAABfQ.css"></head><body><a class="skip-link" href="#main">Skip to content</a><header class="site-header"><div class="nav-wrap container"><a aria-label="Chuck Guifarro Lagos, home" class="brand" href="/">CGL<span aria-hidden="true">.</span></a><button aria-controls="site-nav" aria-expanded="false" class="nav-toggle" type="button"><span class="sr-only">Open navigation</span><span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span></button><nav aria-label="Primary navigation" class="site-nav" id="site-nav"><a href="/#about">About</a><a href="/#expertise">Expertise</a><a href="/#experience">Experience</a><a href="/#work">Work</a><a href="/#technologies">Technologies</a><a href="/#education">Education</a><a href="/#contact">Contact</a><a class="nav-blog" href="/blog/">Blog</a></nav><button aria-label="Switch color theme" class="theme-toggle" title="Switch color theme" type="button"><svg aria-hidden="true" class="theme-icon theme-icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.66 6.34l1.41-1.41"></path></svg><svg aria-hidden="true" class="theme-icon theme-icon-moon" viewBox="0 0 24 24"><path d="M20.4 15.3A8.5 8.5 0 0 1 8.7 3.6 8.5 8.5 0 1 0 20.4 15.3Z"></path></svg></button></div></header><div class="article-layout"><main class="docs-main docs-content" id="main"><div class="docs-hero"><a class="back-link" href="/blog/">← All notes</a><p class="section-index">Technical notes / Linux · Infrastructure · Security · cPanel · ImunifyAV</p><h1>How to Use ImunifyAV and Prepare Safe Website Migrations</h1><p>Verify ImunifyAV, update malware signatures, review scans, and restore PHP applications in a controlled environment with original backups preserved.</p><p>Updated <time datetime="2026-11-08T00:00:00.000Z">November 8, 2026</time></p></div><p>A malware scan is one input to a migration decision. It can identify known malicious patterns, but it cannot establish that every file, database row, credential, or runtime behavior is trustworthy.</p>
+<p>This lab describes a cautious workflow for supported Ubuntu Server 24.04 and cPanel installations. <code>weblab</code> is a fictional website account. The examples inspect and scan files; they do not describe an actual incident or authorize automatic deletion.</p>
+<h2 id="prerequisites-and-product-boundaries">Prerequisites and product boundaries</h2>
+<p>Confirm operating-system, panel, architecture, and license support against the <a href="https://docs.imunify360.com/imunifyav/">ImunifyAV requirements</a>. You need sudo, available disk space, an installed supported agent, and a protected staging environment. Do not install an additional agent over an existing Imunify360 installation.</p>
+<p>ImunifyAV focuses on malware scanning. AV+ adds licensed capabilities such as cleanup; Imunify360 provides a broader security suite, including additional traffic and runtime protections depending on platform and license. Do not assume the free scanner provides those layers. Review the <a href="https://docs.imunify360.com/">product documentation</a> for the current feature matrix.</p>
+<blockquote>
+<p>Preserve an original backup before scanning or changing settings. Confirm that automatic cleanup and integration hooks are not enabled in the product actually installed. A scan-only procedure can coexist with separate automation that changes files.</p>
+</blockquote>
+<h2 id="step-1-verify-installation-and-agent-health">Step 1: Verify installation and agent health</h2>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#79B8FF">command</span><span style="color:#79B8FF"> -v</span><span style="color:#9ECBFF"> imunify-antivirus</span></span>
+<span class="line"><span style="color:#B392F0">sudo</span><span style="color:#9ECBFF"> imunify-antivirus</span><span style="color:#9ECBFF"> version</span></span>
+<span class="line"><span style="color:#B392F0">sudo</span><span style="color:#9ECBFF"> systemctl</span><span style="color:#9ECBFF"> status</span><span style="color:#9ECBFF"> imunify-antivirus</span><span style="color:#79B8FF"> --no-pager</span></span>
+<span class="line"><span style="color:#B392F0">sudo</span><span style="color:#9ECBFF"> journalctl</span><span style="color:#79B8FF"> -u</span><span style="color:#9ECBFF"> imunify-antivirus</span><span style="color:#79B8FF"> --since</span><span style="color:#9ECBFF"> '-30 minutes'</span><span style="color:#79B8FF"> --no-pager</span></span></code></pre>
+<p>The commands locate the CLI, report its version, and inspect service state and recent diagnostics. On a typical ImunifyAV installation the service is <code>imunify-antivirus</code>; verify actual installed units if the name differs. An installed CLI does not prove the agent is healthy or registered correctly.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">dpkg-query</span><span style="color:#79B8FF"> -W</span><span style="color:#9ECBFF"> imunify-antivirus</span></span>
+<span class="line"><span style="color:#B392F0">systemctl</span><span style="color:#9ECBFF"> list-unit-files</span><span style="color:#9ECBFF"> 'imunify*'</span></span>
+<span class="line"><span style="color:#B392F0">sudo</span><span style="color:#9ECBFF"> imunify-antivirus</span><span style="color:#79B8FF"> --help</span></span></code></pre>
+<p>If the package is missing or the agent fails, stop and consult the vendor’s installation workflow for the exact panel and OS. Do not execute an installer copied from an unrelated distribution. Imunify360 uses a different agent CLI; do not substitute commands blindly.</p>
+<h2 id="step-2-update-software-and-malware-signatures">Step 2: Update software and malware signatures</h2>
+<p>For an already installed APT package from the verified vendor repository:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">sudo</span><span style="color:#9ECBFF"> apt</span><span style="color:#9ECBFF"> update</span></span>
+<span class="line"><span style="color:#B392F0">apt-cache</span><span style="color:#9ECBFF"> policy</span><span style="color:#9ECBFF"> imunify-antivirus</span></span>
+<span class="line"><span style="color:#B392F0">sudo</span><span style="color:#9ECBFF"> apt-get</span><span style="color:#9ECBFF"> install</span><span style="color:#79B8FF"> --only-upgrade</span><span style="color:#9ECBFF"> imunify-antivirus</span></span>
+<span class="line"><span style="color:#B392F0">sudo</span><span style="color:#9ECBFF"> imunify-antivirus</span><span style="color:#9ECBFF"> update</span><span style="color:#9ECBFF"> sign</span></span></code></pre>
+<p>Review the candidate package and repository origin first. Package updates and signature updates are separate operations; inspect errors from both. Confirm service health again after an upgrade. Do not enable a beta repository or force a rollout simply because another server has a newer release. See <a href="https://docs.imunify360.com/imunifyav/#update-instructions">ImunifyAV update instructions</a>.</p>
+<h2 id="step-3-start-a-scoped-scan-and-query-results">Step 3: Start a scoped scan and query results</h2>
+<p>First inspect the installed syntax:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">sudo</span><span style="color:#9ECBFF"> imunify-antivirus</span><span style="color:#9ECBFF"> malware</span><span style="color:#9ECBFF"> on-demand</span><span style="color:#79B8FF"> --help</span></span>
+<span class="line"><span style="color:#B392F0">sudo</span><span style="color:#9ECBFF"> imunify-antivirus</span><span style="color:#9ECBFF"> malware</span><span style="color:#9ECBFF"> malicious</span><span style="color:#9ECBFF"> list</span><span style="color:#79B8FF"> --help</span></span></code></pre>
+<p>Then scan a controlled account path:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">sudo</span><span style="color:#9ECBFF"> imunify-antivirus</span><span style="color:#9ECBFF"> malware</span><span style="color:#9ECBFF"> on-demand</span><span style="color:#9ECBFF"> start</span><span style="color:#79B8FF"> --path</span><span style="color:#9ECBFF"> /home/weblab/public_html/</span></span>
+<span class="line"><span style="color:#B392F0">sudo</span><span style="color:#9ECBFF"> imunify-antivirus</span><span style="color:#9ECBFF"> malware</span><span style="color:#9ECBFF"> on-demand</span><span style="color:#9ECBFF"> status</span></span>
+<span class="line"><span style="color:#B392F0">sudo</span><span style="color:#9ECBFF"> imunify-antivirus</span><span style="color:#9ECBFF"> malware</span><span style="color:#9ECBFF"> on-demand</span><span style="color:#9ECBFF"> list</span></span>
+<span class="line"><span style="color:#B392F0">sudo</span><span style="color:#9ECBFF"> imunify-antivirus</span><span style="color:#9ECBFF"> malware</span><span style="color:#9ECBFF"> malicious</span><span style="color:#9ECBFF"> list</span><span style="color:#79B8FF"> --user</span><span style="color:#9ECBFF"> weblab</span><span style="color:#79B8FF"> --limit</span><span style="color:#79B8FF"> 500</span></span></code></pre>
+<p>The commands request a scan, inspect its state and history, and list detections for the account. The <a href="https://docs.imunify360.com/imunifyav/cli/">official CLI reference</a> documents these commands and optional resource-intensity controls. Use installed help if your release differs.</p>
+<p>A successful start response is not a completed scan. Record the scan ID, scope, completion state, errors, exclusions, and signature-update result. More than 500 results require the pagination supported by your version. Inspect skipped files and resource limits rather than assuming an empty result covers the whole account.</p>
+<p>Schedule large scans outside busy hours and measure disk/CPU impact. Scanning only <code>public_html</code> omits files elsewhere in the account and does not validate database content.</p>
+<h2 id="step-4-review-detections-without-destructive-cleanup">Step 4: Review detections without destructive cleanup</h2>
+<p>For each result, record its path, hash, classification, scan ID, and status in a restricted review log. Compare it with a clean upstream release or a trusted source-control revision. Inspect suspicious code as text in an isolated environment; do not execute it or open a suspected PHP file through the web server.</p>
+<p>A detection may represent malicious code, a dual-use administration tool, or a false positive. Preserve the original before deciding to replace or remove anything. Avoid broad ignore rules. If a vendor submission is necessary, first review whether the file contains credentials or personal data; do not upload private content without authorization.</p>
+<p>Automatic deletion can destroy application functionality and useful evidence. Availability of cleanup, quarantine, and restore actions changes by edition and version; this workflow intentionally uses no cleanup command.</p>
+<h2 id="step-5-preserve-original-files-and-database-exports">Step 5: Preserve original files and database exports</h2>
+<p>Prefer a complete cPanel account backup through its supported backup tools, with a tested restoration procedure. Store an encrypted copy outside the source VPS with restricted access. A filesystem archive alone does not capture databases, panel metadata, mail configuration, or changing files consistently.</p>
+<p>For a supplemental snapshot of a <strong>quiesced lab directory</strong>, open a root shell and run:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#79B8FF">umask</span><span style="color:#79B8FF"> 077</span></span>
+<span class="line"><span style="color:#E1E4E8">migration_backup</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">$(</span><span style="color:#B392F0">mktemp</span><span style="color:#79B8FF"> -d</span><span style="color:#9ECBFF"> /root/migration-original.XXXXXX</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#B392F0">tar</span><span style="color:#79B8FF"> --acls</span><span style="color:#79B8FF"> --xattrs</span><span style="color:#79B8FF"> --numeric-owner</span><span style="color:#79B8FF"> -cpf</span><span style="color:#9ECBFF"> "</span><span style="color:#E1E4E8">$migration_backup</span><span style="color:#9ECBFF">/weblab-public-html.tar"</span><span style="color:#79B8FF"> -C</span><span style="color:#9ECBFF"> /home/weblab</span><span style="color:#9ECBFF"> public_html</span></span>
+<span class="line"><span style="color:#B392F0">sha256sum</span><span style="color:#9ECBFF"> "</span><span style="color:#E1E4E8">$migration_backup</span><span style="color:#9ECBFF">/weblab-public-html.tar"</span><span style="color:#F97583"> &gt;</span><span style="color:#9ECBFF"> "</span><span style="color:#E1E4E8">$migration_backup</span><span style="color:#9ECBFF">/SHA256SUMS"</span></span>
+<span class="line"><span style="color:#B392F0">tar</span><span style="color:#79B8FF"> -tf</span><span style="color:#9ECBFF"> "</span><span style="color:#E1E4E8">$migration_backup</span><span style="color:#9ECBFF">/weblab-public-html.tar"</span><span style="color:#F97583"> |</span><span style="color:#B392F0"> head</span></span></code></pre>
+<p><code>tar</code> stores the selected files and metadata without deleting originals; the checksum detects later archive changes. A hash is not proof that the contents were safe when collected. Review archive warnings and verify extraction into a separate lab directory. Leave the root shell after completing the backup.</p>
+<p>Export databases using cPanel’s backup tools or the installed MySQL/MariaDB tooling with an appropriately scoped account. Avoid command-line passwords. Transaction-consistent options depend on storage engines, concurrent schema changes, and database version; plan quiescence or the correct backup strategy before calling an export consistent.</p>
+<h2 id="step-6-restore-into-a-controlled-staging-account">Step 6: Restore into a controlled staging account</h2>
+<ol>
+<li>Create a separate cPanel staging account with a supported PHP version and a dedicated database user limited to its database.</li>
+<li>Extract and inspect backup contents in a nonpublic directory. Check archive paths and symlinks before privileged extraction. Map ownership to the destination account rather than assuming source numeric IDs match.</li>
+<li>Obtain application core, dependencies, plugins, and themes from trusted releases or source control. Restore only reviewed uploads and required configuration from the original.</li>
+<li>Import the database into staging. Inspect unexpected administrators, scheduled application tasks, injected scripts, URLs, and serialized data with application-aware tools.</li>
+<li>Replace environment-specific credentials and paths. Keep secrets outside public directories where the application supports it; review <code>.env</code>, <code>.htaccess</code>, <code>.user.ini</code>, and PHP prepend/append settings.</li>
+<li>Review Unix permissions, PHP-FPM account identity, cron entries, SSH keys, and mail configuration. Limit writable paths and disable execution in upload areas through a tested server policy.</li>
+</ol>
+<p>Keep staging inaccessible to ordinary visitors and search engines with actual access controls. Prevent real email delivery, payment requests, webhooks, and scheduled tasks from firing during tests. <code>robots.txt</code> is not an access control.</p>
+<p>For database imports, account backups, and application repairs, use procedures that match the installed versions. There is no safe universal command that sanitizes every PHP application or database.</p>
+<h2 id="step-7-validate-before-switching-traffic">Step 7: Validate before switching traffic</h2>
+<p>Run a fresh scan over the restored scope, then test login, upload handling, forms, background jobs, and database writes. Review logs and compare deployed files with the trusted baseline. Verify that the staging account has no sudo and uses the intended <a href="/blog/cpanel-whm-hardening/">WHM isolation settings</a>.</p>
+<p>Prepare cutover and rollback together: document the last consistent backup, planned write freeze, DNS TTL, certificate validation, final data synchronization, and how writes will be handled if rollback becomes necessary. Preserve the original backup separately from the working restore. Monitor after cutover; do not discard the old copy immediately.</p>
+<h2 id="troubleshooting-and-limitations">Troubleshooting and limitations</h2>
+<table>
+<thead>
+<tr>
+<th>Problem</th>
+<th>Response</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Signature update fails</td>
+<td>Inspect DNS, outbound HTTPS, repository access, disk space, and agent logs before retrying.</td>
+</tr>
+<tr>
+<td>Scan remains queued or fails</td>
+<td>Review service health, resource limits, scan status, and the selected path.</td>
+</tr>
+<tr>
+<td>Results are unexpectedly empty</td>
+<td>Verify completion, exclusions, permissions, scope, and pagination.</td>
+</tr>
+<tr>
+<td>Scanner flags a required file</td>
+<td>Compare with trusted source and review safely; do not automatically delete or ignore it.</td>
+</tr>
+<tr>
+<td>Restored app fails</td>
+<td>Check PHP compatibility, extensions, database grants, paths, and ownership before changing permissions.</td>
+</tr>
+</tbody>
+</table>
+<p>No detections means only that the selected scan found nothing under its current capabilities and scope. Unknown malware, database payloads, stolen credentials, and runtime behavior may remain outside that conclusion. Combine scanning with patching, <a href="/blog/linux-auditd-critical-changes/">Auditd</a>, least privilege, and verified backups.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>A safe migration preserves the original, uses a controlled restore, verifies application behavior, and keeps rollback possible. ImunifyAV supports that review but does not replace it. Use the <a href="/blog/ubuntu-server-hardening/">hardening roadmap</a> to connect scanning with access control and monitoring.</p>
+<h2 id="official-references">Official references</h2>
+<ul>
+<li>ImunifyAV requirements, update instructions, and CLI reference are linked above.</li>
+<li><a href="https://docs.cpanel.net/whm/backup/backup-restoration/">cPanel: Backup Restoration</a>.</li>
+<li><a href="https://docs.imunify360.com/">Imunify360 documentation</a> for edition-specific controls and supported environments.</li>
+</ul>
+<p class="mt-12"><a href="/blog/">← Browse all technical notes</a></p></main><aside class="article-toc" aria-label="On this page"><strong>On this page</strong><a href="#prerequisites-and-product-boundaries">Prerequisites and product boundaries</a><a href="#step-1-verify-installation-and-agent-health">Step 1: Verify installation and agent health</a><a href="#step-2-update-software-and-malware-signatures">Step 2: Update software and malware signatures</a><a href="#step-3-start-a-scoped-scan-and-query-results">Step 3: Start a scoped scan and query results</a><a href="#step-4-review-detections-without-destructive-cleanup">Step 4: Review detections without destructive cleanup</a><a href="#step-5-preserve-original-files-and-database-exports">Step 5: Preserve original files and database exports</a><a href="#step-6-restore-into-a-controlled-staging-account">Step 6: Restore into a controlled staging account</a><a href="#step-7-validate-before-switching-traffic">Step 7: Validate before switching traffic</a><a href="#troubleshooting-and-limitations">Troubleshooting and limitations</a><a href="#conclusion">Conclusion</a><a href="#official-references">Official references</a></aside></div><footer class="site-footer"><div class="container"><p>© <span id="year">2026</span> Chuck Guifarro Lagos</p><p>Built with Astro &amp; Tailwind CSS.</p></div></footer><script src="/main.js" defer></script></body></html>

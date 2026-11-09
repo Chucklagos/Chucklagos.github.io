@@ -1,0 +1,136 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="color-scheme" content="light dark"><title>Ubuntu Server Hardening: A Practical Step-by-Step VPS Security Guide — Chuck Guifarro Lagos</title><meta name="description" content="A practical Ubuntu Server 24.04 hardening roadmap covering sudo users, SSH keys, CSF/LFD, Auditd, WHM protections, and safe website migration."><link rel="canonical" href="https://chucklagos.dev/blog/ubuntu-server-hardening/"><meta property="og:title" content="Ubuntu Server Hardening: A Practical Step-by-Step VPS Security Guide — Chuck Guifarro Lagos"><meta property="og:description" content="A practical Ubuntu Server 24.04 hardening roadmap covering sudo users, SSH keys, CSF/LFD, Auditd, WHM protections, and safe website migration."><meta property="og:type" content="article"><meta property="og:url" content="https://chucklagos.dev/blog/ubuntu-server-hardening/"><meta property="og:image" content="https://chucklagos.dev/img/og-image.webp"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Ubuntu Server Hardening: A Practical Step-by-Step VPS Security Guide — Chuck Guifarro Lagos"><meta name="twitter:description" content="A practical Ubuntu Server 24.04 hardening roadmap covering sudo users, SSH keys, CSF/LFD, Auditd, WHM protections, and safe website migration."><meta name="twitter:image" content="https://chucklagos.dev/img/og-image.webp"><script>
+    try {
+      const theme = localStorage.getItem('theme');
+      if (theme === 'light' || theme === 'dark') document.documentElement.dataset.theme = theme;
+    } catch {}
+  </script><script async src="https://www.googletagmanager.com/gtag/js?id=G-7HZQN96LNZ"></script><script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){window.dataLayer.push(arguments);}
+    window.gtag = gtag;
+    gtag('js', new Date());
+    gtag('config', 'G-7HZQN96LNZ');
+  </script><link rel="stylesheet" href="/_astro/Layout.BOTAABfQ.css"></head><body><a class="skip-link" href="#main">Skip to content</a><header class="site-header"><div class="nav-wrap container"><a aria-label="Chuck Guifarro Lagos, home" class="brand" href="/">CGL<span aria-hidden="true">.</span></a><button aria-controls="site-nav" aria-expanded="false" class="nav-toggle" type="button"><span class="sr-only">Open navigation</span><span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span></button><nav aria-label="Primary navigation" class="site-nav" id="site-nav"><a href="/#about">About</a><a href="/#expertise">Expertise</a><a href="/#experience">Experience</a><a href="/#work">Work</a><a href="/#technologies">Technologies</a><a href="/#education">Education</a><a href="/#contact">Contact</a><a class="nav-blog" href="/blog/">Blog</a></nav><button aria-label="Switch color theme" class="theme-toggle" title="Switch color theme" type="button"><svg aria-hidden="true" class="theme-icon theme-icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.66 6.34l1.41-1.41"></path></svg><svg aria-hidden="true" class="theme-icon theme-icon-moon" viewBox="0 0 24 24"><path d="M20.4 15.3A8.5 8.5 0 0 1 8.7 3.6 8.5 8.5 0 1 0 20.4 15.3Z"></path></svg></button></div></header><div class="article-layout"><main class="docs-main docs-content" id="main"><div class="docs-hero"><a class="back-link" href="/blog/">← All notes</a><p class="section-index">Technical notes / Linux · Infrastructure · Security · Ubuntu · cPanel</p><h1>Ubuntu Server Hardening: A Practical Step-by-Step VPS Security Guide</h1><p>A practical Ubuntu Server 24.04 hardening roadmap covering sudo users, SSH keys, CSF/LFD, Auditd, WHM protections, and safe website migration.</p><p>Updated <time datetime="2026-11-08T00:00:00.000Z">November 8, 2026</time></p></div><p>Hardening means reducing unnecessary exposure, limiting privileges, and making failures easier to detect and recover from. It is an ongoing administration process: applications change, accounts accumulate, and a configuration that worked last month may no longer reflect the services you operate.</p>
+<p>This series is a general laboratory based on Ubuntu Server 24.04 LTS. Some tutorials apply to a plain Ubuntu VPS; others explicitly require a supported cPanel/WHM installation. All accounts and endpoints are fictional. <code>192.0.2.10</code> is reserved for documentation, and <code>example.com</code> represents a placeholder domain. The series does not describe a real security incident.</p>
+<h2 id="prerequisites-and-scope">Prerequisites and scope</h2>
+<p>Use an isolated VPS or a representative lab clone, a trusted Linux workstation, administrative access, and the provider’s console or rescue workflow. Back up configuration and application data before changes. Check supported OS, panel, and security-tool versions against current vendor documentation.</p>
+<p>You should already have a supported base installation. This series does not install cPanel or promise that every tool is compatible with every VPS image, kernel, or architecture. For cPanel hosts, check <a href="https://docs.cpanel.net/installation-guide/system-requirements-ubuntu/">Ubuntu system requirements</a> first.</p>
+<blockquote>
+<p>Before any access restriction, keep an existing session open, verify a new administrative connection, and make sure console recovery works. Apply one layer at a time so that a failure has a small, identifiable cause.</p>
+</blockquote>
+<h2 id="defense-in-depth-give-each-layer-a-clear-job">Defense in depth: give each layer a clear job</h2>
+<p>A single tool cannot cover every failure mode. A firewall can restrict reachable services while a vulnerable allowed web application remains exposed. SSH keys can resist password guessing while a stolen private key still permits access. Local audit logs can explain changes while privileged control can threaten their integrity.</p>
+<table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>Purpose</th>
+<th>Example in this series</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Identity and privilege</td>
+<td>Limit routine authority and attribute administration</td>
+<td>Named users and sudo</td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Reduce reusable-secret exposure</td>
+<td>ED25519 SSH keys and WHM MFA</td>
+</tr>
+<tr>
+<td>Network exposure</td>
+<td>Permit required traffic and review denied access</td>
+<td>CSF with a service inventory</td>
+</tr>
+<tr>
+<td>Authentication monitoring</td>
+<td>Detect repeated login failures</td>
+<td>LFD and cPHulk</td>
+</tr>
+<tr>
+<td>Change visibility</td>
+<td>Record selected sensitive operations</td>
+<td>Linux Audit Framework</td>
+</tr>
+<tr>
+<td>Workload separation</td>
+<td>Reduce sharing between independent applications</td>
+<td>Separate cPanel accounts and PHP-FPM identities</td>
+</tr>
+<tr>
+<td>File review and recovery</td>
+<td>Support controlled restoration and investigation</td>
+<td>ImunifyAV and verified backups</td>
+</tr>
+</tbody>
+</table>
+<p>Backups and independent logs should remain available even when the VPS is unavailable. Protect the provider account and recovery material with the same care as production credentials.</p>
+<h2 id="understand-the-main-risks-of-an-internet-facing-vps">Understand the main risks of an Internet-facing VPS</h2>
+<p>Common risks include exposed administrative panels, password guessing, stale packages, vulnerable plugins, overly permissive files, shared credentials, and forgotten services. A website process with unnecessary privileges can expand the impact of an application bug. IPv6 can expose a service that was only reviewed over IPv4.</p>
+<p>Operational risks also matter: a firewall mistake can interrupt mail, an SSH snippet can lock out administrators, and logs can fill a disk. Each tutorial pairs a change with a verification and a recovery route.</p>
+<p>Start with a private baseline record:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">cat</span><span style="color:#9ECBFF"> /etc/os-release</span></span>
+<span class="line"><span style="color:#B392F0">uname</span><span style="color:#79B8FF"> -r</span></span>
+<span class="line"><span style="color:#B392F0">sudo</span><span style="color:#9ECBFF"> ss</span><span style="color:#79B8FF"> -lntup</span></span>
+<span class="line"><span style="color:#B392F0">sudo</span><span style="color:#9ECBFF"> systemctl</span><span style="color:#79B8FF"> --failed</span></span>
+<span class="line"><span style="color:#B392F0">sudo</span><span style="color:#9ECBFF"> df</span><span style="color:#79B8FF"> -h</span></span></code></pre>
+<p>These identify the OS and kernel, listeners, failed units, and disk capacity. Keep actual output private because it can reveal service details. Do not interpret an empty failed-unit list as proof of security.</p>
+<h2 id="recommended-implementation-order">Recommended implementation order</h2>
+<h3 id="1-prepare-recovery-and-update-planning">1. Prepare recovery and update planning</h3>
+<p>Test provider-console access and an application restore before changing authentication. Inventory services, maintenance dependencies, and backup destinations. Review pending Ubuntu and cPanel-managed updates using the appropriate vendor workflows. Schedule reboots when needed and verify services afterward.</p>
+<p>Patch management, TLS lifecycle, and application dependency updates remain ongoing work beyond the specific controls taught here. Do not replace panel-managed software with arbitrary distribution packages.</p>
+<h3 id="2-create-a-named-administrator">2. Create a named administrator</h3>
+<p><a href="/blog/ubuntu-admin-user/">How to Create an Administrator User on Ubuntu Server and Stop Using Root</a> covers <code>adduser</code>, supplementary groups, effective sudo policy, and fresh-session testing. This establishes a safer maintenance identity before direct root SSH access is restricted.</p>
+<h3 id="3-protect-ssh-with-keys">3. Protect SSH with keys</h3>
+<p><a href="/blog/ubuntu-ssh-ed25519/">How to Secure SSH on Ubuntu Server with ED25519 Keys</a> covers workstation key generation, passphrases, public-key installation, file permissions, configuration precedence, and safe reloads. Disable password and direct root authentication only after the key-only connection and sudo work.</p>
+<h3 id="4-match-the-firewall-to-real-services">4. Match the firewall to real services</h3>
+<p><a href="/blog/csf-lfd-ubuntu-cpanel/">How to Install and Configure CSF and LFD on Ubuntu with cPanel/WHM</a> verifies package availability, backs up rules, uses temporary testing mode, and checks new SSH and WHM connections before permanent enforcement. It also addresses IPv6, outbound dependencies, and conflicting managers.</p>
+<p>A plain Ubuntu VPS needs an appropriate supported firewall workflow of its own; <code>cpanel-csf</code> is not assumed available outside cPanel repositories. Keep provider filtering and host filtering aligned.</p>
+<h3 id="5-record-critical-changes">5. Record critical changes</h3>
+<p><a href="/blog/linux-auditd-critical-changes/">How to Monitor Critical Linux Changes with Auditd</a> adds a small persistent policy for identities, sudo, SSH, scheduled tasks, and systemd. It includes a harmless file test and checks event loss and log rotation. You can establish this layer earlier if you want audit visibility during the other changes.</p>
+<h3 id="6-harden-the-hosting-control-plane">6. Harden the hosting control plane</h3>
+<p><a href="/blog/cpanel-whm-hardening/">How to Harden cPanel and WHM with MFA and Account Isolation</a> covers MFA enrollment, cPHulk, tested notifications, account separation, shell access, and PHP-FPM identity checks. SSH policy and panel authentication must both be reviewed.</p>
+<h3 id="7-review-applications-before-migration">7. Review applications before migration</h3>
+<p><a href="/blog/imunifyav-safe-migrations/">How to Use ImunifyAV and Prepare Safe Website Migrations</a> explains scoped scanning, signature updates, detection review, original backups, and staging restores. A scan without detections does not establish the absence of threats.</p>
+<h2 id="verify-behavior-after-every-layer">Verify behavior after every layer</h2>
+<p>Use fresh connections rather than relying on sessions established before the change. Verify allowed administration and required website, DNS, mail, and backup behavior. Test both IP families where enabled. Keep a private record of the configuration changed, intended effect, actual result, and rollback procedure.</p>
+<p>The commands and expected outcomes in this series are instructional examples. They have not been executed against your VPS. Use the installed command help and version-matched documentation when a package, menu, or option differs.</p>
+<h2 id="common-problems-and-safe-responses">Common problems and safe responses</h2>
+<ul>
+<li><strong>Remote access fails:</strong> use the known-good session or provider console. Inspect SSH, local filtering, provider filtering, and authentication blocks separately.</li>
+<li><strong>A package has no candidate:</strong> stop and verify supported versions and repository origin. Do not substitute an unverified installer.</li>
+<li><strong>A service stops after tightening rules:</strong> compare the failed request with the service inventory, including outbound and IPv6 requirements.</li>
+<li><strong>Logs or alerts are missing:</strong> verify collection and delivery end to end, then inspect storage, queues, and exclusions.</li>
+<li><strong>A setting does not persist:</strong> identify the generating tool, such as cloud-init or cPanel, and use its supported configuration mechanism.</li>
+</ul>
+<h2 id="final-security-checklist">Final security checklist</h2>
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" disabled> Provider account MFA and console/rescue access are tested.</li>
+<li class="task-list-item"><input type="checkbox" disabled> Original configuration and application backups exist off-host; restoration has been tested.</li>
+<li class="task-list-item"><input type="checkbox" disabled> Named administrative accounts have verified sudo access and clear owners.</li>
+<li class="task-list-item"><input type="checkbox" disabled> Fresh SSH key authentication works; private keys are encrypted and recoverable.</li>
+<li class="task-list-item"><input type="checkbox" disabled> Effective SSH policy rejects unwanted password and direct root logins.</li>
+<li class="task-list-item"><input type="checkbox" disabled> Required services and outbound dependencies are documented.</li>
+<li class="task-list-item"><input type="checkbox" disabled> One coordinated host-firewall policy covers IPv4 and IPv6 where used.</li>
+<li class="task-list-item"><input type="checkbox" disabled> CSF is out of testing mode and LFD is healthy on the applicable cPanel lab.</li>
+<li class="task-list-item"><input type="checkbox" disabled> WHM MFA, cPHulk, and external notification delivery are verified.</li>
+<li class="task-list-item"><input type="checkbox" disabled> Website accounts have appropriate shell access and no unintended sudo.</li>
+<li class="task-list-item"><input type="checkbox" disabled> PHP execution and writable paths match the intended account boundaries.</li>
+<li class="task-list-item"><input type="checkbox" disabled> Audit rules are loaded; event loss, rotation, disk capacity, and off-host retention are reviewed.</li>
+<li class="task-list-item"><input type="checkbox" disabled> Supported OS, panel, PHP, and application updates have an owner and schedule.</li>
+<li class="task-list-item"><input type="checkbox" disabled> Scans have a recorded scope and completion result; suspicious files are reviewed before modification.</li>
+<li class="task-list-item"><input type="checkbox" disabled> Every access-changing control has a documented, tested recovery procedure.</li>
+</ul>
+<h2 id="conclusion">Conclusion</h2>
+<p>A useful hardening baseline is understandable and recoverable. Work through the tutorials in small changes, verify the resulting behavior, and revisit the checklist after upgrades or service changes. Security improves through maintained controls and tested recovery, rather than a one-time configuration dump.</p>
+<h2 id="official-references">Official references</h2>
+<ul>
+<li><a href="https://ubuntu.com/server/docs/how-to/security/">Ubuntu Server security documentation</a>.</li>
+<li><a href="https://docs.cpanel.net/">cPanel and WHM documentation</a>.</li>
+<li><a href="https://www.openssh.com/manual.html">OpenSSH manuals</a>.</li>
+<li><a href="https://github.com/linux-audit/audit-userspace">Linux Audit userspace project</a>.</li>
+<li><a href="https://docs.imunify360.com/">Imunify documentation</a>.</li>
+</ul>
+<p>Each tutorial links to the specific official documentation used for its procedures.</p>
+<p class="mt-12"><a href="/blog/">← Browse all technical notes</a></p></main><aside class="article-toc" aria-label="On this page"><strong>On this page</strong><a href="#prerequisites-and-scope">Prerequisites and scope</a><a href="#defense-in-depth-give-each-layer-a-clear-job">Defense in depth: give each layer a clear job</a><a href="#understand-the-main-risks-of-an-internet-facing-vps">Understand the main risks of an Internet-facing VPS</a><a href="#recommended-implementation-order">Recommended implementation order</a><a href="#verify-behavior-after-every-layer">Verify behavior after every layer</a><a href="#common-problems-and-safe-responses">Common problems and safe responses</a><a href="#final-security-checklist">Final security checklist</a><a href="#conclusion">Conclusion</a><a href="#official-references">Official references</a></aside></div><footer class="site-footer"><div class="container"><p>© <span id="year">2026</span> Chuck Guifarro Lagos</p><p>Built with Astro &amp; Tailwind CSS.</p></div></footer><script src="/main.js" defer></script></body></html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="color-scheme" content="light dark"><title>How to Install and Configure CSF and LFD on Ubuntu with cPanel/WHM — Chuck Guifarro Lagos</title><meta name="description" content="Install cpanel-csf from verified repositories, test service-specific firewall rules, configure LFD alerts, and plan targeted recovery."><link rel="canonical" href="https://chucklagos.dev/blog/csf-lfd-ubuntu-cpanel/"><meta property="og:title" content="How to Install and Configure CSF and LFD on Ubuntu with cPanel/WHM — Chuck Guifarro Lagos"><meta property="og:description" content="Install cpanel-csf from verified repositories, test service-specific firewall rules, configure LFD alerts, and plan targeted recovery."><meta property="og:type" content="article"><meta property="og:url" content="https://chucklagos.dev/blog/csf-lfd-ubuntu-cpanel/"><meta property="og:image" content="https://chucklagos.dev/img/og-image.webp"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="How to Install and Configure CSF and LFD on Ubuntu with cPanel/WHM — Chuck Guifarro Lagos"><meta name="twitter:description" content="Install cpanel-csf from verified repositories, test service-specific firewall rules, configure LFD alerts, and plan targeted recovery."><meta name="twitter:image" content="https://chucklagos.dev/img/og-image.webp"><script>
+    try {
+      const theme = localStorage.getItem('theme');
+      if (theme === 'light' || theme === 'dark') document.documentElement.dataset.theme = theme;
+    } catch {}
+  </script><script async src="https://www.googletagmanager.com/gtag/js?id=G-7HZQN96LNZ"></script><script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){window.dataLayer.push(arguments);}
+    window.gtag = gtag;
+    gtag('js', new Date());
+    gtag('config', 'G-7HZQN96LNZ');
+  </script><link rel="stylesheet" href="/_astro/Layout.BOTAABfQ.css"></head><body><a class="skip-link" href="#main">Skip to content</a><header class="site-header"><div class="nav-wrap container"><a aria-label="Chuck Guifarro Lagos, home" class="brand" href="/">CGL<span aria-hidden="true">.</span></a><button aria-controls="site-nav" aria-expanded="false" class="nav-toggle" type="button"><span class="sr-only">Open navigation</span><span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span></button><nav aria-label="Primary navigation" class="site-nav" id="site-nav"><a href="/#about">About</a><a href="/#expertise">Expertise</a><a href="/#experience">Experience</a><a href="/#work">Work</a><a href="/#technologies">Technologies</a><a href="/#education">Education</a><a href="/#contact">Contact</a><a class="nav-blog" href="/blog/">Blog</a></nav><button aria-label="Switch color theme" class="theme-toggle" title="Switch color theme" type="button"><svg aria-hidden="true" class="theme-icon theme-icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.66 6.34l1.41-1.41"></path></svg><svg aria-hidden="true" class="theme-icon theme-icon-moon" viewBox="0 0 24 24"><path d="M20.4 15.3A8.5 8.5 0 0 1 8.7 3.6 8.5 8.5 0 1 0 20.4 15.3Z"></path></svg></button></div></header><div class="article-layout"><main class="docs-main docs-content" id="main"><div class="docs-hero"><a class="back-link" href="/blog/">← All notes</a><p class="section-index">Technical notes / Linux · Infrastructure · Security · Ubuntu · cPanel · CSF</p><h1>How to Install and Configure CSF and LFD on Ubuntu with cPanel/WHM</h1><p>Install cpanel-csf from verified repositories, test service-specific firewall rules, configure LFD alerts, and plan targeted recovery.</p><p>Updated <time datetime="2026-11-08T00:00:00.000Z">November 8, 2026</time></p></div><p>A hosting server needs a firewall policy that matches its actual services. CSF manages packet-filtering rules; its Login Failure Daemon (LFD) monitors configured logs and can respond to repeated authentication failures. Neither replaces application patching or malware scanning.</p>
+<p>This lab covers Ubuntu Server 24.04 with an already supported cPanel/WHM installation. The current cPanel-maintained CSF package is <code>cpanel-csf</code>; availability depends on the installed cPanel version and configured repositories. Check the <a href="https://docs.cpanel.net/installation-guide/system-requirements-ubuntu/">Ubuntu requirements</a> and <a href="https://docs.cpanel.net/knowledge-base/third-party/how-to-install-csf/">official CSF installation procedure</a> before proceeding.</p>
+<h2 id="prerequisites-and-maintenance-window">Prerequisites and maintenance window</h2>
+<p>You need a tested <a href="/blog/ubuntu-admin-user/">sudo administrator and console</a>, working <a href="/blog/ubuntu-ssh-ed25519/">SSH keys</a>, a configuration backup, and an inventory of hosting services. Use a lab clone first if another firewall already manages the host.</p>
+<blockquote>
+<p>Keep the provider console open. Installing a firewall package can change filtering before your final configuration. A surviving SSH session does not prove that new connections will work.</p>
+</blockquote>
+<p>CSF is a firewall manager. LFD adds log-driven detection. cPHulk protects supported authentication services. ImunifyAV scans files. Their responsibilities overlap only partially.</p>
+<h2 id="step-1-inventory-listeners-and-firewall-managers">Step 1: Inventory listeners and firewall managers</h2>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">sudo</span><span style="color:#9ECBFF"> ss</span><span style="color:#79B8FF"> -lntup</span></span>
+<span class="line"><span style="color:#B392F0">sudo</span><span style="color:#9ECBFF"> systemctl</span><span style="color:#9ECBFF"> is-active</span><span style="color:#9ECBFF"> ufw</span><span style="color:#9ECBFF"> firewalld</span><span style="color:#9ECBFF"> nftables</span></span>
+<span class="line"><span style="color:#B392F0">sudo</span><span style="color:#9ECBFF"> iptables</span><span style="color:#79B8FF"> --version</span></span>
+<span class="line"><span style="color:#B392F0">sudo</span><span style="color:#9ECBFF"> ip6tables</span><span style="color:#79B8FF"> --version</span></span>
+<span class="line"><span style="color:#B392F0">sudo</span><span style="color:#9ECBFF"> update-alternatives</span><span style="color:#79B8FF"> --display</span><span style="color:#9ECBFF"> iptables</span></span>
+<span class="line"><span style="color:#B392F0">sudo</span><span style="color:#9ECBFF"> nft</span><span style="color:#9ECBFF"> list</span><span style="color:#9ECBFF"> ruleset</span></span></code></pre>
+<p><code>ss</code> shows listening sockets and processes. Service checks can legitimately return inactive or not found; that is not evidence that no filtering exists. Inspect provider security groups, persistent-rule loaders, container networking, and any Imunify360 firewall integration as well.</p>
+<p><code>iptables-nft</code> uses the iptables command interface with the nf_tables kernel backend; <code>iptables-legacy</code> uses the older backend. Native <code>nft</code> rules and iptables-nft rules can coexist in the same framework, but independent managers may overwrite rules or create unexpected ordering. Legacy rules can form a separate filtering path. <strong>Do not switch alternatives as a troubleshooting shortcut.</strong></p>
+<p>For background, see <a href="https://manpages.ubuntu.com/manpages/noble/man8/iptables.8.html">Ubuntu’s iptables manual</a> and the <a href="https://wiki.nftables.org/wiki-nftables/index.php/Main_Page">nftables project documentation</a>.</p>
+<p>cPanel documents a conflict with firewalld. Do not run CSF alongside firewalld or another independently managed host firewall. If a conflicting manager is present, stop here and prepare a console-backed migration that translates its rules and preserves protection. This tutorial does not prescribe disabling or uninstalling the existing firewall remotely.</p>
+<h2 id="step-2-back-up-the-existing-policy">Step 2: Back up the existing policy</h2>
+<p>In a root shell opened with <code>sudo -i</code>:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#79B8FF">umask</span><span style="color:#79B8FF"> 077</span></span>
+<span class="line"><span style="color:#E1E4E8">firewall_backup</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">$(</span><span style="color:#B392F0">mktemp</span><span style="color:#79B8FF"> -d</span><span style="color:#9ECBFF"> /root/firewall-before-csf.XXXXXX</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#B392F0">iptables-save</span><span style="color:#F97583"> &gt;</span><span style="color:#9ECBFF"> "</span><span style="color:#E1E4E8">$firewall_backup</span><span style="color:#9ECBFF">/iptables.v4"</span></span>
+<span class="line"><span style="color:#B392F0">ip6tables-save</span><span style="color:#F97583"> &gt;</span><span style="color:#9ECBFF"> "</span><span style="color:#E1E4E8">$firewall_backup</span><span style="color:#9ECBFF">/iptables.v6"</span></span>
+<span class="line"><span style="color:#B392F0">nft</span><span style="color:#9ECBFF"> list</span><span style="color:#9ECBFF"> ruleset</span><span style="color:#F97583"> &gt;</span><span style="color:#9ECBFF"> "</span><span style="color:#E1E4E8">$firewall_backup</span><span style="color:#9ECBFF">/nftables.txt"</span></span>
+<span class="line"><span style="color:#B392F0">cp</span><span style="color:#79B8FF"> -a</span><span style="color:#9ECBFF"> /etc/ssh</span><span style="color:#9ECBFF"> "</span><span style="color:#E1E4E8">$firewall_backup</span><span style="color:#9ECBFF">/ssh"</span></span></code></pre>
+<p>These export the selected iptables backends and the nftables ruleset into a unique protected directory. Check each command’s exit status and files before continuing. If both legacy and nft variants contain rules, export both with their explicit <code>*-save</code> commands where installed. Copy the active manager’s configuration separately, and back up <code>/etc/csf/</code> if CSF already exists.</p>
+<p>Record provider firewall rules outside the VPS. Exit the root shell when finished. These exports are recovery evidence, not a universal restore script: blindly restoring a snapshot can conflict with later container, panel, or dynamic firewall state.</p>
+<h2 id="step-3-verify-the-repository-package-before-installing">Step 3: Verify the repository package before installing</h2>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">sudo</span><span style="color:#9ECBFF"> apt</span><span style="color:#9ECBFF"> update</span></span>
+<span class="line"><span style="color:#B392F0">apt-cache</span><span style="color:#9ECBFF"> policy</span><span style="color:#9ECBFF"> cpanel-csf</span></span>
+<span class="line"><span style="color:#B392F0">apt-cache</span><span style="color:#9ECBFF"> show</span><span style="color:#9ECBFF"> cpanel-csf</span></span>
+<span class="line"><span style="color:#B392F0">sudo</span><span style="color:#9ECBFF"> apt-get</span><span style="color:#79B8FF"> --simulate</span><span style="color:#9ECBFF"> install</span><span style="color:#9ECBFF"> cpanel-csf</span></span></code></pre>
+<p>Confirm a candidate version, the intended official cPanel repository origin, and a reasonable dependency plan. If no candidate exists, do not add a random repository or use an old download script. Check the installed cPanel release and the current vendor instructions first.</p>
+<p>Only after those checks:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">sudo</span><span style="color:#9ECBFF"> apt</span><span style="color:#9ECBFF"> install</span><span style="color:#9ECBFF"> cpanel-csf</span></span>
+<span class="line"><span style="color:#B392F0">sudo</span><span style="color:#9ECBFF"> csf</span><span style="color:#79B8FF"> -v</span></span>
+<span class="line"><span style="color:#B392F0">sudo</span><span style="color:#9ECBFF"> csf</span><span style="color:#79B8FF"> --help</span></span>
+<span class="line"><span style="color:#B392F0">sudo</span><span style="color:#9ECBFF"> perl</span><span style="color:#9ECBFF"> /usr/local/csf/bin/csftest.pl</span></span></code></pre>
+<p>The test script checks relevant kernel/iptables capabilities; it does not certify your port policy. Confirm the script’s packaged path if it differs. Use WHM → Plugins → ConfigServer Security &amp; Firewall to inspect the installation. Keep the installed <code>/etc/csf/csf.conf</code> comments as the version-specific reference.</p>
+<h2 id="step-4-review-testing-and-port-policy">Step 4: Review TESTING and port policy</h2>
+<p>Back up <code>/etc/csf/</code> before edits. In <code>/etc/csf/csf.conf</code>, confirm:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="ini"><code><span class="line"><span style="color:#F97583">TESTING</span><span style="color:#E1E4E8"> = </span><span style="color:#9ECBFF">"1"</span></span></code></pre>
+<p>Testing mode schedules periodic rule clearing to reduce lockout risk; inspect <code>TESTING_INTERVAL</code> and its scheduled mechanism on your version. It temporarily weakens enforcement and is not a production operating mode or a substitute for console access.</p>
+<p>Do not copy a complete port list from another server. Build a service matrix:</p>
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th>Typical port/protocol</th>
+<th>Decision</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SSH</td>
+<td>TCP 22, or your configured port</td>
+<td>Preserve new administrator connections.</td>
+</tr>
+<tr>
+<td>WHM over TLS</td>
+<td>TCP 2087</td>
+<td>Confirm access from the administration network.</td>
+</tr>
+<tr>
+<td>Websites</td>
+<td>TCP 80 and 443</td>
+<td>Permit only if hosting HTTP/HTTPS.</td>
+</tr>
+<tr>
+<td>cPanel and Webmail over TLS</td>
+<td>TCP 2083 and 2096</td>
+<td>Include when users need these interfaces.</td>
+</tr>
+<tr>
+<td>Authoritative DNS</td>
+<td>TCP and UDP 53</td>
+<td>Needed inbound only when serving DNS.</td>
+</tr>
+<tr>
+<td>Mail and FTP</td>
+<td>Depends on enabled roles</td>
+<td>Inventory submission, delivery, retrieval, and passive FTP ranges.</td>
+</tr>
+</tbody>
+</table>
+<p>For the full dependency list consult <a href="https://docs.cpanel.net/knowledge-base/general-systems-administration/how-to-configure-your-firewall-for-cpanel-services/">cPanel’s firewall requirements</a>. Outbound DNS, HTTPS updates, mail delivery, backups, license checks, monitoring, and time synchronization also need consideration.</p>
+<p>Example <strong>only for a reduced lab with SSH, websites, and WHM</strong>, not a complete cPanel host:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="ini"><code><span class="line"><span style="color:#F97583">TCP_IN</span><span style="color:#E1E4E8"> = </span><span style="color:#9ECBFF">"22,80,443,2087"</span></span>
+<span class="line"><span style="color:#F97583">TCP6_IN</span><span style="color:#E1E4E8"> = </span><span style="color:#9ECBFF">"22,80,443,2087"</span></span>
+<span class="line"><span style="color:#F97583">UDP_IN</span><span style="color:#E1E4E8"> = </span><span style="color:#9ECBFF">""</span></span>
+<span class="line"><span style="color:#F97583">UDP6_IN</span><span style="color:#E1E4E8"> = </span><span style="color:#9ECBFF">""</span></span></code></pre>
+<p>An empty inbound UDP list is inappropriate for an authoritative DNS server. IPv6 needs its own verified policy and ICMPv6 behavior; do not assume IPv4 settings protect IPv6. Review CSF’s <code>IPV6</code> setting and actual IPv6 connectivity.</p>
+<p>Set <code>TCP_OUT</code>, <code>UDP_OUT</code>, <code>TCP6_OUT</code>, and <code>UDP6_OUT</code> from the outbound inventory. For example, DNS lookups normally need UDP and TCP 53; a server using NTP may need UDP 123. Opening TCP 443 alone does not cover these. Validate backup endpoints, nonstandard ports, and FTP behavior before restricting outbound traffic.</p>
+<h2 id="step-5-apply-a-test-and-verify-fresh-connections">Step 5: Apply a test and verify fresh connections</h2>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">sudo</span><span style="color:#9ECBFF"> csf</span><span style="color:#79B8FF"> -r</span></span>
+<span class="line"><span style="color:#B392F0">sudo</span><span style="color:#9ECBFF"> csf</span><span style="color:#79B8FF"> -l</span></span>
+<span class="line"><span style="color:#B392F0">sudo</span><span style="color:#9ECBFF"> csf</span><span style="color:#79B8FF"> -l6</span></span></code></pre>
+<p>These reload and inspect IPv4/IPv6 rules; consult <code>csf --help</code> if the installed release differs. Immediately test a new SSH connection and a new WHM session at <code>https://192.0.2.10:2087</code> using your actual lab endpoint and valid certificate hostname. Do not bypass certificate verification. Test while rules are active, before the testing timer clears them.</p>
+<p>Verify websites, DNS, mail, backups, updates, and IPv6 where used. Test denied access only against your own lab and avoid repeated authentication failures. A port appearing in <code>TCP_IN</code> does not prove provider-level access or correct service binding.</p>
+<h2 id="step-6-enable-permanent-enforcement-and-lfd">Step 6: Enable permanent enforcement and LFD</h2>
+<p>Only when fresh SSH and WHM connections work, set:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="ini"><code><span class="line"><span style="color:#F97583">TESTING</span><span style="color:#E1E4E8"> = </span><span style="color:#9ECBFF">"0"</span></span>
+<span class="line"><span style="color:#F97583">LF_DAEMON</span><span style="color:#E1E4E8"> = </span><span style="color:#9ECBFF">"1"</span></span>
+<span class="line"><span style="color:#F97583">LF_ALERT_TO</span><span style="color:#E1E4E8"> = </span><span style="color:#9ECBFF">"security@example.com"</span></span></code></pre>
+<p>The recipient is a documentation placeholder. Replace it with a monitored mailbox, preferably outside this host. Alert delivery also depends on enabled alert types and a working mail transport.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">sudo</span><span style="color:#9ECBFF"> csf</span><span style="color:#79B8FF"> -r</span></span>
+<span class="line"><span style="color:#B392F0">sudo</span><span style="color:#9ECBFF"> systemctl</span><span style="color:#9ECBFF"> restart</span><span style="color:#9ECBFF"> lfd</span></span>
+<span class="line"><span style="color:#B392F0">sudo</span><span style="color:#9ECBFF"> systemctl</span><span style="color:#9ECBFF"> status</span><span style="color:#9ECBFF"> lfd</span><span style="color:#79B8FF"> --no-pager</span></span>
+<span class="line"><span style="color:#B392F0">sudo</span><span style="color:#9ECBFF"> journalctl</span><span style="color:#79B8FF"> -u</span><span style="color:#9ECBFF"> lfd</span><span style="color:#79B8FF"> --since</span><span style="color:#9ECBFF"> '-10 minutes'</span><span style="color:#79B8FF"> --no-pager</span></span>
+<span class="line"><span style="color:#B392F0">sudo</span><span style="color:#9ECBFF"> tail</span><span style="color:#79B8FF"> -n</span><span style="color:#79B8FF"> 50</span><span style="color:#9ECBFF"> /var/log/lfd.log</span></span></code></pre>
+<p>Review the installed log location if it differs. LFD deliberately refuses to run with <code>TESTING</code> enabled, as shown in the <a href="https://github.com/cpanel/cpanel-csf/blob/main/lfd.pl">maintained LFD source</a>. After leaving testing mode, a failure needs investigation: inspect <code>LF_DAEMON</code>, <code>/etc/csf/csf.error</code>, log paths, dependencies, and backend compatibility.</p>
+<p>Send an end-to-end test through the panel’s available mail-testing facility or an already configured mail client. Verify receipt and transport logs; an address in <code>LF_ALERT_TO</code> alone is insufficient. Tune login thresholds against legitimate behavior, especially shared NAT users and automation.</p>
+<h2 id="syslog-integrity-and-restrict_syslog">Syslog integrity and RESTRICT_SYSLOG</h2>
+<p>LFD decisions can depend on messages written to syslog. Untrusted local processes may inject misleading messages, so access to the logging socket and trusted logging pipeline matters.</p>
+<p>Review <code>RESTRICT_SYSLOG</code>, <code>RESTRICT_SYSLOG_GROUP</code>, and related comments in the <strong>installed</strong> CSF configuration. Modes and group handling need version-specific review; do not copy a numeric setting without checking its meaning. Test mail, database, panel, and application logging after a change. Do not add website users to a privileged logging group simply to suppress errors. Restricting syslog access is separate from preventing privileged alteration of stored logs.</p>
+<h2 id="targeted-recovery-and-troubleshooting">Targeted recovery and troubleshooting</h2>
+<p>If a change blocks access, use the provider console. Inspect <code>csf -g</code> with your actual source address, the relevant allow/deny files, and temporary blocks. For example, with documentation addresses:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">sudo</span><span style="color:#9ECBFF"> csf</span><span style="color:#79B8FF"> -g</span><span style="color:#79B8FF"> 192.0.2.20</span></span></code></pre>
+<p>Use the installed <code>csf --help</code> to choose the specific permanent or temporary unblock command. Remove only a confirmed erroneous block; then correct the policy or restore the known-good <code>/etc/csf/</code> backup and reload. A missing SSH port requires fixing the port configuration, not merely removing an IP block. Check cPHulk and provider rules separately.</p>
+<p>Do not use blanket <code>iptables -F</code>, <code>nft flush ruleset</code>, or firewall shutdown as a standard recovery procedure. If the rules look correct but services fail, inspect listener addresses, IPv6, outbound dependencies, and conflicting managers.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>A useful firewall policy is one you can explain, test, monitor, and recover. Retest fresh administrative connections after every change, keep LFD out of testing mode for normal operation, and review alerts regularly. Add <a href="/blog/cpanel-whm-hardening/">WHM account protections</a> and <a href="/blog/linux-auditd-critical-changes/">Auditd</a>, or return to the <a href="/blog/ubuntu-server-hardening/">roadmap</a>.</p>
+<h2 id="official-references">Official references</h2>
+<p>The cPanel installation, system requirements, service ports, Ubuntu iptables, nftables, and maintained LFD references are linked at their corresponding steps. For version-dependent CSF options, consult the comments and documentation shipped with the verified <code>cpanel-csf</code> package.</p>
+<p class="mt-12"><a href="/blog/">← Browse all technical notes</a></p></main><aside class="article-toc" aria-label="On this page"><strong>On this page</strong><a href="#prerequisites-and-maintenance-window">Prerequisites and maintenance window</a><a href="#step-1-inventory-listeners-and-firewall-managers">Step 1: Inventory listeners and firewall managers</a><a href="#step-2-back-up-the-existing-policy">Step 2: Back up the existing policy</a><a href="#step-3-verify-the-repository-package-before-installing">Step 3: Verify the repository package before installing</a><a href="#step-4-review-testing-and-port-policy">Step 4: Review TESTING and port policy</a><a href="#step-5-apply-a-test-and-verify-fresh-connections">Step 5: Apply a test and verify fresh connections</a><a href="#step-6-enable-permanent-enforcement-and-lfd">Step 6: Enable permanent enforcement and LFD</a><a href="#syslog-integrity-and-restrict_syslog">Syslog integrity and RESTRICT_SYSLOG</a><a href="#targeted-recovery-and-troubleshooting">Targeted recovery and troubleshooting</a><a href="#conclusion">Conclusion</a><a href="#official-references">Official references</a></aside></div><footer class="site-footer"><div class="container"><p>© <span id="year">2026</span> Chuck Guifarro Lagos</p><p>Built with Astro &amp; Tailwind CSS.</p></div></footer><script src="/main.js" defer></script></body></html>

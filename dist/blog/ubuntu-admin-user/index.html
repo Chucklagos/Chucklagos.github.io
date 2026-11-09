@@ -1,0 +1,94 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="color-scheme" content="light dark"><title>How to Create an Administrator User on Ubuntu Server and Stop Using Root — Chuck Guifarro Lagos</title><meta name="description" content="Create a named sudo administrator on Ubuntu Server 24.04, verify access, and prepare recovery before restricting root SSH logins."><link rel="canonical" href="https://chucklagos.dev/blog/ubuntu-admin-user/"><meta property="og:title" content="How to Create an Administrator User on Ubuntu Server and Stop Using Root — Chuck Guifarro Lagos"><meta property="og:description" content="Create a named sudo administrator on Ubuntu Server 24.04, verify access, and prepare recovery before restricting root SSH logins."><meta property="og:type" content="article"><meta property="og:url" content="https://chucklagos.dev/blog/ubuntu-admin-user/"><meta property="og:image" content="https://chucklagos.dev/img/og-image.webp"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="How to Create an Administrator User on Ubuntu Server and Stop Using Root — Chuck Guifarro Lagos"><meta name="twitter:description" content="Create a named sudo administrator on Ubuntu Server 24.04, verify access, and prepare recovery before restricting root SSH logins."><meta name="twitter:image" content="https://chucklagos.dev/img/og-image.webp"><script>
+    try {
+      const theme = localStorage.getItem('theme');
+      if (theme === 'light' || theme === 'dark') document.documentElement.dataset.theme = theme;
+    } catch {}
+  </script><script async src="https://www.googletagmanager.com/gtag/js?id=G-7HZQN96LNZ"></script><script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){window.dataLayer.push(arguments);}
+    window.gtag = gtag;
+    gtag('js', new Date());
+    gtag('config', 'G-7HZQN96LNZ');
+  </script><link rel="stylesheet" href="/_astro/Layout.BOTAABfQ.css"></head><body><a class="skip-link" href="#main">Skip to content</a><header class="site-header"><div class="nav-wrap container"><a aria-label="Chuck Guifarro Lagos, home" class="brand" href="/">CGL<span aria-hidden="true">.</span></a><button aria-controls="site-nav" aria-expanded="false" class="nav-toggle" type="button"><span class="sr-only">Open navigation</span><span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span></button><nav aria-label="Primary navigation" class="site-nav" id="site-nav"><a href="/#about">About</a><a href="/#expertise">Expertise</a><a href="/#experience">Experience</a><a href="/#work">Work</a><a href="/#technologies">Technologies</a><a href="/#education">Education</a><a href="/#contact">Contact</a><a class="nav-blog" href="/blog/">Blog</a></nav><button aria-label="Switch color theme" class="theme-toggle" title="Switch color theme" type="button"><svg aria-hidden="true" class="theme-icon theme-icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.66 6.34l1.41-1.41"></path></svg><svg aria-hidden="true" class="theme-icon theme-icon-moon" viewBox="0 0 24 24"><path d="M20.4 15.3A8.5 8.5 0 0 1 8.7 3.6 8.5 8.5 0 1 0 20.4 15.3Z"></path></svg></button></div></header><div class="article-layout"><main class="docs-main docs-content" id="main"><div class="docs-hero"><a class="back-link" href="/blog/">← All notes</a><p class="section-index">Technical notes / Linux · Infrastructure · Security · Ubuntu</p><h1>How to Create an Administrator User on Ubuntu Server and Stop Using Root</h1><p>Create a named sudo administrator on Ubuntu Server 24.04, verify access, and prepare recovery before restricting root SSH logins.</p><p>Updated <time datetime="2026-11-08T00:00:00.000Z">November 8, 2026</time></p></div><p>Using root for every SSH session makes routine mistakes more consequential and makes shared administrative activity harder to attribute. A named administrator lets you work without elevated privileges and request them for individual tasks.</p>
+<p>This lab uses Ubuntu Server 24.04 LTS. <code>adminlab</code> is a fictional administrator and <code>192.0.2.10</code> is a documentation address. Replace examples only in your own environment. This is a configuration exercise, not an account of a security incident.</p>
+<h2 id="prerequisites-and-recovery-plan">Prerequisites and recovery plan</h2>
+<p>You need an existing root session or a working sudo administrator, SSH access, and access to the VPS provider’s console. Confirm how the console authenticates: some providers require a local password; others offer a rescue environment with a separate workflow.</p>
+<blockquote>
+<p>Keep the original administrative session open. Do not change SSH authentication, remove users, or lock root until a separate connection with the new administrator succeeds.</p>
+</blockquote>
+<p>On a cPanel server, create this as a system administrator, separately from website accounts. The Ubuntu <code>sudo</code> group does not automatically grant a user WHM reseller privileges or a WHM login.</p>
+<h2 id="step-1-create-a-named-user">Step 1: Create a named user</h2>
+<p>From an existing sudo session:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">sudo</span><span style="color:#9ECBFF"> adduser</span><span style="color:#9ECBFF"> adminlab</span></span></code></pre>
+<p><code>adduser</code> creates the account, home directory, and primary group, and prompts interactively for a password and optional profile details. Use a unique password stored in a password manager. Do not put passwords in shell commands or scripts.</p>
+<p>If the initial session is root, omit <code>sudo</code> from the administrative commands in this article. If the name already exists, inspect it with <code>getent passwd adminlab</code> rather than reusing an unfamiliar account.</p>
+<h2 id="step-2-grant-administrative-privileges">Step 2: Grant administrative privileges</h2>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">sudo</span><span style="color:#9ECBFF"> usermod</span><span style="color:#79B8FF"> -aG</span><span style="color:#9ECBFF"> sudo</span><span style="color:#9ECBFF"> adminlab</span></span>
+<span class="line"><span style="color:#B392F0">id</span><span style="color:#9ECBFF"> adminlab</span></span>
+<span class="line"><span style="color:#B392F0">getent</span><span style="color:#9ECBFF"> group</span><span style="color:#9ECBFF"> sudo</span></span></code></pre>
+<p><code>-aG</code> appends a supplementary group without removing other memberships. Omitting <code>-a</code> can replace existing supplementary groups. <code>id</code> should include <code>sudo</code>; numeric user and group IDs vary. <code>getent</code> queries the configured account database rather than assuming all identities are local files.</p>
+<p>Ubuntu normally includes a sudoers rule for the <code>sudo</code> group. Verify the actual policy:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">sudo</span><span style="color:#9ECBFF"> visudo</span><span style="color:#79B8FF"> -c</span></span>
+<span class="line"><span style="color:#B392F0">sudo</span><span style="color:#79B8FF"> -l</span><span style="color:#79B8FF"> -U</span><span style="color:#9ECBFF"> adminlab</span></span></code></pre>
+<p>The first command checks sudoers syntax. The second lists the target user’s permitted commands and must be run by an authorized administrator. Group membership alone does not prove that an altered sudoers policy grants access.</p>
+<h2 id="step-3-test-a-new-ssh-connection">Step 3: Test a new SSH connection</h2>
+<p>From another terminal on your workstation:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">ssh</span><span style="color:#9ECBFF"> adminlab@192.0.2.10</span></span></code></pre>
+<p>Verify the server host-key fingerprint through the provider console or another trusted channel before accepting it. Use <code>-p</code> with the actual port if SSH is not listening on 22. If password SSH is already disabled, install the administrator’s public key using the existing session as described in the <a href="/blog/ubuntu-ssh-ed25519/">SSH key tutorial</a>.</p>
+<p>In the new remote session:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">whoami</span></span>
+<span class="line"><span style="color:#B392F0">id</span></span>
+<span class="line"><span style="color:#B392F0">sudo</span><span style="color:#79B8FF"> -k</span></span>
+<span class="line"><span style="color:#B392F0">sudo</span><span style="color:#79B8FF"> -v</span></span>
+<span class="line"><span style="color:#B392F0">sudo</span><span style="color:#79B8FF"> -l</span></span>
+<span class="line"><span style="color:#B392F0">sudo</span><span style="color:#9ECBFF"> whoami</span></span></code></pre>
+<p><code>whoami</code> should report <code>adminlab</code>, and <code>sudo whoami</code> should report <code>root</code>. These are expected results, not captured lab output. <code>sudo -k</code> invalidates cached credentials; <code>sudo -v</code> verifies that authorization works with a fresh prompt. A new login also refreshes supplementary groups.</p>
+<h2 id="step-4-use-sudo-deliberately">Step 4: Use sudo deliberately</h2>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">sudo</span><span style="color:#9ECBFF"> systemctl</span><span style="color:#9ECBFF"> status</span><span style="color:#9ECBFF"> ssh</span><span style="color:#79B8FF"> --no-pager</span></span></code></pre>
+<p>This runs only the service inspection with elevated privileges. For a short sequence that genuinely needs a root login environment:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">sudo</span><span style="color:#79B8FF"> -i</span></span>
+<span class="line"><span style="color:#B392F0">whoami</span></span>
+<span class="line"><span style="color:#79B8FF">exit</span></span></code></pre>
+<p><code>sudo -i</code> opens a root login shell. Leave it with <code>exit</code> when finished; commands inside that shell remain privileged. Prefer individual <code>sudo</code> commands for everyday maintenance. Do not add unrestricted <code>NOPASSWD</code> rules merely to avoid prompts.</p>
+<p>Named accounts improve attribution, but sudo logging is not a complete record of every action inside a root shell. Add <a href="/blog/linux-auditd-critical-changes/">Auditd monitoring</a> and off-host logs when stronger evidence is needed.</p>
+<h2 id="step-5-restrict-root-ssh-only-after-verification">Step 5: Restrict root SSH only after verification</h2>
+<p>Follow <a href="/blog/ubuntu-ssh-ed25519/">SSH hardening with ED25519</a> to install keys, validate effective configuration, and set <code>PermitRootLogin no</code>. This prevents direct root SSH authentication; it does not delete root, remove sudo, or change WHM’s separate authentication.</p>
+<p>Do not run <code>passwd -l root</code> as a substitute for an SSH policy. Password locking has different effects and can affect recovery. Keep emergency access documented and restrict provider-console credentials with multifactor authentication.</p>
+<h2 id="troubleshooting-and-recovery">Troubleshooting and recovery</h2>
+<table>
+<thead>
+<tr>
+<th>Symptom</th>
+<th>Check and remedy</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>User is not in the sudoers file</td>
+<td>Inspect <code>id adminlab</code>, start a fresh login, and check <code>sudo -l -U adminlab</code> from the original session.</td>
+</tr>
+<tr>
+<td>SSH rejects the password</td>
+<td>Password authentication may already be disabled. Install a public key rather than weakening the working policy.</td>
+</tr>
+<tr>
+<td>Sudo reports a syntax error</td>
+<td>Use the original session or provider console and repair with <code>visudo</code>; never edit sudoers blindly.</td>
+</tr>
+<tr>
+<td>All remote sessions fail</td>
+<td>Use the provider console to inspect the account, SSH configuration, service, and firewall. If necessary, follow the provider’s rescue-disk procedure.</td>
+</tr>
+</tbody>
+</table>
+<p>A console is useful only if you have tested its availability and know its authentication requirements. Keep an encrypted backup of relevant configuration and a record of administrative account ownership outside the VPS.</p>
+<h2 id="verification-and-conclusion">Verification and conclusion</h2>
+<p>Before closing the original session, confirm a fresh SSH login, fresh sudo authorization, and access to the recovery console. Use separate named administrators for different people and review sudo membership periodically.</p>
+<p>The result is a practical separation between ordinary work and privileged maintenance. Continue with <a href="/blog/ubuntu-ssh-ed25519/">ED25519 keys</a> and the <a href="/blog/ubuntu-server-hardening/">complete hardening roadmap</a>.</p>
+<h2 id="official-references">Official references</h2>
+<ul>
+<li><a href="https://ubuntu.com/server/docs/how-to/security/user-management/">Ubuntu: user management</a>.</li>
+<li><a href="https://manpages.ubuntu.com/manpages/noble/man8/sudo.8.html">Ubuntu: sudo manual</a>.</li>
+<li><a href="https://manpages.ubuntu.com/manpages/noble/man8/usermod.8.html">Ubuntu: usermod manual</a>.</li>
+</ul>
+<p class="mt-12"><a href="/blog/">← Browse all technical notes</a></p></main><aside class="article-toc" aria-label="On this page"><strong>On this page</strong><a href="#prerequisites-and-recovery-plan">Prerequisites and recovery plan</a><a href="#step-1-create-a-named-user">Step 1: Create a named user</a><a href="#step-2-grant-administrative-privileges">Step 2: Grant administrative privileges</a><a href="#step-3-test-a-new-ssh-connection">Step 3: Test a new SSH connection</a><a href="#step-4-use-sudo-deliberately">Step 4: Use sudo deliberately</a><a href="#step-5-restrict-root-ssh-only-after-verification">Step 5: Restrict root SSH only after verification</a><a href="#troubleshooting-and-recovery">Troubleshooting and recovery</a><a href="#verification-and-conclusion">Verification and conclusion</a><a href="#official-references">Official references</a></aside></div><footer class="site-footer"><div class="container"><p>© <span id="year">2026</span> Chuck Guifarro Lagos</p><p>Built with Astro &amp; Tailwind CSS.</p></div></footer><script src="/main.js" defer></script></body></html>
